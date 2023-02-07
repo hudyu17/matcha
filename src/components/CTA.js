@@ -1,4 +1,4 @@
-import { KeyIcon } from "@heroicons/react/24/outline"
+import { QueueListIcon } from "@heroicons/react/24/outline"
 import Footer from "./Footer"
 
 /* This example requires Tailwind CSS v3.0+ */
@@ -8,10 +8,12 @@ export default function CTA() {
         <div className="py-24 px-6 sm:px-6 sm:py-32 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-4xl font-bold tracking-tight text-white">
-              Get inspired, today 🍵
+              Find your matcha, today.
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300">
-              Make your next move with CareerMatcha.
+              Make your next move with 
+              <span className="text-green-100 font-light"> CareerMatcha </span> 
+              🍵
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
             <div className="mx-auto flex rounded-md shadow-sm">
@@ -28,8 +30,8 @@ export default function CTA() {
                         type="button"
                         className="relative -ml-px inline-flex items-center space-x-2 rounded-r-md border border-green-800 bg-green-100 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-green-600 hover:text-white focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
                     >
-                        <KeyIcon className="h-5 w-5" aria-hidden="true" />
-                        <span>Request Access</span>
+                        <QueueListIcon className="h-5 w-5" aria-hidden="true" />
+                        <span>Join waitlist</span>
                     </button>
                 </div>
             </div>

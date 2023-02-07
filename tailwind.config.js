@@ -9,7 +9,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'fredoka-one': [`"Fredoka One"`, 'cursive'],
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),

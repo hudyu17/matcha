@@ -1,7 +1,7 @@
 /* This example requires Tailwind CSS v3.0+ */
 import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon, KeyIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon, KeyIcon, QueueListIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -44,9 +44,10 @@ export default function Hero() {
       <div className="px-6 pt-6 lg:px-8">
         <nav className="flex items-center justify-between" aria-label="Global">
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img className="h-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+            <a href="#" className="-m-1.5 p-1.5 flex gap-3">
+              <span className="sr-only">CareerMatcha</span>
+              <h1 className='my-auto font-light text-green-700 text-lg'>CareerMatcha</h1>
+              <svg className="h-8 w-8 my-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><ellipse fill="#292F33" cx="18" cy="26" rx="18" ry="10"/><ellipse fill="#66757F" cx="18" cy="24" rx="18" ry="10"/><path fill="#E1E8ED" d="M18 31C3.042 31 1 16 1 12h34c0 2-1.958 19-17 19z"/><path fill="#77B255" d="M35 12.056c0 5.216-7.611 9.444-17 9.444S1 17.271 1 12.056C1 6.84 8.611 3.611 18 3.611s17 3.229 17 8.445z"/><ellipse fill="#A6D388" cx="18" cy="13" rx="15" ry="7"/><path d="M21 17c-.256 0-.512-.098-.707-.293-2.337-2.337-2.376-4.885-.125-8.262.739-1.109.9-2.246.478-3.377-.461-1.236-1.438-1.996-1.731-2.077-.553 0-.958-.443-.958-.996 0-.552.491-.995 1.043-.995.997 0 2.395 1.153 3.183 2.625 1.034 1.933.91 4.039-.351 5.929-1.961 2.942-1.531 4.332-.125 5.738.391.391.391 1.023 0 1.414-.195.196-.451.294-.707.294zm-6-2c-.256 0-.512-.098-.707-.293-2.337-2.337-2.376-4.885-.125-8.262.727-1.091.893-2.083.494-2.947-.444-.961-1.431-1.469-1.684-1.499-.552 0-.989-.447-.989-1 0-.552.458-1 1.011-1 .997 0 2.585.974 3.36 2.423.481.899 1.052 2.761-.528 5.131-1.961 2.942-1.531 4.332-.125 5.738.391.391.391 1.023 0 1.414-.195.197-.451.295-.707.295z" fill="#5C913B"/></svg>
             </a>
           </div>
           <div className="flex lg:hidden">
@@ -59,60 +60,9 @@ export default function Hero() {
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map((item) => (
-              <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
-                {item.name}
-              </a>
-            ))}
-          </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-              Log in <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
+          
         </nav>
-        <Dialog as="div" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-          <Dialog.Panel focus="true" className="fixed inset-0 z-10 overflow-y-auto bg-white px-6 py-6 lg:hidden">
-            <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
-                <img className="h-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
-              </a>
-              <button
-                type="button"
-                className="-m-2.5 rounded-md p-2.5 text-gray-700"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <span className="sr-only">Close menu</span>
-                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-              </button>
-            </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-gray-500/10">
-                <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
-                <div className="py-6">
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-6 text-gray-900 hover:bg-gray-400/10"
-                  >
-                    Log in
-                  </a>
-                </div>
-              </div>
-            </div>
-          </Dialog.Panel>
-        </Dialog>
+        
       </div>
       <main>
         <div className="relative px-6 lg:px-8">
@@ -123,17 +73,13 @@ export default function Hero() {
                 Career inspiration, curated for you 🍵
               </h1>
               
-              {/* <div className="mt-10 flex items-center justify-center gap-x-6">
-                <a
-                  href="#"
-                  className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Get started
-                </a>
-                <a href="#" className="text-base font-semibold leading-7 text-gray-900">
-                  Learn more <span aria-hidden="true">→</span>
-                </a>
-              </div> */}
+              <p className="mt-6 text-lg leading-8 text-gray-600">
+                Launching on February 28th. 
+              </p>
+              <p className="mt-1 text-sm leading-8 text-gray-500">
+                Waitlist: 35 (Feb 6th)
+              </p>
+              
                 <div className="mt-20 mx-auto flex rounded-md shadow-sm">
                     <div className="text-black flex focus-within:z-10 w-min">
                         <input
@@ -148,8 +94,8 @@ export default function Hero() {
                         type="button"
                         className="relative -ml-px inline-flex items-center space-x-2 rounded-r-md border border-green-800 bg-green-100 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-green-600 hover:text-white focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
                     >
-                        <KeyIcon className="h-5 w-5" aria-hidden="true" />
-                        <span>Request Access</span>
+                        <QueueListIcon className="h-5 w-5" aria-hidden="true" />
+                        <span>Join waitlist</span>
                     </button>
                 </div>
             </div>
