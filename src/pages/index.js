@@ -3,8 +3,8 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import Hero from '@/components/Hero'
-import Pathways from '@/components/Preview'
-import Preview from '@/components/Pathways'
+import Preview from '@/components/Preview'
+import Pathways from '@/components/Pathways'
 import CTA from '@/components/CTA'
 import FAQ from '@/components/FAQ'
 
@@ -24,8 +24,8 @@ export default function Home() {
         <link rel="manifest" href="/site.webmanifest"/>
       </Head>
       <Hero/>
-      <Preview/>
       <Pathways/>
+      <Preview/>
       <FAQ/>
       <CTA/>
     </div>
