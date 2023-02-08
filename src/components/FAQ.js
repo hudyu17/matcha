@@ -26,7 +26,7 @@ const faqs = [
 export default function FAQ() {
     return (
         <div className="bg-white">
-        <div className="mx-auto max-w-7xl px-6 pt-16 pb-24 sm:pb-32  lg:px-8">
+        <div className="mx-auto max-w-7xl px-8 pt-16 pb-24 sm:pb-32 ">
             <div className="mx-auto max-w-4xl divide-y divide-gray-900/10">
             <h2 className="text-2xl font-bold leading-10 tracking-tight text-gray-900">Frequently asked questions</h2>
             <dl className="mt-10 space-y-6 divide-y divide-gray-900/10">

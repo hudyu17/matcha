@@ -5,7 +5,8 @@ const pathways = [
   {
     id: 1,
     title: 'Consultant to CPO',
-    name: 'Malphite',
+    number: 93,
+    name: 'Zyra',
     content: [
       {
         id: 1,
@@ -72,6 +73,7 @@ const pathways = [
   {
     id: 2,
     title: 'SWE to Management',
+    number: 17,
     name: 'Galio',
     content: [
       {
@@ -129,6 +131,7 @@ const pathways = [
   {
     id: 3,
     title: 'Consultant to Founder',
+    number: 26,
     name: 'Heimerdinger',
     content: [
       {
@@ -204,12 +207,12 @@ export default function Pathways() {
             <dl className="grid max-w-xl grid-cols-1 gap-x-28 gap-y-6 lg:max-w-none lg:grid-cols-3">
               {pathways.map((pathway) => (
                 <div>
-                  <Feed key={pathway.id} title={pathway.title} name={pathway.name} content={pathway.content}/>
+                  <Feed key={pathway.id} title={pathway.title} number={pathway.number} name={pathway.name} content={pathway.content}/>
                 </div>
               ))}
             </dl>
           <div className='lg:-mt-8 w-full flex font-medium pb-4 text-green-700 text-2xl'>
-            <h2 className='lg:mx-auto'>+ hundreds more unique career journeys, coming soon.</h2>
+            <h2 className='lg:mx-auto'>+ hundreds more unique career paths, coming soon.</h2>
           </div>
 
         </div>
