@@ -4,7 +4,7 @@ import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/outline'
 const faqs = [
     {
         id: 1,
-        question: "What is this product?",
+        question: "What is CareerMatcha?",
         answer:
             "A curated database of career paths that you can draw inspiration from.",
     },
@@ -12,7 +12,7 @@ const faqs = [
         id: 2,
         question: "Who's featured in here?",
         answer:
-            "Industry leaders with at least 10 years of experience.",
+            "Industry leaders with at least 10 years of experience, all anonymised.",
     },
     {
         id: 3,
@@ -39,9 +39,9 @@ export default function FAQ() {
                             <span className="text-base font-semibold leading-7">{faq.question}</span>
                             <span className="ml-6 flex h-7 items-center">
                             {open ? (
-                                <PlusSmallIcon className="h-6 w-6" aria-hidden="true" />
-                            ) : (
                                 <MinusSmallIcon className="h-6 w-6" aria-hidden="true" />
+                            ) : (
+                                <PlusSmallIcon className="h-6 w-6" aria-hidden="true" />
                             )}
                             </span>
                         </Disclosure.Button>

@@ -7,7 +7,7 @@ export default function signup(req, res) {
 
     try {
         // TODO: verify email not already there
-
+        
         // Add email to list
         base('Emails').create({
             "Email": emailAdd

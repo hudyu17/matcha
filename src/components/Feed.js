@@ -1,74 +1,24 @@
-import { CheckIcon, HandThumbUpIcon, UserIcon } from '@heroicons/react/20/solid'
-
-const timeline = [
-  {
-    id: 1,
-    content: 'Applied to',
-    target: 'Front End Developer',
-    href: '#',
-    date: 'Sep 20',
-    datetime: '2020-09-20',
-    icon: UserIcon,
-    iconBackground: 'bg-gray-400',
-  },
-  {
-    id: 2,
-    content: 'Advanced to phone screening by',
-    target: 'Bethany Blake',
-    href: '#',
-    date: 'Sep 22',
-    datetime: '2020-09-22',
-    icon: HandThumbUpIcon,
-    iconBackground: 'bg-blue-500',
-  },
-  {
-    id: 3,
-    content: 'Completed phone screening with',
-    target: 'Martha Gardner',
-    href: '#',
-    date: 'Sep 28',
-    datetime: '2020-09-28',
-    icon: CheckIcon,
-    iconBackground: 'bg-green-500',
-  },
-  {
-    id: 4,
-    content: 'Advanced to interview by',
-    target: 'Bethany Blake',
-    href: '#',
-    date: 'Sep 30',
-    datetime: '2020-09-30',
-    icon: HandThumbUpIcon,
-    iconBackground: 'bg-blue-500',
-  },
-  {
-    id: 5,
-    content: 'Completed interview with',
-    target: 'Katherine Snyder',
-    href: '#',
-    date: 'Oct 4',
-    datetime: '2020-10-04',
-    icon: CheckIcon,
-    iconBackground: 'bg-green-500',
-  },
-]
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Feed({ title, content }) {
+export default function Feed({ title, name, content }) {
   return (
     <div className="flow-root">
       <ul role="list" className="mb-8">
-        <h3 className='font-medium pb-10 text-black text-lg'>{title}</h3>
+        <h3 className='font-medium pb-4 text-black text-lg'>{title}</h3>
+        <h2 className="pb-4 font-medium leading-8 tracking-tight text-green-700">Career: <span className="font-normal">{name}'s journey</span></h2>
+
         {content.map((event, eventIdx) => (
           <li key={event.id}>
             <div className="relative pb-8">
-              {eventIdx !== content.length - 1 ? (
+              {eventIdx < content.length - 2 ? (
                 <span className="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true" />
               ) : null}
-              <div className="relative flex space-x-3">
+              {eventIdx === content.length - 2 ? (
+                <span className="absolute top-4 left-4 -ml-px h-full lg:h-4/6 w-0.5 bg-gray-200 lg:bg-gray-100" aria-hidden="true" />
+              ) : null}
+              <div className={ eventIdx === content.length - 1 ? 'relative flex space-x-3 lg:opacity-25' : 'relative flex space-x-3' }>
                 <div>
                   <span
                     className={classNames(
