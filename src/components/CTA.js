@@ -4,12 +4,7 @@ import SignupForm from "./SignupForm"
 import { useState } from "react"
 
 /* This example requires Tailwind CSS v3.0+ */
-export default function CTA() {
-    const [email, setEmail] = useState({
-        email: '',
-        // subcriptionResponse: '',
-        // error: false,
-    });
+export default function CTA({ setShowSuccess, setShowExists, setShowError }) {
     
     return (
       <div className="relative isolate overflow-hidden bg-gray-900">
@@ -23,7 +18,7 @@ export default function CTA() {
               <span className="text-green-100 font-light"> CareerMatcha</span>
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-            <SignupForm email={email} setEmail={setEmail}/>
+            <SignupForm setShowSuccess={setShowSuccess} setShowExists={setShowExists} setShowError={setShowError}/>
             {/* <div className="mx-auto flex rounded-md shadow-sm">
                     <div className="text-black flex focus-within:z-10 w-min">
                         <input

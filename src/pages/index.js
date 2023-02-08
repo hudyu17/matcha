@@ -7,10 +7,18 @@ import Preview from '@/components/Preview'
 import Pathways from '@/components/Pathways'
 import CTA from '@/components/CTA'
 import FAQ from '@/components/FAQ'
+import { useState } from 'react'
+import SuccessAlert from '@/components/alerts/SuccessAlert'
+import EmailExistsAlert from '@/components/alerts/EmailExistsAlert'
+import ErrorAlert from '@/components/alerts/ErrorAlert'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const [showSuccess, setShowSuccess] = useState(false)
+  const [showExists, setShowExists] = useState(false)
+  const [showError, setShowError] = useState(false)
+
   return (
     <div className='bg-white'>
       <Head>
@@ -23,11 +31,14 @@ export default function Home() {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
         <link rel="manifest" href="/site.webmanifest"/>
       </Head>
-      <Hero/>
+      <Hero setShowSuccess={setShowSuccess} setShowExists={setShowExists} setShowError={setShowError}/>
       <Pathways/>
       <Preview/>
       <FAQ/>
-      <CTA/>
+      <CTA setShowSuccess={setShowSuccess} setShowExists={setShowExists} setShowError={setShowError}/>
+      <SuccessAlert showSuccess={showSuccess} setShowSuccess={setShowSuccess}/>
+      <EmailExistsAlert showExists={showExists} setShowExists={setShowExists}/>
+      <ErrorAlert showError={showError} setShowError={setShowError}/>
     </div>
   )
 }

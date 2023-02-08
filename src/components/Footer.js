@@ -27,8 +27,8 @@ const navigation = [
             ))}
           </div>
           <div className="mt-8 md:order-1 md:mt-0">
-            <p className="text-center text-xs leading-5 text-gray-400">
-              Made by Hudson
+            <p className="text-center leading-5 text-gray-400">
+              Made by <a className="text-gray-300 hover:text-green-100" href="https://hudsonyuen.com" target="_blank" rel="matcha">Hudson</a>
             </p>
           </div>
         </div>

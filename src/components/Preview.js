@@ -4,12 +4,12 @@ const features = [
   {
     name: 'Save weeks of research.',
     description:
-      'Forget about the LinkedIn search limit. We bring together hundreds of career paths that are relevant to you, all in one place.',
+      'Skip the LinkedIn stalking. We bring together hundreds of relevant career paths, all in one place.',
     icon: ClockIcon,
   },
   {
     name: 'Make informed decisions.',
-    description: 'Want to break into product from consulting? Deciding between management or IC? See what others did when they were in your shoes.',
+    description: 'Breaking into product from consulting? Deciding between management or IC? See what others did when they were in your shoes.',
     icon: ChartBarIcon,
   },
   {
@@ -44,8 +44,8 @@ export default function Preview() {
             </div>
           </div>
           <img
-            src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
-            alt="Product screenshot"
+            src="https://images.unsplash.com/photo-1505578183806-1fb94ddf0e00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+            alt="Image of pathway"
             className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
             width={2432}
             height={1442}

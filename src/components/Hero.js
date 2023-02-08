@@ -12,7 +12,7 @@ const navigation = [
   { name: 'Company', href: '#' },
 ]
 
-export default function Hero() {
+export default function Hero({ setShowSuccess, setShowExists, setShowError }) {
     const [email, setEmail] = useState({
         email: '',
         // subcriptionResponse: '',
@@ -97,7 +97,7 @@ export default function Hero() {
                 Waitlist: 35 (Updated Feb 6th)
               </p>
               <div className='mt-10 mx-auto'>
-                <SignupForm email={email} setEmail={setEmail}/>
+                <SignupForm setShowSuccess={setShowSuccess} setShowExists={setShowExists} setShowError={setShowError}/>
               </div>
             </div>
           </div>
