@@ -2,6 +2,8 @@
 import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon, KeyIcon, QueueListIcon } from '@heroicons/react/24/outline'
+import axios from 'axios'
+import SignupForm from './SignupForm'
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -11,7 +13,32 @@ const navigation = [
 ]
 
 export default function Hero() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const [email, setEmail] = useState({
+        email: '',
+        // subcriptionResponse: '',
+        // error: false,
+    });
+
+//     const handleSubmit = async () => {
+//         const emailAdd = email.email;
+
+//         await axios.post('/api/signup', {
+//             emailAdd
+//         }).then(res => {
+//             console.log(res)
+//             if(res === 200) {
+//                 console.log('success!')
+//             }
+//             setEmail({
+//                 email: '',
+//                 // subcriptionResponse: response.message,
+//                 // error: false,
+//             });
+//         }).catch(error => {
+//             console.log(error.response.data)
+//             // TODO: some error handling
+//         })
+//   }
 
   return (
     <div className="isolate bg-white">
@@ -72,32 +99,15 @@ export default function Hero() {
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
                 Career inspiration, curated for you 🍵
               </h1>
-              
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                Launching on February 28th. 
+                The first database for career paths - launching on February 28th. 
               </p>
               <p className="mt-1 text-sm leading-8 text-gray-500">
-                Waitlist: 35 (Feb 6th)
+                Waitlist: 35 (Updated Feb 6th)
               </p>
-              
-                <div className="mt-20 mx-auto flex rounded-md shadow-sm">
-                    <div className="text-black flex focus-within:z-10 w-min">
-                        <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            className="rounded-none rounded-l-md border-green-800 focus:border-indigo-500 focus:ring-indigo-500 text-sm w-min"
-                            placeholder="my@email.com"
-                        />
-                    </div>
-                    <button
-                        type="button"
-                        className="relative -ml-px inline-flex items-center space-x-2 rounded-r-md border border-green-800 bg-green-100 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-green-600 hover:text-white focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                    >
-                        <QueueListIcon className="h-5 w-5" aria-hidden="true" />
-                        <span>Join waitlist</span>
-                    </button>
-                </div>
+              <div className='mt-10 mx-auto'>
+                <SignupForm email={email} setEmail={setEmail}/>
+              </div>
             </div>
           </div>
           <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">

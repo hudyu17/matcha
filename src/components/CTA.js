@@ -1,22 +1,30 @@
 import { QueueListIcon } from "@heroicons/react/24/outline"
 import Footer from "./Footer"
+import SignupForm from "./SignupForm"
+import { useState } from "react"
 
 /* This example requires Tailwind CSS v3.0+ */
 export default function CTA() {
+    const [email, setEmail] = useState({
+        email: '',
+        // subcriptionResponse: '',
+        // error: false,
+    });
+    
     return (
       <div className="relative isolate overflow-hidden bg-gray-900">
         <div className="py-24 px-6 sm:px-6 sm:py-32 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-4xl font-bold tracking-tight text-white">
-              Find your matcha, today.
+              Find your matcha 🍵
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300">
               Make your next move with 
-              <span className="text-green-100 font-light"> CareerMatcha </span> 
-              🍵
+              <span className="text-green-100 font-light"> CareerMatcha</span>
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-            <div className="mx-auto flex rounded-md shadow-sm">
+            <SignupForm email={email} setEmail={setEmail}/>
+            {/* <div className="mx-auto flex rounded-md shadow-sm">
                     <div className="text-black flex focus-within:z-10 w-min">
                         <input
                             type="email"
@@ -33,7 +41,7 @@ export default function CTA() {
                         <QueueListIcon className="h-5 w-5" aria-hidden="true" />
                         <span>Join waitlist</span>
                     </button>
-                </div>
+                </div> */}
             </div>
           </div>
         </div>
