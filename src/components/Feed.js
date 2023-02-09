@@ -35,9 +35,9 @@ export default function Feed({ title, number, name, content }) {
                   <div>
                     <p className="font-medium text-gray-900 text-sm ">
                       {event.content}{' '}
-                      <a href={event.href} className="text-gray-500">
+                      <span className="text-gray-500">
                         {event.target}
-                      </a>
+                      </span>
                     </p>
                   </div>
                   <div className="whitespace-nowrap text-right text-sm text-gray-500">
