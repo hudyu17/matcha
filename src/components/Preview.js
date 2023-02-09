@@ -28,7 +28,7 @@ export default function Preview() {
             <div className="lg:max-w-lg">
               <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">See how others got there</p>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                Reaching your career goals isn't always easy, but knowing how others did it can take out the guesswork. 
+                Reaching your career goals isn&apos;t always easy, but knowing how others did it can take out the guesswork. 
               </p>
               <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
                 {features.map((feature) => (

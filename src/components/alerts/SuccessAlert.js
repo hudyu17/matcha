@@ -38,7 +38,7 @@ export default function SuccessAlert({ showSuccess, setShowSuccess }) {
                   </div>
                   <div className="ml-3 w-0 flex-1 pt-0.5 text-left">
                     <p className="text-sm font-medium text-gray-900">Email added to waitlist!</p>
-                    <p className="mt-1 text-sm text-gray-500">You'll be the first to access CareerMatcha.</p>
+                    <p className="mt-1 text-sm text-gray-500">You&apos;ll be the first to access CareerMatcha.</p>
                   </div>
                 </div>
               </div>

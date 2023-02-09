@@ -8,7 +8,7 @@ export default function Feed({ title, number, name, content }) {
       <ul role="list" className="mb-8">
         <h3 className='font-medium pb-4 text-black text-lg'>{title}</h3>
         <h2 className="pb-4 font-medium leading-8 tracking-tight text-green-700">Career #{number}
-        : <span className="font-normal">{name}'s path</span>
+        : <span className="font-normal">{name}&apos;s path</span>
         </h2>
 
         {content.map((event, eventIdx) => (

@@ -206,7 +206,7 @@ export default function Pathways() {
         <div className="mx-auto max-w-2xl lg:max-w-none">
             <dl className="grid max-w-xl grid-cols-1 gap-x-28 gap-y-6 lg:max-w-none lg:grid-cols-3">
               {pathways.map((pathway) => (
-                <div>
+                <div key={pathway.id}>
                   <Feed key={pathway.id} title={pathway.title} number={pathway.number} name={pathway.name} content={pathway.content}/>
                 </div>
               ))}
