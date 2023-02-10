@@ -18,7 +18,7 @@ const faqs = [
         id: 3,
         question: "What careers are included?",
         answer:
-            "Currently focused on consulting and tech, expanding to life sciences soon.",
+            "Currently focused on consulting, tech, and startups. Expanding to life sciences soon.",
     },
     // More questions...
   ]
