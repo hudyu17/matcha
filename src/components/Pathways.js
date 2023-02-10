@@ -4,8 +4,8 @@ import Feed from './Feed'
 const pathways = [
   {
     id: 1,
-    title: 'Consultant to CPO',
-    number: 93,
+    title: 'Consultant to Product',
+    number: 17,
     name: 'Zyra',
     content: [
       {
@@ -40,8 +40,8 @@ const pathways = [
       },
       {
         id: 4,
-        content: 'University of Toronto MASc,',
-        target: 'Human Factors',
+        content: 'MASc Human Factors,',
+        target: 'University of Toronto',
         href: '#',
         date: "'11-'13",
         datetime: '2020-09-28',
@@ -60,8 +60,8 @@ const pathways = [
       },
       {
         id: 6,
-        content: 'University of Toronto BASc,',
-        target: 'Industrial Engineering',
+        content: 'BASc Industrial Engineering,',
+        target: 'University of Toronto',
         href: '#',
         date: "'06",
         datetime: '2020-10-04',
@@ -72,8 +72,8 @@ const pathways = [
   },
   {
     id: 2,
-    title: 'SWE to Management',
-    number: 17,
+    title: 'SWE to Product',
+    number: 53,
     name: 'Galio',
     content: [
       {
@@ -118,8 +118,8 @@ const pathways = [
       },
       {
         id: 5,
-        content: 'University of Michigan BS,',
-        target: 'Computer Science',
+        content: 'BS Computer Science,',
+        target: 'University of Michigan',
         href: '#',
         date: "'11",
         datetime: '2020-10-04',
@@ -131,7 +131,7 @@ const pathways = [
   {
     id: 3,
     title: 'Consultant to Founder',
-    number: 26,
+    number: 94,
     name: 'Heimerdinger',
     content: [
       {
@@ -146,8 +146,8 @@ const pathways = [
       },
       {
         id: 2,
-        content: 'Regional Lead',
-        target: 'at the Meeting House',
+        content: 'North America Lead',
+        target: 'at The Mission',
         href: '#',
         date: "'09-'14",
         datetime: '2020-09-20',
@@ -166,8 +166,8 @@ const pathways = [
       },
       {
         id: 4,
-        content: 'Harvard University MPA,',
-        target: 'Master in Public Administration',
+        content: 'Master in Public Administration,',
+        target: 'Harvard University',
         href: '#',
         date: "'03-'05",
         datetime: '2020-09-28',
@@ -186,8 +186,8 @@ const pathways = [
       },
       {
         id: 6,
-        content: "Queen's University BCom,",
-        target: 'Bachelor of Commerce',
+        content: "Bachelor of Commerce,",
+        target: "Queen's University",
         href: '#',
         date: "'00",
         datetime: '2020-10-04',
