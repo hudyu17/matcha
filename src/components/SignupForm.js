@@ -26,7 +26,7 @@ export default function SignupForm({ setShowSuccess, setShowExists, setShowError
             // console.log(res)
             if (res.status === 200) {
                 setShowSuccess(true)
-                axios.post('/api/signup', {emailAdd})
+                // axios.post('/api/signup', {emailAdd})
             } 
             setEmail({
                 email: '',
@@ -38,6 +38,7 @@ export default function SignupForm({ setShowSuccess, setShowExists, setShowError
                 setShowExists(true)
             } else {
                 setShowError(true)
+                console.log(res)
             }
         })
   }

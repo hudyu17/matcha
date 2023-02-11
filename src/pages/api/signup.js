@@ -1,9 +1,9 @@
-import Airtable from 'airtable';
+import { table } from "@/airtable";
 
-export default function signup(req, res) {
+export default async function signup(req, res) {
     const { emailAdd } = req.body;
     
-    const base = new Airtable({apiKey: process.env.AIRTABLE_API}).base(process.env.AIRTABLE_NAME);
+    // const base = new Airtable({apiKey: process.env.AIRTABLE_API}).base(process.env.AIRTABLE_NAME);
 
     try {
         // Check if email exists
@@ -22,14 +22,16 @@ export default function signup(req, res) {
         //     } 
         
         // Email does not exist, so add email to list
-        base('Emails').create({
-            "Email": emailAdd
-        });
+        // base('Emails').create({
+        //     "Email": emailAdd
+        // });
         // base('Emails')
         // .select({
         //     filterByFormula: `Email = "${emailAdd}"`,
         //     maxRecords: 1,
         // })
+
+        await table.create({"Email": emailAdd})
         res.status(200).json({ message: 'Email added successfully' })
     
         
