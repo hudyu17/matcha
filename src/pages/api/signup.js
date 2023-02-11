@@ -23,7 +23,13 @@ export default function signup(req, res) {
                 // Add email to list
                 base('Emails').create({
                     "Email": emailAdd
-                });
+                }, function(err, record) {
+                    if (err) {
+                      console.error(err);
+                      return;
+                    }
+                    console.log(record.getId());
+                  });
                 res.status(200).json({ message: 'Email added successfully' })
             }
         })
