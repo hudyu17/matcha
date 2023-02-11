@@ -25,6 +25,11 @@ export default function signup(req, res) {
         base('Emails').create({
             "Email": emailAdd
         });
+        base('Emails')
+        .select({
+            filterByFormula: `Email = "${emailAdd}"`,
+            maxRecords: 1,
+        })
         res.status(200).json({ message: 'Email added successfully' })
     
         })
