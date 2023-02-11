@@ -38,6 +38,7 @@ export default function SignupForm({ setShowSuccess, setShowExists, setShowError
                 setShowExists(true)
             } else {
                 setShowError(true)
+                console.log(res)
             }
         })
   }
