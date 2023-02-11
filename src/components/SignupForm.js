@@ -23,9 +23,10 @@ export default function SignupForm({ setShowSuccess, setShowExists, setShowError
         await axios.post('/api/signup', {
             emailAdd
         }).then(res => {
-            console.log(res)
+            // console.log(res)
             if (res.status === 200) {
                 setShowSuccess(true)
+                axios.post('/api/signup', {emailAdd})
             } 
             setEmail({
                 email: '',
