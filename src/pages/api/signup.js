@@ -6,7 +6,7 @@ export default function signup(req, res) {
     const base = new Airtable({apiKey: process.env.AIRTABLE_API}).base(process.env.AIRTABLE_NAME);
 
     try {
-        // TODO: verify email not already there
+        // Check if email exists
         base('Emails')
         .select({
             filterByFormula: `Email = "${emailAdd}"`,
@@ -19,19 +19,14 @@ export default function signup(req, res) {
             if (records.length > 0) {
                 res.status(405).send('Email already exists!')
                 return;
-            } else {
-                // Add email to list
-                base('Emails').create({
-                    "Email": emailAdd
-                }, function(err, record) {
-                    if (err) {
-                      console.error(err);
-                      return;
-                    }
-                    console.log(record.getId());
-                  });
-                res.status(200).json({ message: 'Email added successfully' })
-            }
+            } 
+        
+        // Email does not exist, so add email to list
+        base('Emails').create({
+            "Email": emailAdd
+        });
+        res.status(200).json({ message: 'Email added successfully' })
+    
         })
         
     } catch (error) {
