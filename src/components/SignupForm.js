@@ -68,7 +68,7 @@ export default function SignupForm({ setShowSuccess, setShowExists, setShowError
                     type="submit"
                     className="relative -ml-px inline-flex items-center space-x-2 rounded-r-md border border-green-800 bg-green-100 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-green-500 hover:text-white focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
                 >
-                    <QueueListIcon className="h-5 w-5" aria-hidden="true" />
+                    {/* <QueueListIcon className="h-5 w-5" aria-hidden="true" /> */}
                     <span>Join waitlist</span>
                 </button>
             </form>
