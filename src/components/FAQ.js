@@ -4,21 +4,27 @@ import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/outline'
 const faqs = [
     {
         id: 1,
-        question: "What is CareerMatcha?",
+        question: "What is CareerMatcha and how do I use it?",
         answer:
-            "A curated database of career paths that you can draw inspiration from.",
+            `A curated database of career paths that you can draw inspiration from. You can search and filter for specific careers that you want to see; e.g. "paths from consulting to startups".`,
     },
     {
         id: 2,
         question: "Who's featured in here?",
         answer:
-            "Industry leaders with at least 10 years of experience, all anonymised.",
+            "Industry leaders with 10+ years of experience, all anonymised.",
     },
     {
         id: 3,
-        question: "What careers are included?",
+        question: "What industries are included?",
         answer:
             "Currently focused on consulting, tech, and startups. Expanding to life sciences soon.",
+    },
+    {
+        id: 4,
+        question: "When would I use CareerMatcha?",
+        answer:
+            "Anytime you think about your career 😎 Whether you're planning a pivot, just thinking about other industries, or still finishing up school, you'll find direction and get inspired from the paths on CareerMatcha.",
     },
     // More questions...
   ]
