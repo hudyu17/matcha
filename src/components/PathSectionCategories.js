@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function PathSectionCategories({ categories }) {
   return (
-    <ul role="list" className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+    <ul role="list" className="mt-5 grid grid-cols-1 gap-5">
         {categories.map((category) => (
             <Link href={category.href} key={category.name} className="col-span-1 flex rounded-md shadow-sm hover:shadow-lg ease-in-out duration-300">
             <div

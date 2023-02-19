@@ -9,7 +9,7 @@ const categories = [
     { name: 'Design', initials: '🎨', href: '/paths/consulting/design', members: 10 },
   ]
 
-  const pathways = [
+const pathways = [
     {
       id: 1,
       title: 'Consultant to Product',
