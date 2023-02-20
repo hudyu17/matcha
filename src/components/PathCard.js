@@ -1,15 +1,23 @@
+import { RocketLaunchIcon } from "@heroicons/react/20/solid"
 import { BookmarkIcon } from "@heroicons/react/24/outline"
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
   
-  export default function PathCard({ title, number, tags, content }) {
+  export default function PathCard({ title, number, tags, path }) {
+    let content = []
+    for (var i = 0; i < path.length; i++) {
+        content.push(JSON.parse(path[i]))
+    }
+
+    console.log(content[0].icon)
+
     return (
       <div className="flow-root divide-y divide-gray-200 rounded-lg bg-white shadow">
         <ul role="list" className="p-5">
             <div className="flex justify-between">
-                <h2 className="pb-4 font-medium leading-8 tracking-tight text-green-700">
+                <h2 className="pb-4 font-medium leading-2 tracking-tight text-green-700">
                     Example #{number}: {title}
                 </h2>
                 <BookmarkIcon className="w-5 h-5 mt-1 text-green-900"/>
@@ -17,7 +25,6 @@ function classNames(...classes) {
           {content.map((event, eventIdx) => (
             <li key={event.id}>
               <div className={ eventIdx === content.length - 1 ? 'relative pb-2' : 'relative pb-8' }>
-              {/* <div className="relative pb-8"> */}
                 {eventIdx < content.length - 1 ? (
                   <span className="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true" />
                 ) : null}
@@ -43,7 +50,7 @@ function classNames(...classes) {
                       </p>
                     </div>
                     <div className="whitespace-nowrap text-right text-sm text-gray-500">
-                      <time dateTime={event.datetime}>{event.date}</time>
+                      <div>'{event.date}</div>
                     </div>
                   </div>
                 </div>

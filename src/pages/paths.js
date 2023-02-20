@@ -3,6 +3,8 @@ import PathHeading from "@/components/PathHeading"
 import Link from "next/link"
 import { ChevronLeftIcon, ChevronRightIcon, RocketLaunchIcon, RectangleGroupIcon, AcademicCapIcon, PresentationChartLineIcon, CodeBracketIcon, GlobeAmericasIcon } from '@heroicons/react/20/solid'
 
+import { prisma } from "@/prisma"
+
 const pathways = [
     {
       id: 1,
@@ -30,16 +32,7 @@ const pathways = [
           icon: RectangleGroupIcon,
           iconBackground: 'bg-green-300',
         },
-        {
-          id: 3,
-          content: 'Product Manager',
-          target: 'at Freshbooks',
-          href: '#',
-          date: "'13-'14",
-          datetime: '2020-09-22',
-          icon: RectangleGroupIcon,
-          iconBackground: 'bg-green-300',
-        },
+        
         {
           id: 4,
           content: 'MASc Human Factors,',
@@ -159,26 +152,8 @@ const pathways = [
           icon: RocketLaunchIcon,
           iconBackground: 'bg-green-600',
         },
-        {
-          id: 2,
-          content: 'North America Lead',
-          target: 'at The Mission',
-          href: '#',
-          date: "'09-'14",
-          datetime: '2020-09-20',
-          icon: GlobeAmericasIcon,
-          iconBackground: 'bg-green-300',
-        },
-        {
-          id: 3,
-          content: 'Sr. Manager, Global Biz Dev',
-          target: 'at Maple Leaf Foods',
-          href: '#',
-          date: "'05-'08",
-          datetime: '2020-09-22',
-          icon: PresentationChartLineIcon,
-          iconBackground: 'bg-yellow-400',
-        },
+
+        
         {
           id: 4,
           content: 'Master in Public Administration,',
@@ -401,10 +376,11 @@ const pathways = [
     }
 ]
 
-export default function Paths() {
+export default function Paths({ careers }) {
+    // console.log(careers)
   return (
-    <div className="bg-green-50 ">
-    <div className='mx-auto max-w-2xl py-8 sm:py-12 px-4 sm:px-6 lg:max-w-7xl lg:px-8 flex flex-col gap-10'>
+    <div className="bg-green-50 h-screen">
+    <div className='mx-auto max-w-2xl py-8 sm:py-12 px-4 sm:px-6 lg:max-w-7xl lg:px-8 flex flex-col gap-6 lg:gap-10'>
         <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
             Browse all Career Paths
         </h2>
@@ -441,10 +417,15 @@ export default function Paths() {
         
         <PathHeading/>
 
-        <dl className="grid max-w-xl grid-cols-1 gap-10 lg:max-w-none lg:grid-cols-3">
-            {pathways.map((pathway) => (
-            <div key={pathway.id}>
+        <dl className="w-full gap-6 lg:gap-10 md:columns-2 lg:columns-3">
+            {/* {pathways.map((pathway) => (
+            <div key={pathway.id} className='break-inside-avoid-column pb-10'>
                 <PathCard key={pathway.id} title={pathway.title} number={pathway.number} tags={pathway.tags} content={pathway.content}/>
+            </div>
+            ))} */}
+            {careers.map((career) => (
+            <div key={career.id} className='break-inside-avoid-column pb-10'>
+                <PathCard key={career.id} title={career.title} number={career.id} tags={career.tags} path={career.path}/>
             </div>
             ))}
         </dl>
@@ -452,3 +433,16 @@ export default function Paths() {
     </div>
   )
 }
+
+export async function getServerSideProps(context) {
+  
+    const careers = await prisma.career.findMany();
+    console.log(careers)
+    return {
+      props: {
+        careers: JSON.parse(JSON.stringify(careers))
+        // markers: JSON.parse(JSON.stringify(markers)),
+        // locArray: JSON.parse(JSON.stringify(locArray)),
+      },
+    }
+  }

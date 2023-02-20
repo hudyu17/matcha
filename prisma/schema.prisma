@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Career {
+  id        Int      @id @default(autoincrement())
+  title     String   
+  path      String[]
+  updatedAt DateTime @updatedAt
+  tags      String[]
+}
+
+// model PathItem {
+//   id        Int      @id @default(autoincrement())
+//   career    Career   @relation(fields: [careerId], references: [id])
+//   careerId  Int      
+//   name      String
+//   company   String
+//   location  String
+//   dateRange String
+//   icon      String
+//   iconColor String
+// }
