@@ -59,7 +59,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function PathHeading() {
   const [open, setOpen] = useState(false)
 
   return (
@@ -152,12 +152,6 @@ export default function Example() {
         </Dialog>
       </Transition.Root>
 
-      {/* <div className="mx-auto max-w-7xl py-8 px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900">Browse Career Paths</h1>
-        <p className="mt-4 max-w-xl text-sm text-gray-700">
-          Find things that you want.
-        </p>
-      </div> */}
 
       {/* Filters */}
       <section aria-labelledby="filter-heading">
@@ -210,6 +204,7 @@ export default function Example() {
               </Transition>
             </Menu>
 
+            {/* mobile filters button */}
             <button
               type="button"
               className="inline-block text-sm font-medium text-gray-700 hover:text-gray-900 sm:hidden"

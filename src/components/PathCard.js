@@ -1,5 +1,6 @@
 import { RocketLaunchIcon } from "@heroicons/react/20/solid"
 import { BookmarkIcon } from "@heroicons/react/24/outline"
+import DynamicIcon from "./DynamicIcon"
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -37,7 +38,8 @@ function classNames(...classes) {
                         'h-8 w-8 rounded-full flex items-center justify-center ring-2 ring-white'
                       )}
                     >
-                      <event.icon className="h-5 w-5 text-white" aria-hidden="true" />
+                      {/* <event.icon className="h-5 w-5 text-white" aria-hidden="true" /> */}
+                      <DynamicIcon style='h-5 w-5 text-white' icon={event.icon}/>
                     </span>
                   </div>
                   <div className="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
