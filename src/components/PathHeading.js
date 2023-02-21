@@ -65,12 +65,6 @@ export default function PathHeading({ filters, setFilters, activeFilters, setAct
 
   const handleFilterChange = (section, option) => {
 
-    // for (var i = 0; i < filters.length; i++) {
-    //     if (filters[i].id === section.id) {
-    //         // console.log(filters[i])
-    //         setFilter(currFilters => ({}))
-    //     }
-    // }
     var indexFilter = filters.findIndex(x => x.id === section.id);
     var indexOption = filters[indexFilter]['options'].findIndex(x => x.value === option.value);
     // console.log(indexFilter, indexOption)
@@ -93,19 +87,55 @@ export default function PathHeading({ filters, setFilters, activeFilters, setAct
     
     // update active filters
     if (newOption.checked) {
-        console.log('lol')
-        // const activeAdd = {value: currOption.value, label: currOption.label}
-        // console.log(activeAdd)
-        setActiveFilters([...activeFilters, {value: currOption.value, label: currOption.label}])
+        setActiveFilters([...activeFilters, {value: currOption.value, label: currOption.label, checked: true, section: section}])
     } else {
         let indexActive;
         for (var i = 0; i < activeFilters.length; i++) {
-            if (activeFilters[i].value === currOption.value) {
+            if (activeFilters[i].value === newOption.value) {
                 indexActive = i
             }}
         
-        setActiveFilters(activeFilters.splice(indexActive))
+        // splice modifies array in place
+        const newActive = activeFilters.slice(0, indexActive).concat(
+          activeFilters.slice(indexActive + 1)
+        )
+
+        setActiveFilters(newActive)
     }
+  }
+
+  const removeActiveFilter = (filter) => {
+
+    const tempSection = filter.section
+    const tempOption = {
+      value: filter.value,
+      label: filter.label,
+      checked: filter.checked
+    }
+
+    handleFilterChange(tempSection, tempOption)
+    
+    // let indexActive;
+    // for (var i = 0; i < activeFilters.length; i++) {
+    //     if (activeFilters[i].value === filter.value) {
+    //         indexActive = i
+    //     }}
+    
+    // // splice modifies array in place
+    // const newActive = activeFilters.slice(0, indexActive).concat(
+    //   activeFilters.slice(indexActive + 1)
+    // )
+
+    // setActiveFilters(newActive)
+
+    // // remove checked in filters
+    // console.log(filter.section)
+    // var indexOption = filter.section.options.findIndex(x => x.value === filter.value);
+    // const currOption = filter.section.options[indexOption]
+
+    // const newOption = {...currOption, checked: !currOption.checked}
+    // console.log(newOption)
+    
   }
 
   return (
@@ -137,7 +167,7 @@ export default function PathHeading({ filters, setFilters, activeFilters, setAct
             >
               <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
                 <div className="flex items-center justify-between px-4">
-                  <h2 className="text-lg font-medium text-gray-900">Filters</h2>
+                  <h2 className="text-xl font-medium text-gray-900">Filters</h2>
                   <button
                     type="button"
                     className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400"
@@ -151,31 +181,31 @@ export default function PathHeading({ filters, setFilters, activeFilters, setAct
                 {/* Filters */}
                 <form className="mt-4">
                   {filters.map((section) => (
-                    <Disclosure as="div" key={section.name} className="border-t border-gray-200 px-4 py-6">
-                      {({ open }) => (
-                        <>
-                          <h3 className="-mx-2 -my-3 flow-root">
-                            <Disclosure.Button className="flex w-full items-center justify-between bg-white px-2 py-3 text-sm text-gray-400">
-                              <span className="font-medium text-gray-900">{section.name}</span>
+                    <div key={section.name} className="border-t border-gray-200 px-4 py-6">
+                      
+                          <h3 className="-my-2 flow-root">
+                            {/* <Disclosure.Button className="flex w-full items-center justify-between bg-white px-2 py-3 text-sm text-gray-400"> */}
+                              <span className="font-sm text-gray-900">{section.name}</span>
                               <span className="ml-6 flex items-center">
-                                <ChevronDownIcon
+                                {/* <ChevronDownIcon
                                   className={classNames(open ? '-rotate-180' : 'rotate-0', 'h-5 w-5 transform')}
                                   aria-hidden="true"
-                                />
+                                /> */}
                               </span>
-                            </Disclosure.Button>
+                            {/* </Disclosure.Button> */}
                           </h3>
-                          <Disclosure.Panel className="pt-6">
-                            <div className="space-y-6">
+                          <div className="pt-6">
+                            <div className="space-y-4">
                               {section.options.map((option, optionIdx) => (
                                 <div key={option.value} className="flex items-center">
                                   <input
                                     id={`filter-mobile-${section.id}-${optionIdx}`}
                                     name={`${section.id}[]`}
-                                    defaultValue={option.value}
+                                    value={option.value}
                                     type="checkbox"
-                                    defaultChecked={option.checked}
+                                    checked={option.checked}
                                     className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
+                                    onChange={(e) => handleFilterChange(section, option)}
                                   />
                                   <label
                                     htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
@@ -186,10 +216,8 @@ export default function PathHeading({ filters, setFilters, activeFilters, setAct
                                 </div>
                               ))}
                             </div>
-                          </Disclosure.Panel>
-                        </>
-                      )}
-                    </Disclosure>
+                          </div>
+                       </div> 
                   ))}
                 </form>
               </Dialog.Panel>
@@ -205,7 +233,12 @@ export default function PathHeading({ filters, setFilters, activeFilters, setAct
           Filters
         </h2>
 
-        <div className="border-b border-gray-200 bg-green-700 py-4 rounded-t-lg">
+        <div className={classNames(
+          "bg-green-700 py-4", 
+          activeFilters.length > 0 && 'rounded-t-lg border-b border-gray-200 ',
+          activeFilters.length === 0 && 'rounded-lg'
+        )}
+        >
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6">
             <Menu as="div" className="relative inline-block text-left">
               <div>
@@ -253,7 +286,7 @@ export default function PathHeading({ filters, setFilters, activeFilters, setAct
             {/* mobile filters button */}
             <button
               type="button"
-              className="inline-block text-sm font-medium text-gray-700 hover:text-gray-900 sm:hidden"
+              className="inline-block text-sm font-medium text-gray-100 hover:text-gray-900 sm:hidden"
               onClick={() => setOpen(true)}
             >
               Filters
@@ -266,11 +299,11 @@ export default function PathHeading({ filters, setFilters, activeFilters, setAct
                     <Popover key={section.name} className="relative inline-block px-4 text-left">
                       <Popover.Button className="group inline-flex justify-center text-sm font-medium text-gray-100 hover:text-white">
                         <span>{section.name}</span>
-                        {sectionIdx === 0 ? (
+                        {/* {sectionIdx === 0 ? (
                           <span className="ml-1.5 rounded bg-gray-200 py-0.5 px-1.5 text-xs font-semibold tabular-nums text-gray-700">
                             2
                           </span>
-                        ) : null}
+                        ) : null} */}
                         <ChevronDownIcon
                           className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-100 group-hover:text-white"
                           aria-hidden="true"
@@ -319,16 +352,18 @@ export default function PathHeading({ filters, setFilters, activeFilters, setAct
         </div>
 
         {/* Active filters */}
+        {activeFilters.length > 0 &&
         <div className="bg-brown rounded-b-lg">
-          <div className="mx-auto max-w-7xl py-3 px-2 md:px-0 sm:flex sm:items-center ">
+          <div className="mx-auto max-w-7xl py-3 px-4 sm:px-6 sm:flex sm:items-center ">
             
-            <div className="mt-2 sm:mt-0 sm:ml-4">
-              <div className="-m-1 flex flex-wrap items-center">
-                {activeFilters.length > 0 ? 
-                    <p className='text-gray-400 text-sm font-medium pr-2'>Active filters</p>
+            <div className="">
+              <div className="-my-1 -mx-3 flex flex-wrap items-center">
+                {/* {activeFilters.length > 0 ? 
+                    <p className='text-gray-400 text-sm font-medium pr-1'>Active filters:</p>
                     :
-                    <p className='text-gray-400 text-sm font-medium py-3 pr-2'>No active filters</p>
-                }
+                    // <p className='text-gray-400 text-sm font-medium py-2 pr-2'>No active filters</p>
+                    null
+                } */}
                 
                 {activeFilters.map((activeFilter) => (
                   <span
@@ -339,6 +374,7 @@ export default function PathHeading({ filters, setFilters, activeFilters, setAct
                     <button
                       type="button"
                       className="ml-1 inline-flex h-4 w-4 flex-shrink-0 rounded-full p-1 text-gray-400 hover:bg-gray-200 hover:text-gray-500"
+                      onClick={(e) => removeActiveFilter(activeFilter)}
                     >
                       <span className="sr-only">Remove filter for {activeFilter.label}</span>
                       <svg className="h-2 w-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">
@@ -351,6 +387,7 @@ export default function PathHeading({ filters, setFilters, activeFilters, setAct
             </div>
           </div>
         </div>
+        }
       </section>
     </div>
   )

@@ -414,7 +414,10 @@ export default function Paths({ careers }) {
     const [activeFilters, setActiveFilters] = useState([])
 
     const searchFilter = (careers) => {
+      
+
       const filtered = careers.filter(career => {
+        // return career.tags.some(tag => activeFilters.includes(r))
         return career.tags.includes('Startups')
       })
 
