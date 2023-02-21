@@ -94,7 +94,7 @@ export default function PathHeading({ filters, setFilters, activeFilters, setAct
     // update active filters
     if (newOption.checked) {
         console.log('lol')
-        const activeAdd = {value: currOption.value, label: currOption.label}
+        // const activeAdd = {value: currOption.value, label: currOption.label}
         // console.log(activeAdd)
         setActiveFilters([...activeFilters, {value: currOption.value, label: currOption.label}])
     } else {
