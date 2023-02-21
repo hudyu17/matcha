@@ -12,8 +12,6 @@ function classNames(...classes) {
         content.push(JSON.parse(path[i]))
     }
 
-    console.log(content[0].icon)
-
     return (
       <div className="flow-root divide-y divide-gray-200 rounded-lg bg-white shadow">
         <ul role="list" className="p-5">

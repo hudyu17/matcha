@@ -22,45 +22,91 @@ const sortOptions = [
   { name: 'Best Rating', href: '#', current: false },
   { name: 'Newest', href: '#', current: false },
 ]
-const filters = [
-  {
-    id: 'category',
-    name: 'Category',
-    options: [
-      { value: 'consulting', label: 'Consulting', checked: true },
-      { value: 'swe', label: 'Software Engineering', checked: false },
-      { value: 'product', label: 'Product', checked: true },
-    ],
-  },
-  {
-    id: 'industry',
-    name: 'Industry',
-    options: [
-      { value: 'white', label: 'White', checked: false },
-      { value: 'beige', label: 'Beige', checked: false },
-      { value: 'blue', label: 'Blue', checked: false },
-    ],
-  },
-  {
-    id: 'education',
-    name: 'Education',
-    options: [
-      { value: 'eng', label: 'Engineering', checked: false },
-      { value: 'fin', label: 'Finance', checked: false },
-      { value: 'cs', label: 'Comp. Sci', checked: false },
-      { value: 'mba', label: 'MBA', checked: false },
-      { value: 'masters', label: 'Grad School', checked: false },
-    ],
-  },
-]
+// const filters = [
+//   {
+//     id: 'category',
+//     name: 'Category',
+//     options: [
+//       { value: 'consulting', label: 'Consulting', checked: true },
+//       { value: 'swe', label: 'Software Engineering', checked: false },
+//       { value: 'product', label: 'Product', checked: true },
+//       { value: 'startups', label: 'Startups', checked: false },
+//     ],
+//   },
+//   {
+//     id: 'industry',
+//     name: 'Industry',
+//     options: [
+//       { value: 'white', label: 'White', checked: false },
+//       { value: 'beige', label: 'Beige', checked: false },
+//       { value: 'blue', label: 'Blue', checked: false },
+//     ],
+//   },
+//   {
+//     id: 'education',
+//     name: 'Education',
+//     options: [
+//       { value: 'eng', label: 'Engineering', checked: false },
+//       { value: 'fin', label: 'Finance', checked: false },
+//       { value: 'cs', label: 'Comp. Sci', checked: false },
+//       { value: 'mba', label: 'MBA', checked: false },
+//       { value: 'masters', label: 'Grad School', checked: false },
+//     ],
+//   },
+// ]
 const activeFilters = [{ value: 'product', label: 'Product' }, { value: 'consulting', label: 'Consulting' }]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function PathHeading() {
+export default function PathHeading({ filters, setFilters, activeFilters, setActiveFilters }) {
   const [open, setOpen] = useState(false)
+
+  const handleFilterChange = (section, option) => {
+
+    // for (var i = 0; i < filters.length; i++) {
+    //     if (filters[i].id === section.id) {
+    //         // console.log(filters[i])
+    //         setFilter(currFilters => ({}))
+    //     }
+    // }
+    var indexFilter = filters.findIndex(x => x.id === section.id);
+    var indexOption = filters[indexFilter]['options'].findIndex(x => x.value === option.value);
+    // console.log(indexFilter, indexOption)
+    console.log(filters[indexFilter]['options'][indexOption])
+    const currOption = filters[indexFilter]['options'][indexOption]
+    const newOption = {...currOption, checked: !currOption.checked}
+
+    const options = filters[indexFilter]['options']
+    options[indexOption] = newOption
+
+    const newFilterItem = filters[indexFilter]
+    newFilterItem['options'] = options
+
+    const newFilters = filters.slice(0, indexFilter).concat(
+        newFilterItem, 
+        filters.slice(indexFilter + 1)
+    )
+    
+    setFilters(newFilters)
+    
+    // update active filters
+    if (newOption.checked) {
+        console.log('lol')
+        const activeAdd = {value: currOption.value, label: currOption.label}
+        // console.log(activeAdd)
+        setActiveFilters([...activeFilters, {value: currOption.value, label: currOption.label}])
+    } else {
+        let indexActive;
+        for (var i = 0; i < activeFilters.length; i++) {
+            if (activeFilters[i].value === currOption.value) {
+                indexActive = i
+            }}
+        
+        setActiveFilters(activeFilters.splice(indexActive))
+    }
+  }
 
   return (
     <div className=" rounded-lg shadow">
@@ -247,10 +293,11 @@ export default function PathHeading() {
                                 <input
                                   id={`filter-${section.id}-${optionIdx}`}
                                   name={`${section.id}[]`}
-                                  defaultValue={option.value}
+                                  value={option.value}
                                   type="checkbox"
-                                  defaultChecked={option.checked}
+                                  checked={option.checked}
                                   className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
+                                  onChange={(e) => handleFilterChange(section, option)}
                                 />
                                 <label
                                   htmlFor={`filter-${section.id}-${optionIdx}`}
@@ -277,6 +324,12 @@ export default function PathHeading() {
             
             <div className="mt-2 sm:mt-0 sm:ml-4">
               <div className="-m-1 flex flex-wrap items-center">
+                {activeFilters.length > 0 ? 
+                    <p className='text-gray-400 text-sm font-medium pr-2'>Active filters</p>
+                    :
+                    <p className='text-gray-400 text-sm font-medium py-3 pr-2'>No active filters</p>
+                }
+                
                 {activeFilters.map((activeFilter) => (
                   <span
                     key={activeFilter.value}
