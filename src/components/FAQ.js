@@ -12,7 +12,7 @@ const faqs = [
         id: 2,
         question: "Who's featured in here?",
         answer:
-            "Industry leaders with 10+ years of experience, all anonymised.",
+            "Individuals with varying levels of experience, ranging from a few years after graduation to industry leaders with decades of experience. All anonymised.",
     },
     {
         id: 3,
