@@ -16,10 +16,10 @@ function classNames(...classes) {
       <div className="flow-root divide-y divide-gray-200 rounded-lg bg-white shadow">
         <ul role="list" className="p-5">
             <div className="flex justify-between">
-                <h2 className="pb-4 font-medium leading-2 tracking-tight text-green-700">
+                <h2 className="pb-4 font-medium leading-1 tracking-tight text-green-700">
                     Example #{number}: {title}
                 </h2>
-                <BookmarkIcon className="w-5 h-5 mt-1 text-green-900"/>
+                <BookmarkIcon className="w-5 h-5 -mr-1 text-green-900"/>
             </div>
           {content.map((event, eventIdx) => (
             <li key={event.id}>

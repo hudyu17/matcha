@@ -7,7 +7,7 @@ export default function Layout({ main }) {
         <aside className="h-screen sticky top-0">
             <Navbar/>
         </aside>
-        <main className='bg-green-50'>
+        <main className='bg-green-50 w-full'>
             {main}
         </main>
     </div>

@@ -92,7 +92,7 @@ export default function Paths({ careers }) {
               <div className="z-10 m-auto">
               <h2 className="text-sm text-gray-900">Curated Career Paths
               <span className="text-gray-700">
-                  {' '} - coming soon on <span className="text-green-700 font-bold">CareerMatcha+</span>
+                  {' '} - coming soon on <span className="text-green-700 font-plus-jakarta-sans font-bold">CareerMatcha+</span>
               </span>
               </h2>
               </div>
