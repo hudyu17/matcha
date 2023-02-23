@@ -4,380 +4,23 @@ import Link from "next/link"
 import { RocketLaunchIcon, RectangleGroupIcon, AcademicCapIcon, PresentationChartLineIcon, CodeBracketIcon, GlobeAmericasIcon } from '@heroicons/react/20/solid'
 import { useState } from "react"
 import { prisma } from "@/prisma"
+import Layout from "@/components/Layout"
 
-const pathways = [
-    {
+const sections = [
+  {
       id: 1,
-      title: 'Consultant to Product',
-      number: 1,
-      name: 'Zyra',
-      content: [
-        {
-          id: 1,
-          content: 'Chief Product Officer',
-          target: 'at Marketplace ($11b mkt cap)',
-          href: '#',
-          date: "'21-now",
-          datetime: '2020-09-20',
-          icon: RocketLaunchIcon,
-          iconBackground: 'bg-green-600',
-        },
-        {
-          id: 2,
-          content: 'Senior PM, Experience Architect',
-          target: 'at Paypal',
-          href: '#',
-          date: "'14-'21",
-          datetime: '2020-09-20',
-          icon: RectangleGroupIcon,
-          iconBackground: 'bg-green-300',
-        },
-        
-        {
-          id: 4,
-          content: 'MASc Human Factors,',
-          target: 'University of Toronto',
-          href: '#',
-          date: "'11-'13",
-          datetime: '2020-09-28',
-          icon: AcademicCapIcon,
-          iconBackground: 'bg-gray-300',
-        },
-        {
-          id: 5,
-          content: 'Consultant',
-          target: 'at Deloitte',
-          href: '#',
-          date: "'06-'11",
-          datetime: '2020-09-30',
-          icon: PresentationChartLineIcon,
-          iconBackground: 'bg-yellow-400',
-        },
-        {
-          id: 6,
-          content: 'BASc Industrial Engineering,',
-          target: 'University of Toronto',
-          href: '#',
-          date: "'06",
-          datetime: '2020-10-04',
-          icon: AcademicCapIcon,
-          iconBackground: 'bg-gray-300',
-        },
-      ],
-      tags: [
-        'Consulting',
-        'Management Consulting',
-        'Product',
-        'Grad School',
-        'Engineering'
-      ]
-    },
-    {
-      id: 2,
-      title: 'SWE to Product',
-      number: 2,
-      name: 'Galio',
-      content: [
-        {
-          id: 1,
-          content: 'Product and Engineering Manager',
-          target: 'at Climate Startup (Series B)',
-          href: '#',
-          date: "20-now",
-          datetime: '2020-09-20',
-          icon: RocketLaunchIcon,
-          iconBackground: 'bg-green-600',
-        },
-        {
-          id: 2,
-          content: 'Product Architect',
-          target: 'at Airtable',
-          href: '#',
-          date: "'18-20",
-          datetime: '2020-09-22',
-          icon: RectangleGroupIcon,
-          iconBackground: 'bg-green-300',
-        },
-        {
-          id: 3,
-          content: 'Software Engineer, Early Employee',
-          target: 'at Airtable',
-          href: '#',
-          date: "'15-18",
-          datetime: '2020-09-28',
-          icon: CodeBracketIcon,
-          iconBackground: 'bg-yellow-400',
-        },
-        {
-          id: 4,
-          content: 'Software Engineer',
-          target: 'at Optimizely',
-          href: '#',
-          date: "'11-'15",
-          datetime: '2020-09-30',
-          icon: CodeBracketIcon,
-          iconBackground: 'bg-yellow-400',
-        },
-        {
-          id: 5,
-          content: 'BS Computer Science,',
-          target: 'University of Michigan',
-          href: '#',
-          date: "'11",
-          datetime: '2020-10-04',
-          icon: AcademicCapIcon,
-          iconBackground: 'bg-gray-300',
-        },
-      ],
-      tags: [
-        'SWE',
-        'Startups',
-        'Product',
-        'Management'
-      ]
-    },
-    {
-      id: 3,
-      title: 'Consultant to Founder',
-      number: 3,
-      name: 'Heimerdinger',
-      content: [
-        {
-          id: 1,
-          content: 'Co-Founder and COO',
-          target: 'at Fintech Startup (Series C)',
-          href: '#',
-          date: "'15-now",
-          datetime: '2020-09-20',
-          icon: RocketLaunchIcon,
-          iconBackground: 'bg-green-600',
-        },
-
-        
-        {
-          id: 4,
-          content: 'Master in Public Administration,',
-          target: 'Harvard University',
-          href: '#',
-          date: "'03-'05",
-          datetime: '2020-09-28',
-          icon: AcademicCapIcon,
-          iconBackground: 'bg-gray-300',
-        },
-        {
-          id: 5,
-          content: 'Analyst',
-          target: 'at Oliver Wyman',
-          href: '#',
-          date: "'00-'03",
-          datetime: '2020-09-30',
-          icon: PresentationChartLineIcon,
-          iconBackground: 'bg-yellow-400',
-        },
-        {
-          id: 6,
-          content: "Bachelor of Commerce,",
-          target: "Queen's University",
-          href: '#',
-          date: "'00",
-          datetime: '2020-10-04',
-          icon: AcademicCapIcon,
-          iconBackground: 'bg-gray-300',
-        },
-      ],
-      tags: [
-        'SWE',
-        'Startups',
-        'Product',
-        'Management'
-      ]
-    },
-    {
-        id: 4,
-        title: 'Consultant to Founder',
-        number: 4,
-        name: 'Heimerdinger',
-        content: [
-          {
-            id: 1,
-            content: 'Co-Founder and COO',
-            target: 'at Fintech Startup (Series C)',
-            href: '#',
-            date: "'15-now",
-            datetime: '2020-09-20',
-            icon: RocketLaunchIcon,
-            iconBackground: 'bg-green-600',
-          },
-          {
-            id: 2,
-            content: 'North America Lead',
-            target: 'at The Mission',
-            href: '#',
-            date: "'09-'14",
-            datetime: '2020-09-20',
-            icon: GlobeAmericasIcon,
-            iconBackground: 'bg-green-300',
-          },
-          {
-            id: 3,
-            content: 'Sr. Manager, Global Biz Dev',
-            target: 'at Maple Leaf Foods',
-            href: '#',
-            date: "'05-'08",
-            datetime: '2020-09-22',
-            icon: PresentationChartLineIcon,
-            iconBackground: 'bg-yellow-400',
-          },
-          {
-            id: 4,
-            content: 'Master in Public Administration,',
-            target: 'Harvard University',
-            href: '#',
-            date: "'03-'05",
-            datetime: '2020-09-28',
-            icon: AcademicCapIcon,
-            iconBackground: 'bg-gray-300',
-          },
-          {
-            id: 5,
-            content: 'Analyst',
-            target: 'at Oliver Wyman',
-            href: '#',
-            date: "'00-'03",
-            datetime: '2020-09-30',
-            icon: PresentationChartLineIcon,
-            iconBackground: 'bg-yellow-400',
-          },
-          {
-            id: 6,
-            content: "Bachelor of Commerce,",
-            target: "Queen's University",
-            href: '#',
-            date: "'00",
-            datetime: '2020-10-04',
-            icon: AcademicCapIcon,
-            iconBackground: 'bg-gray-300',
-          },
-        ],
-        tags: [
-          'SWE',
-          'Startups',
-          'Product',
-          'Management'
+      name: 'Consulting',
+      href: 'paths/consulting',
+      categories: [
+          { name: 'Partner Track', initials: '👔', href: '/paths/consulting/management', members: 16 },
+          { name: 'Entry after MBA', initials: '💻', href: '/paths/consulting/tech', members: 17 },
+          { name: 'Early Exit', initials: '🎨', href: '/paths/consulting/design', members: 10 },
+          { name: 'Pivot to Tech', initials: '💻', href: '/paths/consulting/design', members: 10 },
         ]
-      },
-      {
-        id: 5,
-        title: 'Consultant to Founder',
-        number: 5,
-        name: 'Heimerdinger',
-        content: [
-          {
-            id: 1,
-            content: 'Co-Founder and COO',
-            target: 'at Fintech Startup (Series C)',
-            href: '#',
-            date: "'15-now",
-            datetime: '2020-09-20',
-            icon: RocketLaunchIcon,
-            iconBackground: 'bg-green-600',
-          },
-          {
-            id: 2,
-            content: 'North America Lead',
-            target: 'at The Mission',
-            href: '#',
-            date: "'09-'14",
-            datetime: '2020-09-20',
-            icon: GlobeAmericasIcon,
-            iconBackground: 'bg-green-300',
-          },
-          {
-            id: 3,
-            content: 'Sr. Manager, Global Biz Dev',
-            target: 'at Maple Leaf Foods',
-            href: '#',
-            date: "'05-'08",
-            datetime: '2020-09-22',
-            icon: PresentationChartLineIcon,
-            iconBackground: 'bg-yellow-400',
-          },
-          {
-            id: 4,
-            content: 'Master in Public Administration,',
-            target: 'Harvard University',
-            href: '#',
-            date: "'03-'05",
-            datetime: '2020-09-28',
-            icon: AcademicCapIcon,
-            iconBackground: 'bg-gray-300',
-          },
-          {
-            id: 5,
-            content: 'Analyst',
-            target: 'at Oliver Wyman',
-            href: '#',
-            date: "'00-'03",
-            datetime: '2020-09-30',
-            icon: PresentationChartLineIcon,
-            iconBackground: 'bg-yellow-400',
-          },
-          {
-            id: 6,
-            content: "Bachelor of Commerce,",
-            target: "Queen's University",
-            href: '#',
-            date: "'00",
-            datetime: '2020-10-04',
-            icon: AcademicCapIcon,
-            iconBackground: 'bg-gray-300',
-          },
-        ],
-        tags: [
-          'SWE',
-          'Startups',
-          'Product',
-          'Management'
-        ]
-      },
-  ]
-
-  const sections = [
-    {
-        id: 1,
-        name: 'Consulting',
-        href: 'paths/consulting',
-        categories: [
-            { name: 'Partner Track', initials: '👔', href: '/paths/consulting/management', members: 16 },
-            { name: 'Entry after MBA', initials: '💻', href: '/paths/consulting/tech', members: 17 },
-            { name: 'Early Exit', initials: '🎨', href: '/paths/consulting/design', members: 10 },
-            { name: 'Pivot to Tech', initials: '💻', href: '/paths/consulting/design', members: 10 },
-          ]
-    },
-    {
-        id: 2,
-        name: 'Software Engineering',
-        href: 'paths/swe',
-        categories: [
-            { name: 'Switch to Product', initials: '💾', href: '#', members: 28 },
-            { name: 'Individual Contributor', initials: '🖥', href: '#', members: 12 },
-            { name: 'Management', initials: '👔', href: '#', members: 9 },
-          ]
-    },
-    {
-        id: 3,
-        name: 'Startups',
-        href: 'paths/startups',
-        categories: [
-            { name: 'Serial Exits', initials: '💸', href: '#', members: 32 },
-            { name: 'Started in School', initials: '🌳', href: '#', members: 12 },
-            { name: 'Late Bloomers', initials: '🏢', href: '#', members: 11 },
-          ]
-    }
+  }
 ]
 
 export default function Paths({ careers }) {
-    // console.log(careers)
     const [filters, setFilters] = useState([
       {
         id: 'category',
@@ -414,11 +57,19 @@ export default function Paths({ careers }) {
     const [activeFilters, setActiveFilters] = useState([])
 
     const searchFilter = (careers) => {
-      
+      if (activeFilters.length === 0) {
+        // if no filters are applied, then show all results
+        return careers
+      }
+
+      const activeLabels = [];
+      for (var i = 0; i < activeFilters.length; i++) {
+        activeLabels.push(activeFilters[i].label)
+      }
 
       const filtered = careers.filter(career => {
-        // return career.tags.some(tag => activeFilters.includes(r))
-        return career.tags.includes('Startups')
+        // need to return careers with tags that are included in active filter labels
+        return career.tags.some(tag => activeLabels.includes(tag))
       })
 
       // return new array
@@ -428,7 +79,10 @@ export default function Paths({ careers }) {
     const filteredCareers = searchFilter(careers)
 
     return (
-      <div className="bg-green-50 h-screen">
+      <div className="h-screen">
+      <Layout className=''
+      main={
+      <div className="">
       <div className='mx-auto max-w-2xl py-8 sm:py-12 px-4 sm:px-6 lg:max-w-7xl lg:px-8 flex flex-col gap-6 lg:gap-10'>
           <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
               Browse all Career Paths
@@ -479,6 +133,8 @@ export default function Paths({ careers }) {
               ))}
           </dl>
       </div>
+      </div>
+      }/>
       </div>
     )
 }
