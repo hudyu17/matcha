@@ -1,15 +1,22 @@
-import { RocketLaunchIcon } from "@heroicons/react/20/solid"
 import { BookmarkIcon } from "@heroicons/react/24/outline"
 import DynamicIcon from "./DynamicIcon"
+import axios from 'axios'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
   
-  export default function PathCard({ title, number, tags, path }) {
+
+export default function PathCard({ title, number, tags, path }) {
     let content = []
     for (var i = 0; i < path.length; i++) {
         content.push(JSON.parse(path[i]))
+    }
+
+    const saveCareer = (career) => {
+      // await axios.post("/api/...")
+
+      // send with a flag for save or unsave
     }
 
     return (
@@ -19,7 +26,7 @@ function classNames(...classes) {
                 <h2 className="pb-4 font-medium leading-1 tracking-tight text-green-700">
                     Example #{number}: {title}
                 </h2>
-                <BookmarkIcon className="w-5 h-5 -mr-1 text-green-900"/>
+                <BookmarkIcon className="w-5 h-5 -mr-1 text-green-900 hover:fill-green-700 cursor-pointer"/>
             </div>
           {content.map((event, eventIdx) => (
             <li key={event.id}>
@@ -67,6 +74,9 @@ function classNames(...classes) {
         
         </div>
       </div>
-    )
-  }
-  
+  )
+}
+
+export async function getServerSideProps(context) {
+  // get list of saved path ID's
+}

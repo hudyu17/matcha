@@ -121,11 +121,6 @@ export default function Paths({ careers }) {
           <PathHeading filters={filters} setFilters={setFilters} activeFilters={activeFilters} setActiveFilters={setActiveFilters}/>
 
           <dl className="w-full gap-6 lg:gap-10 md:columns-2 lg:columns-3">
-              {/* {pathways.map((pathway) => (
-              <div key={pathway.id} className='break-inside-avoid-column pb-10'>
-                  <PathCard key={pathway.id} title={pathway.title} number={pathway.number} tags={pathway.tags} content={pathway.content}/>
-              </div>
-              ))} */}
               {filteredCareers.map((career) => (
               <div key={career.id} className='break-inside-avoid-column pb-10'>
                   <PathCard key={career.id} title={career.title} number={career.id} tags={career.tags} path={career.path}/>
@@ -141,8 +136,51 @@ export default function Paths({ careers }) {
 
 export async function getServerSideProps(context) {
   
-    const careers = await prisma.career.findMany();
-    console.log(careers)
+    // const careers = await prisma.career.findMany();
+    // console.log(careers)
+
+    // oFFLINE DEV
+    const careers = [
+    {
+      id: 1,
+      title: 'Consultant to Test',
+      path: [
+        '{"id": "1", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}'
+      ],
+      updatedAt: '2023-02-20T02:57:53.550Z',
+      tags: [ 'Consulting', 'Management Consulting' ]
+    },
+    {
+      id: 2,
+      title: 'Consultant to Founder',
+      path: [
+        '{"id": "1", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}',
+        '{"id": "2", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}'
+      ],
+      updatedAt: '2023-02-20T03:04:27.111Z',
+      tags: [ 'Consulting', 'Startups' ]
+    },
+    {
+      id: 3,
+      title: 'Consultant to Founder',
+      path: [
+        '{"id": "1", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}',
+        '{"id": "2", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}'
+      ],
+      updatedAt: '2023-02-21T19:46:55.183Z',
+      tags: [ 'Consulting', 'Startups' ]
+    },
+    {
+      id: 4,
+      title: 'Consultant to Founder',
+      path: [
+        '{"id": "1", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}',
+        '{"id": "2", "content": "Final Step", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "PresentationChartLineIcon", "iconBackground": "bg-yellow-400"}'
+      ],
+      updatedAt: '2023-02-21T19:46:55.183Z',
+      tags: [ 'Consulting', 'Startups' ]
+    }
+  ] 
     return {
       props: {
         careers: JSON.parse(JSON.stringify(careers))

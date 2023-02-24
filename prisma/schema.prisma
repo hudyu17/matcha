@@ -18,6 +18,12 @@ model Career {
   tags      String[]
 }
 
+model UserSaved {
+  id          Int      @id @default(autoincrement())
+  userId      String   @unique
+  saved       Int[]    // career IDs, but not relation
+}
+
 // model PathItem {
 //   id        Int      @id @default(autoincrement())
 //   career    Career   @relation(fields: [careerId], references: [id])
