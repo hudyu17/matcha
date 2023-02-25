@@ -5,6 +5,8 @@ import { RocketLaunchIcon, RectangleGroupIcon, AcademicCapIcon, PresentationChar
 import { useState } from "react"
 import { prisma } from "@/prisma"
 import Layout from "@/components/Layout"
+import { getServerSession } from "next-auth"
+import { authOptions } from "./api/auth/[...nextauth]"
 
 const sections = [
   {
@@ -20,7 +22,7 @@ const sections = [
   }
 ]
 
-export default function Paths({ careers }) {
+export default function Paths({ careers, saved }) {
     const [filters, setFilters] = useState([
       {
         id: 'category',
@@ -123,7 +125,7 @@ export default function Paths({ careers }) {
           <dl className="w-full gap-6 lg:gap-10 md:columns-2 lg:columns-3">
               {filteredCareers.map((career) => (
               <div key={career.id} className='break-inside-avoid-column pb-10'>
-                  <PathCard key={career.id} title={career.title} number={career.id} tags={career.tags} path={career.path}/>
+                  <PathCard careerId={career.id} title={career.title} number={career.id} tags={career.tags} path={career.path} saved={saved}/>
               </div>
               ))}
           </dl>
@@ -181,10 +183,21 @@ export async function getServerSideProps(context) {
       tags: [ 'Consulting', 'Startups' ]
     }
   ] 
+
+    const session = await getServerSession(context.req, context.res, authOptions)
+    const userId = session.user.email
+    // get list of saved path ID's
+    const savedCareers = await prisma.userSaved.findUnique({
+      where: { userId: userId },
+      select: {
+        saved: true,
+      },
+    })
+
     return {
       props: {
-        careers: JSON.parse(JSON.stringify(careers))
-        // markers: JSON.parse(JSON.stringify(markers)),
+        careers: JSON.parse(JSON.stringify(careers)),
+        saved: JSON.parse(JSON.stringify(savedCareers)),
         // locArray: JSON.parse(JSON.stringify(locArray)),
       },
     }
