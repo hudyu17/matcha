@@ -22,23 +22,26 @@ export default async function saveCareer(req, res) {
 
     // user already in table
     if (user) {
-    await prisma.userSaved.update({
-        where: {
-        userId: userId
-        },
-        data: {
-            saved: {
-                push: careerId
+        const update = await prisma.userSaved.update({
+            where: {
+            userId: userId
+            },
+            data: {
+                saved: {
+                    push: careerId
+                }
             }
-        }
-    })
+        })
+    res.json(update)
+
     } else {
-        await prisma.userSaved.create({
+        const create = await prisma.userSaved.create({
             data: {
             userId: userId,
             saved: [careerId]
             }
         })
+        res.json(create)
     }
 
 }

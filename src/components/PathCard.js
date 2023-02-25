@@ -11,11 +11,9 @@ function classNames(...classes) {
   }
   
 
-export default function PathCard({ careerId, title, number, tags, path, saved }) {
+export default function PathCard({ careerId, title, number, tags, path, saved, setShowSaved }) {
     const { data: session } = useSession()
-    const [filled, setFilled] = useState(false)
-
-    console.log(careerId)
+    const [savedCareers, setSavedCareers] = useState(saved.saved)
 
     let content = []
     for (var i = 0; i < path.length; i++) {
@@ -23,7 +21,15 @@ export default function PathCard({ careerId, title, number, tags, path, saved })
     }
 
     const saveCareer = async (careerId) => {
-      console.log('careerId: ', careerId)
+      // tracking modified save locally before changes are made in db
+      if (!session) {
+        alert('sign in!')
+        return
+      }
+      console.log(savedCareers)
+      setSavedCareers([...savedCareers, careerId])
+      setShowSaved(true)
+
       const userId = session.user.email;
 
       await axios.post("/api/saveCareer", {
@@ -32,16 +38,21 @@ export default function PathCard({ careerId, title, number, tags, path, saved })
         console.log(error.response.data)
       })
 
-      setFilled(true)
     }
 
     const unsaveCareer = async (careerId) => {
+      setSavedCareers(savedCareers.filter(career => career !== careerId))
+
       const userId = session.user.email;
 
       await axios.post("/api/unsaveCareer", {
         userId, careerId
+      }).catch(error => {
+        console.log(error.response.data)
       })
     }
+
+    console.log(tags)
 
     return (
       <div className="flow-root divide-y divide-gray-200 rounded-lg bg-white shadow">
@@ -50,7 +61,7 @@ export default function PathCard({ careerId, title, number, tags, path, saved })
                 <h2 className="pb-4 font-medium leading-1 tracking-tight text-green-700">
                     Example #{number}: {title}
                 </h2>
-                {saved.saved.includes(careerId) || filled ? 
+                {savedCareers?.includes(careerId) ? 
                   <BookmarkIcon 
                     className="w-5 h-5 -mr-1 text-green-700 fill-green-700 hover:fill-white cursor-pointer"
                     onClick={() => unsaveCareer(careerId)}

@@ -7,6 +7,8 @@ import { prisma } from "@/prisma"
 import Layout from "@/components/Layout"
 import { getServerSession } from "next-auth"
 import { authOptions } from "./api/auth/[...nextauth]"
+import { useCurrPathContext } from "context/currPathProvider"
+import SavedAlert from "@/components/alerts/SavedAlert"
 
 const sections = [
   {
@@ -23,6 +25,10 @@ const sections = [
 ]
 
 export default function Paths({ careers, saved }) {
+    const [showSaved, setShowSaved] = useState(false)
+    const [currPath, setCurrPath] = useCurrPathContext();
+    setCurrPath('Browse')
+
     const [filters, setFilters] = useState([
       {
         id: 'category',
@@ -83,13 +89,10 @@ export default function Paths({ careers, saved }) {
     return (
       <div className="h-screen">
       <Layout className=''
+      heading={'Browse all Career Paths'}
       main={
-      <div className="">
-      <div className='mx-auto max-w-2xl py-8 sm:py-12 px-4 sm:px-6 lg:max-w-7xl lg:px-8 flex flex-col gap-6 lg:gap-10'>
-          <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
-              Browse all Career Paths
-          </h2>
-
+      <div className='flex flex-col gap-6 lg:gap-10'>
+          
           <div className="relative w-full">
               <div className="z-10 m-auto">
               <h2 className="text-sm text-gray-900">Curated Career Paths
@@ -125,75 +128,81 @@ export default function Paths({ careers, saved }) {
           <dl className="w-full gap-6 lg:gap-10 md:columns-2 lg:columns-3">
               {filteredCareers.map((career) => (
               <div key={career.id} className='break-inside-avoid-column pb-10'>
-                  <PathCard careerId={career.id} title={career.title} number={career.id} tags={career.tags} path={career.path} saved={saved}/>
+                  <PathCard careerId={career.id} title={career.title} number={career.id} tags={career.tags} path={career.path} saved={saved} setShowSaved={setShowSaved}/>
               </div>
               ))}
           </dl>
       </div>
-      </div>
+      
       }/>
+      <SavedAlert showSaved={showSaved} setShowSaved={setShowSaved}/>
       </div>
     )
 }
 
 export async function getServerSideProps(context) {
   
-    // const careers = await prisma.career.findMany();
+    const careers = await prisma.career.findMany();
     // console.log(careers)
 
     // oFFLINE DEV
-    const careers = [
-    {
-      id: 1,
-      title: 'Consultant to Test',
-      path: [
-        '{"id": "1", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}'
-      ],
-      updatedAt: '2023-02-20T02:57:53.550Z',
-      tags: [ 'Consulting', 'Management Consulting' ]
-    },
-    {
-      id: 2,
-      title: 'Consultant to Founder',
-      path: [
-        '{"id": "1", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}',
-        '{"id": "2", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}'
-      ],
-      updatedAt: '2023-02-20T03:04:27.111Z',
-      tags: [ 'Consulting', 'Startups' ]
-    },
-    {
-      id: 3,
-      title: 'Consultant to Founder',
-      path: [
-        '{"id": "1", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}',
-        '{"id": "2", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}'
-      ],
-      updatedAt: '2023-02-21T19:46:55.183Z',
-      tags: [ 'Consulting', 'Startups' ]
-    },
-    {
-      id: 4,
-      title: 'Consultant to Founder',
-      path: [
-        '{"id": "1", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}',
-        '{"id": "2", "content": "Final Step", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "PresentationChartLineIcon", "iconBackground": "bg-yellow-400"}'
-      ],
-      updatedAt: '2023-02-21T19:46:55.183Z',
-      tags: [ 'Consulting', 'Startups' ]
-    }
-  ] 
+  //   const careers = [
+  //   {
+  //     id: 1,
+  //     title: 'Consultant to Test',
+  //     path: [
+  //       '{"id": "1", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}'
+  //     ],
+  //     updatedAt: '2023-02-20T02:57:53.550Z',
+  //     tags: [ 'Consulting', 'Management Consulting' ]
+  //   },
+  //   {
+  //     id: 2,
+  //     title: 'Consultant to Founder',
+  //     path: [
+  //       '{"id": "1", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}',
+  //       '{"id": "2", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}'
+  //     ],
+  //     updatedAt: '2023-02-20T03:04:27.111Z',
+  //     tags: [ 'Consulting', 'Startups' ]
+  //   },
+  //   {
+  //     id: 3,
+  //     title: 'Consultant to Founder',
+  //     path: [
+  //       '{"id": "1", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}',
+  //       '{"id": "2", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}'
+  //     ],
+  //     updatedAt: '2023-02-21T19:46:55.183Z',
+  //     tags: [ 'Consulting', 'Startups' ]
+  //   },
+  //   {
+  //     id: 4,
+  //     title: 'Consultant to Founder',
+  //     path: [
+  //       '{"id": "1", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}',
+  //       '{"id": "2", "content": "Final Step", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "PresentationChartLineIcon", "iconBackground": "bg-yellow-400"}'
+  //     ],
+  //     updatedAt: '2023-02-21T19:46:55.183Z',
+  //     tags: [ 'Consulting', 'Startups' ]
+  //   }
+  // ] 
+
+    let savedCareers;
 
     const session = await getServerSession(context.req, context.res, authOptions)
-    const userId = session.user.email
-    // get list of saved path ID's
-    const savedCareers = await prisma.userSaved.findUnique({
+
+    
+    // const userId = session.user.email
+    const userId = 'hengjeung.yuen@gmail.com'
+    savedCareers = await prisma.userSaved.findUnique({
       where: { userId: userId },
       select: {
         saved: true,
       },
     })
 
+    
     return {
       props: {
         careers: JSON.parse(JSON.stringify(careers)),

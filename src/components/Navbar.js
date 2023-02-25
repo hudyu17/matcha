@@ -1,10 +1,12 @@
-import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon, ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline'
+import { CalendarIcon, MagnifyingGlassIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon, ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline'
 import { useSession, signOut, signIn } from 'next-auth/react';
+import Link from 'next/link';
+import { useCurrPathContext } from 'context/currPathProvider'
 
 const navigation = [
-  { name: 'Browse', icon: UsersIcon, href: '#', current: true },
-  { name: 'Saved', icon: FolderIcon, href: '#', current: false },
-  { name: 'CareerMatcha+', icon: CalendarIcon, href: '#', current: false },
+  { name: 'Browse', icon: MagnifyingGlassIcon, href: '/paths', current: true },
+  { name: 'Saved', icon: FolderIcon, href: '/saved', current: false },
+  { name: 'CareerMatcha+', href: '#', current: false },
 ]
 
 function classNames(...classes) {
@@ -14,6 +16,8 @@ function classNames(...classes) {
 export default function Navbar() {
     const {data: session} = useSession()
     const authenticated = !! session
+
+    const [currPath, setCurrPath] = useCurrPathContext();
 
     return (
         <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white h-screen lg:w-56">
@@ -35,23 +39,27 @@ export default function Navbar() {
             </div>
             <nav className="mt-5 flex-1 space-y-1 bg-white px-2" aria-label="Sidebar">
             {navigation.map((item) => (
-                <a
+                <Link
                 key={item.name}
                 href={item.href}
                 className={classNames(
-                    item.current
+                    currPath === item.name
                     ? 'bg-gray-100 text-gray-900 hover:text-gray-900 hover:bg-gray-100'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50',
                     'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
                 )}
                 >
-                <item.icon
-                    className={classNames(
-                    item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
-                    'mr-3 flex-shrink-0 h-6 w-6'
-                    )}
-                    aria-hidden="true"
-                />
+                {
+                    item.icon &&
+                    <item.icon
+                        className={classNames(
+                        item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
+                        'mr-3 flex-shrink-0 h-6 w-6'
+                        )}
+                        aria-hidden="true"
+                    />
+                }
+                
                 <span className="flex-1">{item.name}</span>
                 {item.count ? (
                     <span
@@ -63,7 +71,7 @@ export default function Navbar() {
                     {item.count}
                     </span>
                 ) : null}
-                </a>
+                </Link>
             ))}
             </nav>
         </div>
