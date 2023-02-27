@@ -57,8 +57,8 @@ export default function PathCard({ careerId, title, number, tags, path, saved, s
     return (
       <div className="flow-root divide-y divide-gray-200 rounded-lg bg-white shadow">
         <ul role="list" className="p-5">
-            <div className="flex justify-between">
-                <h2 className="pb-4 font-medium leading-1 tracking-tight text-green-700">
+            <div className="flex justify-between gap-6">
+                <h2 className="pb-7 font-medium leading-1 tracking-tight text-green-700">
                     Example #{number}: {title}
                 </h2>
                 {savedCareers?.includes(careerId) ? 

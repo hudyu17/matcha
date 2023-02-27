@@ -54,7 +54,7 @@ export default function Paths({ careers, saved }) {
         name: 'Education',
         options: [
           { value: 'eng', label: 'Engineering', checked: false },
-          { value: 'fin', label: 'Finance', checked: false },
+          { value: 'biz', label: 'Business', checked: false },
           { value: 'cs', label: 'Comp. Sci', checked: false },
           { value: 'mba', label: 'MBA', checked: false },
           { value: 'masters', label: 'Grad School', checked: false },

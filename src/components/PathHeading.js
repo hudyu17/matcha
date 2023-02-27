@@ -54,7 +54,6 @@ const sortOptions = [
 //     ],
 //   },
 // ]
-const activeFilters = [{ value: 'product', label: 'Product' }, { value: 'consulting', label: 'Consulting' }]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')

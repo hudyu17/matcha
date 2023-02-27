@@ -10,7 +10,7 @@ export default function Saved({ savedCareers, savedIds }) {
   setCurrPath('Saved')
 
   return (
-    <div>
+    <div className="h-screen">
       <Layout 
         heading={'Saved Careers'}
         main={
