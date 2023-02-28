@@ -232,7 +232,7 @@ export default function PathHeading({ cards, setCards }) {
             {/* mobile filters button */}
             <button
               type="button"
-              className="inline-block text-sm font-medium text-gray-100 hover:text-gray-900 sm:hidden"
+              className="inline-block text-sm font-medium text-gray-100 hover:text-white sm:hidden"
               onClick={() => setOpen(true)}
             >
               Filters

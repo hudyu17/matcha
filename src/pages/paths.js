@@ -112,7 +112,7 @@ export default function Paths({ careers, saved }) {
               <div className="z-10 m-auto">
               <h2 className="text-sm text-gray-900">Curated Career Paths
               <span className="text-gray-700">
-                  {' '} - coming soon on <Link href="/careermatchaplus" className="text-green-700 font-plus-jakarta-sans font-bold">CareerMatcha+</Link>
+                  {' '} - coming soon on <Link href="/careermatchaplus" className="text-green-700 font-plus-jakarta-sans font-bold">CareerMatcha<span className="text-base font-medium text-green-600">+</span></Link>
               </span>
               </h2>
               </div>
@@ -140,7 +140,7 @@ export default function Paths({ careers, saved }) {
           
           <PathHeading filters={filters} setFilters={setFilters} activeFilters={activeFilters} setActiveFilters={setActiveFilters} cards={cards} setCards={setCards}/>
 
-          <dl className="w-full gap-6 lg:gap-10 md:columns-2 xl:columns-3 3xl:columns-4">
+          <dl className="w-full gap-6 lg:gap-10 md:columns-2 xl:columns-3 2xl:columns-4">
               {filteredCareers.map((career) => (
               <div key={career.id} className='break-inside-avoid-column pb-10'>
                   <PathCard careerId={career.id} title={career.title} number={career.id} tags={career.tags} path={career.path} saved={saved} setShowSaved={setShowSaved} cards={cards}/>
@@ -211,7 +211,6 @@ export async function getServerSideProps(context) {
   //   }
   // ] 
 
-    let savedCareers;
 
     const session = await getServerSession(context.req, context.res, authOptions)
 
@@ -224,6 +223,8 @@ export async function getServerSideProps(context) {
       }
     }
     
+    let savedCareers;
+
     const userId = session.user.email
     savedCareers = await prisma.userSaved.findUnique({
       where: { userId: userId },

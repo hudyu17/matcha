@@ -68,7 +68,9 @@ export default function Example() {
           </p>
           <div className="mt-6 flex items-center gap-x-6">
             <a
-              href="#"
+              href="https://tally.so/r/mOaGdg"
+              target='_blank'
+              rel='noreferrer'
               className="rounded-md bg-green-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
             >
               I&apos;m interested
