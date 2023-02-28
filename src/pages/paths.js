@@ -231,7 +231,9 @@ export async function getServerSideProps(context) {
         saved: true,
       },
     })
-
+    if (savedCareers === null) {
+      savedCareers = {saved: []}
+    }
     
     return {
       props: {
