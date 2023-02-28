@@ -108,7 +108,7 @@ export default function PathCard({ careerId, title, number, tags, path, saved, s
                       </p>
                     </div>
                     <div className="whitespace-nowrap text-right text-sm text-gray-500">
-                      <div>'{event.date}</div>
+                      <div>&apos;{event.date}</div>
                     </div>
                   </div>
                 </div>
@@ -119,7 +119,9 @@ export default function PathCard({ careerId, title, number, tags, path, saved, s
         </ul>
         <div className="px-4 py-3">
             {tags.map((tag) => (
-                <div className="inline-block flex-shrink-0 rounded-full bg-green-100 m-1 px-2 py-0.5 text-xs font-medium text-green-800">
+                <div key={tag}
+                  className="inline-block flex-shrink-0 rounded-full bg-green-100 m-1 px-2 py-0.5 text-xs font-medium text-green-800"
+                >
                 {tag}
               </div>
             ))}
