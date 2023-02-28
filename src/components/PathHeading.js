@@ -14,60 +14,32 @@
 */
 import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Menu, Popover, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
+import { XMarkIcon, Squares2X2Icon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { useCurrPathContext } from 'context/currPathProvider'
 
 const sortOptions = [
   { name: 'Most Popular', href: '#', current: true },
   { name: 'Best Rating', href: '#', current: false },
   { name: 'Newest', href: '#', current: false },
 ]
-// const filters = [
-//   {
-//     id: 'category',
-//     name: 'Category',
-//     options: [
-//       { value: 'consulting', label: 'Consulting', checked: true },
-//       { value: 'swe', label: 'Software Engineering', checked: false },
-//       { value: 'product', label: 'Product', checked: true },
-//       { value: 'startups', label: 'Startups', checked: false },
-//     ],
-//   },
-//   {
-//     id: 'industry',
-//     name: 'Industry',
-//     options: [
-//       { value: 'white', label: 'White', checked: false },
-//       { value: 'beige', label: 'Beige', checked: false },
-//       { value: 'blue', label: 'Blue', checked: false },
-//     ],
-//   },
-//   {
-//     id: 'education',
-//     name: 'Education',
-//     options: [
-//       { value: 'eng', label: 'Engineering', checked: false },
-//       { value: 'fin', label: 'Finance', checked: false },
-//       { value: 'cs', label: 'Comp. Sci', checked: false },
-//       { value: 'mba', label: 'MBA', checked: false },
-//       { value: 'masters', label: 'Grad School', checked: false },
-//     ],
-//   },
-// ]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function PathHeading({ filters, setFilters, activeFilters, setActiveFilters }) {
+export default function PathHeading({ cards, setCards }) {
   const [open, setOpen] = useState(false)
+  const { activeFiltersContext, filtersContext } = useCurrPathContext();
+
+  const [activeFilters, setActiveFilters] = activeFiltersContext;
+  const [filters, setFilters] = filtersContext;
 
   const handleFilterChange = (section, option) => {
 
     var indexFilter = filters.findIndex(x => x.id === section.id);
     var indexOption = filters[indexFilter]['options'].findIndex(x => x.value === option.value);
-    // console.log(indexFilter, indexOption)
-    console.log(filters[indexFilter]['options'][indexOption])
+
     const currOption = filters[indexFilter]['options'][indexOption]
     const newOption = {...currOption, checked: !currOption.checked}
 
@@ -138,7 +110,8 @@ export default function PathHeading({ filters, setFilters, activeFilters, setAct
   }
 
   return (
-    <div className=" rounded-lg shadow">
+    <div className='top-16 lg:top-0 z-10 pt-4 sticky'>
+    <div className="rounded-lg shadow">
       {/* Mobile filter dialog */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-40 sm:hidden" onClose={setOpen}>
@@ -235,52 +208,26 @@ export default function PathHeading({ filters, setFilters, activeFilters, setAct
         <div className={classNames(
           "bg-green-700 py-4", 
           activeFilters.length > 0 && 'rounded-t-lg border-b border-gray-200 ',
-          activeFilters.length === 0 && 'rounded-lg'
+          activeFilters.length === 0 && 'rounded-lg '
         )}
         >
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6">
-            <Menu as="div" className="relative inline-block text-left">
-              <div>
-                <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-100 hover:text-white">
-                  Sort
-                  <ChevronDownIcon
-                    className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-100 group-hover:text-white"
+          <div className="mx-auto flex items-center justify-between px-4 sm:px-6">
+              <div 
+                className="cursor-pointer group inline-flex justify-center text-sm font-medium text-gray-100 hover:text-white"
+                onClick={() => setCards(!cards)}
+              >
+                { cards ? 
+                  <p>Hide Paths</p>
+                  : <p>Show Paths</p>
+                }
+                  {/* Toggle Cards */}
+                  <Squares2X2Icon
+                    className='-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-100 group-hover:text-white group-hover:fill-white'
                     aria-hidden="true"
                   />
-                </Menu.Button>
               </div>
 
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute left-0 z-10 mt-2 w-40 origin-top-left rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  <div className="py-1">
-                    {sortOptions.map((option) => (
-                      <Menu.Item key={option.name}>
-                        {({ active }) => (
-                          <a
-                            href={option.href}
-                            className={classNames(
-                              option.current ? 'font-medium text-gray-900' : 'text-gray-500',
-                              active ? 'bg-gray-100' : '',
-                              'block px-4 py-2 text-sm'
-                            )}
-                          >
-                            {option.name}
-                          </a>
-                        )}
-                      </Menu.Item>
-                    ))}
-                  </div>
-                </Menu.Items>
-              </Transition>
-            </Menu>
+              
 
             {/* mobile filters button */}
             <button
@@ -352,8 +299,8 @@ export default function PathHeading({ filters, setFilters, activeFilters, setAct
 
         {/* Active filters */}
         {activeFilters.length > 0 &&
-        <div className="bg-brown rounded-b-lg">
-          <div className="mx-auto max-w-7xl py-3 px-4 sm:px-6 sm:flex sm:items-center ">
+        <div className="bg-green-50 rounded-b-lg">
+          <div className="mx-auto py-3 px-4 sm:px-6 sm:flex sm:items-center ">
             
             <div className="">
               <div className="-my-1 -mx-3 flex flex-wrap items-center">
@@ -388,6 +335,7 @@ export default function PathHeading({ filters, setFilters, activeFilters, setAct
         </div>
         }
       </section>
+    </div>
     </div>
   )
 }

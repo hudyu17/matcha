@@ -1,13 +1,17 @@
 import Navbar from './Navbar'
 import { useState } from 'react'
 import SavedAlert from './alerts/SavedAlert'
+import MobileNavbar from './MobileNavbar'
 
 export default function Layout({ heading, main }) {
 
     return (
-        <div className='flex'>
-            <aside className="h-screen sticky top-0">
+        <div className='flex flex-col lg:flex-row'>
+            <aside className="hidden lg:block h-screen sticky top-0">
                 <Navbar/>
+            </aside>
+            <aside className="lg:hidden sticky top-0 z-20">
+                <MobileNavbar/>
             </aside>
             
             <main 

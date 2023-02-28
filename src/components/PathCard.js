@@ -11,7 +11,7 @@ function classNames(...classes) {
   }
   
 
-export default function PathCard({ careerId, title, number, tags, path, saved, setShowSaved }) {
+export default function PathCard({ careerId, title, number, tags, path, saved, setShowSaved, cards }) {
     const { data: session } = useSession()
     const [savedCareers, setSavedCareers] = useState(saved.saved)
 
@@ -26,7 +26,6 @@ export default function PathCard({ careerId, title, number, tags, path, saved, s
         alert('sign in!')
         return
       }
-      console.log(savedCareers)
       setSavedCareers([...savedCareers, careerId])
       setShowSaved(true)
 
@@ -52,13 +51,17 @@ export default function PathCard({ careerId, title, number, tags, path, saved, s
       })
     }
 
-    console.log(tags)
 
     return (
       <div className="flow-root divide-y divide-gray-200 rounded-lg bg-white shadow">
         <ul role="list" className="p-5">
             <div className="flex justify-between gap-6">
-                <h2 className="pb-7 font-medium leading-1 tracking-tight text-green-700">
+                <h2 className={classNames(
+                    cards
+                    ? 'pb-7'
+                    : 'pb-0',
+                    "pb-7 font-medium leading-1 tracking-tight text-green-700"
+                )}>
                     Example #{number}: {title}
                 </h2>
                 {savedCareers?.includes(careerId) ? 
@@ -74,7 +77,9 @@ export default function PathCard({ careerId, title, number, tags, path, saved, s
                 }
                 
             </div>
-          {content.map((event, eventIdx) => (
+            { cards && 
+            
+          content.map((event, eventIdx) => (
             <li key={event.id}>
               <div className={ eventIdx === content.length - 1 ? 'relative pb-2' : 'relative pb-8' }>
                 {eventIdx < content.length - 1 ? (
@@ -109,7 +114,8 @@ export default function PathCard({ careerId, title, number, tags, path, saved, s
                 </div>
               </div>
             </li>
-          ))}
+          ))
+          }
         </ul>
         <div className="px-4 py-3">
             {tags.map((tag) => (
