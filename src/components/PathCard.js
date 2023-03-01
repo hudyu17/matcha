@@ -66,12 +66,12 @@ export default function PathCard({ careerId, title, number, tags, path, saved, s
                 </h2>
                 {savedCareers?.includes(careerId) ? 
                   <BookmarkIcon 
-                    className="w-5 h-5 -mr-1 text-green-700 fill-green-700 hover:fill-white cursor-pointer"
+                    className="w-5 h-5 -mr-1 text-green-700 fill-green-700 cursor-pointer"
                     onClick={() => unsaveCareer(careerId)}
                   />
                   :
                   <BookmarkIcon 
-                    className="w-5 h-5 -mr-1 text-green-700 hover:fill-green-700 cursor-pointer"
+                    className="w-5 h-5 -mr-1 text-green-700 cursor-pointer"
                     onClick={() => saveCareer(careerId)}
                   />
                 }
