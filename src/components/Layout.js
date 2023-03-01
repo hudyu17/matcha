@@ -10,16 +10,16 @@ export default function Layout({ heading, main }) {
 
     return (
         <div className='flex flex-col lg:flex-row'>
-            {authenticated && <div>
-                <aside className="hidden lg:block h-screen sticky top-0">
-                <Navbar/>
-            </aside>
-            <aside className="lg:hidden sticky top-0 z-20">
-                <MobileNavbar/>
-            </aside>
-                
-            </div>}
-            
+            {authenticated && 
+                <div className='sticky top-0 z-20'>
+                    <aside className="hidden lg:block h-screen sticky top-0">
+                    <Navbar/>
+                </aside>
+                <aside className="lg:hidden sticky top-0 z-20">
+                    <MobileNavbar/>
+                </aside>
+                </div>
+            }
             
             <main 
                 className='bg-green-50 w-full mx-auto py-8 sm:py-12 px-4 sm:px-6 lg:px-8 flex flex-col gap-6'
