@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'fredoka-one': [`"Fredoka One"`, 'cursive'],
+        'plus-jakarta-sans': [`"Plus Jakarta Sans"`, 'sans-serif'],
       },
     },
   },
