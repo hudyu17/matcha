@@ -15,7 +15,7 @@ export default function CTA({ setShowSuccess, setShowExists, setShowError }) {
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300">
               Make your next move with 
-              <span className="text-green-100 font-medium"> CareerMatcha</span>
+              <span className="text-green-100 font-bold font-plus-jakarta-sans"> CareerMatcha</span>
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
             <SignupForm setShowSuccess={setShowSuccess} setShowExists={setShowExists} setShowError={setShowError}/>
