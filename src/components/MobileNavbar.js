@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { CalendarIcon, XMarkIcon, Bars3Icon, BellIcon, MagnifyingGlassIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon, ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline'
+import { CalendarIcon, XMarkIcon, Bars3Icon, BellIcon, MagnifyingGlassIcon, FolderIcon, ArrowRightOnRectangleIcon, BookOpenIcon } from '@heroicons/react/24/outline'
 import { useCurrPathContext } from 'context/currPathProvider'
 import Link from 'next/link'
 import { useSession, signOut, signIn } from 'next-auth/react';
@@ -99,6 +99,24 @@ export default function MobileNavbar() {
                             {session?.user.name}
                         </div>
                         
+                      </Menu.Item>
+                      <Menu.Item>
+                        
+                        <div className='block px-4 py-2 text-xs text-gray-500 truncate -mt-2 mb-2'>
+                            {session?.user.email}
+                        </div>
+                        
+                      </Menu.Item>
+                      <Menu.Item>
+                      {({ active }) => (
+                          <Link
+                            className={classNames(active ? 'bg-gray-100' : '', 'flex block px-4 py-2 text-sm text-gray-700 cursor-pointer')}
+                            href='/readme'
+                        >
+                            README
+                            <BookOpenIcon className='text-gray-700 group-hover:text-gray-500 ml-1 h-5 w-5'/>
+                        </Link>
+                      )}
                       </Menu.Item>
                       
                       <Menu.Item>

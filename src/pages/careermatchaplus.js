@@ -53,7 +53,7 @@ export default function Example() {
         <rect width="100%" height="100%" strokeWidth={0} fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)" />
       </svg>
   
-      <div className="mx-auto max-w-7xl px-6 py-12 lg:py-24 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6  lg:flex lg:items-center lg:gap-x-10 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
           
           <h1 className="max-w-lg text-4xl font-bold tracking-tight text-green-700 sm:text-6xl font-plus-jakarta-sans">

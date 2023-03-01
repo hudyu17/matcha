@@ -3,6 +3,7 @@ import { useSession, signOut, signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useCurrPathContext } from 'context/currPathProvider'
 import { getServerSideProps } from './PathCard';
+import { LockClosedIcon } from '@heroicons/react/20/solid';
 
 const navigation = [
   { name: 'Browse', icon: MagnifyingGlassIcon, href: '/paths' },
@@ -55,7 +56,7 @@ export default function Navbar() {
                     item.icon &&
                     <item.icon
                         className={classNames(
-                        item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
+                        currPath === item.name ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
                         'mr-3 flex-shrink-0 h-6 w-6'
                         )}
                         aria-hidden="true"
@@ -63,16 +64,11 @@ export default function Navbar() {
                 }
                 
                 <span className="flex-1">{item.name}</span>
-                {item.count ? (
-                    <span
-                    className={classNames(
-                        item.current ? 'bg-white' : 'bg-gray-100 group-hover:bg-gray-200',
-                        'ml-3 inline-block py-0.5 px-3 text-xs font-medium rounded-full'
-                    )}
-                    >
-                    {item.count}
-                    </span>
-                ) : null}
+                {/* {!authenticated && (
+                    
+                    <LockClosedIcon className='h-6 w-6 bg-transparent text-gray-300'/>
+                    
+                )} */}
                 </Link>
             ))}
             </nav>
@@ -95,13 +91,14 @@ export default function Navbar() {
                 <span className="flex-1">Sign out</span>
             </div>
         </div>
-        :<div className='group flex items-center px-4 py-4 cursor-pointer text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-        onClick={() => signIn("google")}
-        >
-            <ArrowRightOnRectangleIcon className='text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6'/>
+        : null
+        // <div className='group flex items-center px-4 py-4 cursor-pointer text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+        // onClick={() => signIn("google")}
+        // >
+        //     <ArrowRightOnRectangleIcon className='text-gray-400 group-hover:text-gray-500 mr-3 h-6 w-6'/>
             
-            <span className="flex-1">Login</span>
-        </div>
+        //     <span className="flex-1">Login</span>
+        // </div>
         }
         {authenticated && 
         <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
