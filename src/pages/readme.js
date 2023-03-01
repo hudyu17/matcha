@@ -127,7 +127,7 @@ export default function Example() {
 
                 {!authenticated && 
                 <div>
-                    <p className="my-6">Head back <Link href="/" className="font-bold text-green-700 ">home</Link> and join the waitlist if you haven't already!</p>
+                    <p className="my-6">Head back <Link href="/" className="font-bold text-green-700 ">home</Link> and join the waitlist if you haven&apos;t already!</p>
                     
                 </div>
                 }
