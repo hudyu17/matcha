@@ -4,9 +4,14 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]";
 import Head from "next/head";
 import { ChatBubbleBottomCenterIcon, CircleStackIcon, CloudArrowUpIcon, LockClosedIcon, QueueListIcon, ServerIcon } from '@heroicons/react/20/solid'
-
+import { useSession } from "next-auth/react";
+import SignupForm from "@/components/SignupForm";
+import Link from "next/link";
 
 export default function Example() {
+    const {data: session} = useSession()
+    const authenticated = !! session;
+
     const { currPathContext } = useCurrPathContext();
     const [currPath, setCurrPath] = currPathContext;
     setCurrPath('')
@@ -29,7 +34,7 @@ export default function Example() {
     <Layout
     
     main={
-        <div className="relative isolate overflow-hidden px-6 py-4 lg:overflow-visible lg:px-0">
+        <div className="relative isolate overflow-hidden px-6 py-4 lg:overflow-visible lg:px-0 mb-12">
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <svg
             className="absolute top-0 left-[max(50%,25rem)] h-[64rem] w-[128rem] -translate-x-1/2 stroke-gray-200 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]"
@@ -115,11 +120,25 @@ export default function Example() {
                     </span> 
                     the best it can be for everyone, and that starts here. 
                 </p>
-                <p className="mt-6">
-                    In the meantime, please reach out with any thoughts, comments, feedback, concerns, if you want to hang out 🤡 - just shoot me an email: <span className="text-green-700 font-medium">hudson(@)careermatcha(dot)com</span>
+
+                <p className="my-6">
+                    In the meantime, please reach out with any thoughts, comments, feedback, concerns, if you want to hang out 🤡 - <span className="text-green-700 font-medium">hudson(@)careermatcha(dot)com</span>
                 </p>
+
+                {!authenticated && 
+                <div>
+                    <p className="my-6">Head back <Link href="/" className="font-bold text-green-700 ">home</Link> and join the waitlist if you haven't already!</p>
+                    
+                </div>
+                }
+
+                <a href="https://hudsonyuen.com" target="_blank" rel="noreferrer" className="text-gray-900 italic font-medium text-sm">
+                    - Hudson
+                </a>
               </div>
+              
             </div>
+            
           </div>
         </div>
       </div>}
