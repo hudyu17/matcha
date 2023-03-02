@@ -1,8 +1,12 @@
 import { signIn } from "next-auth/react"
+import Head from "next/head"
 
 export default function Signin() {
   return (
     <div className='bg-green-50 h-screen'>
+    <Head>
+        <title>Sign in | CareerMatcha</title>
+      </Head>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-lg space-y-8">
           <div>

@@ -110,7 +110,7 @@ export default function Paths({ careers, saved }) {
           
           <div className="relative w-full -mb-4">
               <div className="z-10 m-auto">
-              <h2 className="text-sm text-gray-900">Curated Career Paths
+              <h2 className="text-sm text-gray-900">Curated Paths
               <span className="text-gray-700">
                   {' '} - coming soon on <Link href="/careermatchaplus" className="text-green-700 font-plus-jakarta-sans font-bold">CareerMatcha<span className="text-base font-medium text-green-600">+</span></Link>
               </span>
