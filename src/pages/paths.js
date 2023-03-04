@@ -223,7 +223,7 @@ export async function getServerSideProps(context) {
       }
     }
     
-    let savedCareers;
+    // let savedCareers;
 
     const userId = session.user.email
 
@@ -240,15 +240,15 @@ export async function getServerSideProps(context) {
           accessed: true
         },
       })
-      savedCareers = {saved: []}
-    } else {
-      savedCareers = await prisma.userSaved.findUnique({
-        where: { userId: userId },
-        select: {
-          saved: true,
-        },
-      })
     }
+
+    const savedCareers = await prisma.userSaved.findUnique({
+      where: { userId: userId },
+      select: {
+        saved: true,
+      },
+    })
+    
 
 
     // if (savedCareers === null) {
