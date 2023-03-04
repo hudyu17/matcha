@@ -211,7 +211,6 @@ export async function getServerSideProps(context) {
   //   }
   // ] 
 
-
     const session = await getServerSession(context.req, context.res, authOptions)
 
     if (!session) {
@@ -260,16 +259,15 @@ export async function getServerSideProps(context) {
       },
     }).catch(error => console.log('select save error: ', error))
     
-
-
     if (savedCareers === null) {
       savedCareers = {saved: []}
+
       await prisma.userSaved.create({
         data: {
           userId: userId,
           accessed: true
         },
-      }).catch(error => console.log('create user error: ', error))
+      })
     }
     
     return {
