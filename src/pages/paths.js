@@ -231,7 +231,7 @@ export async function getServerSideProps(context) {
       where: {
         userId: userId
       },
-    })
+    }).catch(error => console.log('find user error: ', error))
 
     if (user === null) {
       await prisma.userSaved.create({
@@ -239,7 +239,7 @@ export async function getServerSideProps(context) {
           userId: userId,
           accessed: true
         },
-      })
+      }).catch(error => console.log('create user error: ', error))
     }
 
     const savedCareers = await prisma.userSaved.findUnique({
@@ -247,7 +247,7 @@ export async function getServerSideProps(context) {
       select: {
         saved: true,
       },
-    })
+    }).catch(error => console.log('select save error: ', error))
     
 
 
