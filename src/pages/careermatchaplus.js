@@ -78,7 +78,7 @@ export default function Example() {
             Access additional analysis, custom career path generators, and more powerful tools to save and share your career research. 
           </p>
           <p className="mt-6 text-sm leading-6 text-gray-500 lg:pr-12">
-          I'm doubling down on what would be most helpful with {' '}
+          I&apos;m doubling down on what would be most helpful with {' '}
           <span href="/careermatchaplus" className="text-green-700 font-plus-jakarta-sans font-bold">CareerMatcha<span className="text-base font-medium text-green-600">+</span></span>
           , a suite of advanced tools beyond the current database. Let me know if you&apos;re interested. 
           </p>
