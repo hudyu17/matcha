@@ -227,20 +227,29 @@ export async function getServerSideProps(context) {
 
     const userId = session.user.email
 
-    const user = await prisma.userSaved.findUnique({
-      where: {
-        userId: userId
+    const user = await prisma.userSaved.upsert({
+      where: { userId: userId },
+      update: {},
+      create: { 
+        userId: userId,
+        accessed: true
       },
-    }).catch(error => console.log('find user error: ', error))
+    })
 
-    if (user === null) {
-      await prisma.userSaved.create({
-        data: {
-          userId: userId,
-          accessed: true
-        },
-      }).catch(error => console.log('create user error: ', error))
-    }
+    // const user = await prisma.userSaved.findUnique({
+    //   where: {
+    //     userId: userId
+    //   },
+    // }).catch(error => console.log('find user error: ', error))
+
+    // if (user === null) {
+    //   await prisma.userSaved.create({
+    //     data: {
+    //       userId: userId,
+    //       accessed: true
+    //     },
+    //   }).catch(error => console.log('create user error: ', error))
+    // }
 
     const savedCareers = await prisma.userSaved.findUnique({
       where: { userId: userId },
