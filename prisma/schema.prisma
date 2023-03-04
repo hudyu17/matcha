@@ -21,7 +21,9 @@ model Career {
 model UserSaved {
   id          Int      @id @default(autoincrement())
   userId      String   @unique
-  saved       Int[]    // career IDs, but not relation
+  saved       Int[]    @default([])
+  cmplus      Boolean  @default(false)
+  accessed    Boolean  @default(false)
 }
 
 // model PathItem {

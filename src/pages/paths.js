@@ -211,7 +211,6 @@ export async function getServerSideProps(context) {
   //   }
   // ] 
 
-
     const session = await getServerSession(context.req, context.res, authOptions)
 
     if (!session) {
@@ -223,15 +222,43 @@ export async function getServerSideProps(context) {
       }
     }
     
-    let savedCareers;
+    // let savedCareers;
 
     const userId = session.user.email
+
+    // const user = await prisma.userSaved.upsert({
+    //   where: { userId: userId },
+    //   update: {},
+    //   create: { 
+    //     userId: userId,
+    //     accessed: true
+    //   },
+    // })
+
+    // const user = await prisma.userSaved.findUnique({
+    //   where: {
+    //     userId: userId
+    //   },
+    // }).catch(error => console.log('find user error: ', error))
+
+    // if (user === null) {
+    //   await prisma.userSaved.create({
+    //     data: {
+    //       userId: userId,
+    //       accessed: true
+    //     },
+    //   }).catch(error => console.log('create user error: ', error))
+    // }
+
+    let savedCareers;
+
     savedCareers = await prisma.userSaved.findUnique({
       where: { userId: userId },
       select: {
         saved: true,
       },
-    })
+    }).catch(error => console.log('select save error: ', error))
+    
     if (savedCareers === null) {
       savedCareers = {saved: []}
     }

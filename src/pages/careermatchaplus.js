@@ -3,11 +3,25 @@ import { useCurrPathContext } from "context/currPathProvider";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]";
 import Head from "next/head";
+import { useSession } from "next-auth/react";
+import axios from 'axios'
 
 export default function Example() {
     const { currPathContext } = useCurrPathContext();
     const [currPath, setCurrPath] = currPathContext;
     setCurrPath('CareerMatcha+')
+
+    // const { data: session } = useSession()
+
+    // const handleInterest = async () => {
+    //     const userId = session.user.email;
+
+    //   await axios.post("/api/saveInterest", {
+    //     userId
+    //   }).catch(error => {
+    //     console.log(error.response.data)
+    //   })
+    // }
 
   return (
     <div className="h-screen">
@@ -61,19 +75,24 @@ export default function Example() {
             <span className="text-5xl sm:text-7xl font-medium text-green-600">+</span>
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600 lg:pr-12">
-            Access curated career paths, additional analysis, and more powerful tools to save and share your career research. 
+            Access additional analysis, custom career path generators, and more powerful tools to save and share your career research. 
           </p>
           <p className="mt-6 text-sm leading-6 text-gray-500 lg:pr-12">
-            Let us know if you&apos;re interested. Knowing who we&apos;re building CareerMatcha+ for will make it better for everyone. 
+          I&apos;m doubling down on what would be most helpful with {' '}
+          <span href="/careermatchaplus" className="text-green-700 font-plus-jakarta-sans font-bold">CareerMatcha<span className="text-base font-medium text-green-600">+</span></span>
+          , a suite of advanced tools beyond the current database. Let me know if you&apos;re interested. 
           </p>
           <div className="mt-6 flex items-center gap-x-6">
+            {/* <div className="rounded-md bg-green-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 cursor-pointer"> */}
             <a
               href="https://tally.so/r/mOaGdg"
               target='_blank'
               rel='noreferrer'
               className="rounded-md bg-green-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
             >
+
               I&apos;m interested
+            {/* </div> */}
             </a>
           </div>
         </div>
