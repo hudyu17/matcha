@@ -261,13 +261,6 @@ export async function getServerSideProps(context) {
     
     if (savedCareers === null) {
       savedCareers = {saved: []}
-
-      await prisma.userSaved.create({
-        data: {
-          userId: userId,
-          accessed: true
-        },
-      })
     }
     
     return {
