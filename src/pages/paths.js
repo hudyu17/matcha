@@ -226,15 +226,34 @@ export async function getServerSideProps(context) {
     let savedCareers;
 
     const userId = session.user.email
-    savedCareers = await prisma.userSaved.findUnique({
-      where: { userId: userId },
-      select: {
-        saved: true,
+
+    const user = await prisma.userSaved.findUnique({
+      where: {
+        userId: userId
       },
     })
-    if (savedCareers === null) {
+
+    if (user === null) {
+      await prisma.userSaved.create({
+        data: {
+          userId: userId,
+          accessed: true
+        },
+      })
       savedCareers = {saved: []}
+    } else {
+      savedCareers = await prisma.userSaved.findUnique({
+        where: { userId: userId },
+        select: {
+          saved: true,
+        },
+      })
     }
+
+
+    // if (savedCareers === null) {
+    //   savedCareers = {saved: []}
+    // }
     
     return {
       props: {
