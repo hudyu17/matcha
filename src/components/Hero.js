@@ -72,7 +72,7 @@ export default function Hero({ setShowSuccess, setShowExists, setShowError }) {
                 The first database for career paths. 
               </p>
               <p className="mt-1 text-sm leading-8 text-gray-500">
-                Waitlist: 162 (Updated Feb 28)
+                Waitlist: 191 (Updated Mar 10)
               </p>
               <div className='mt-8 mx-auto'>
                 <SignupForm setShowSuccess={setShowSuccess} setShowExists={setShowExists} setShowError={setShowError}/>
