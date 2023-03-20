@@ -75,7 +75,7 @@ export default function Example() {
             <span className="text-5xl sm:text-7xl font-medium text-green-600">+</span>
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600 lg:pr-12">
-            Access additional analysis, custom career path generators, and more powerful tools to save and share your career research. 
+            Additional analysis, custom career path generators, and more powerful tools to save and share your career research. 
           </p>
           <p className="mt-6 text-sm leading-6 text-gray-500 lg:pr-12">
           I&apos;m doubling down on what would be most helpful with {' '}

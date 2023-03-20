@@ -106,9 +106,9 @@ export default function Paths({ careers, saved }) {
       <Layout className=''
       heading={'Browse all Career Paths'}
       main={
-      <div className='flex flex-col gap-6 lg:gap-10'>
+      <div className='flex flex-col gap-6 lg:gap-8'>
           
-          <div className="relative w-full -mb-4">
+          {/* <div className="relative w-full -mb-4">
               <div className="z-10 m-auto">
               <h2 className="text-sm text-gray-900">Curated Paths
               <span className="text-gray-700">
@@ -136,7 +136,8 @@ export default function Paths({ careers, saved }) {
                   </div>
               ))}
               </ul>
-          </div>
+          </div> */}
+          <p className="text-sm text-gray-400 italic -my-4">Newest first, updated Mar 20</p>
           
           <PathHeading filters={filters} setFilters={setFilters} activeFilters={activeFilters} setActiveFilters={setActiveFilters} cards={cards} setCards={setCards}/>
 
