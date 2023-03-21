@@ -192,7 +192,7 @@ export default function Mentor({ initialEnabled }) {
             Find a dedicated career coach that can help you achieve your specific goals.
           </p>
         </div>
-        <div className=" my-16 max-w-2xl lg:max-w-7xl ">
+        <div className="mx-auto lg:mx-0 my-16 max-w-2xl lg:max-w-7xl ">
           <dl className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-3">
             {features.map((feature) => (
               <div key={feature.name} className="flex flex-col">
@@ -221,7 +221,7 @@ export default function Mentor({ initialEnabled }) {
             Help us help you.
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-200">
-            We need your input to build <span className="font-medium">CareerMatcha</span> <span className="font-bold text-white">Mentors</span>. Let us know if you're interested and want to be contacted.
+            We need your input to build <span className="font-medium">CareerMatcha</span> <span className="font-bold text-white">Mentors</span>. Let us know if you&apos;re interested and want to be contacted.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <MentorSwitch enabled={enabled} setEnabled={setEnabled} dark={true}/>
@@ -273,9 +273,17 @@ export async function getServerSideProps(context) {
       },
     }).catch(error => console.log(error))
 
+    let enabled;
+
+    if (saved === null) {
+      enabled = false;
+    } else {
+      enabled = true
+    }
+
     return {
         props: {
-          initialEnabled: saved.cmplus
+          initialEnabled: enabled
         }
     }
 }

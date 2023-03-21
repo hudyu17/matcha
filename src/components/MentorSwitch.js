@@ -51,7 +51,7 @@ export default function MentorSwitch({ enabled, setEnabled, dark }) {
           )}
         />
       </Switch>
-      <Switch.Label as="span" className="ml-3 text-sm">
+      <Switch.Label as="span" className="ml-2 sm:ml-3 text-sm">
         <span className={classNames(
             dark ? ' text-gray-200' : ' text-gray-900',
             'font-medium'

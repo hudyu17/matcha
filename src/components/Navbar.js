@@ -8,8 +8,8 @@ import { LockClosedIcon } from '@heroicons/react/20/solid';
 const navigation = [
   { name: 'Browse', icon: MagnifyingGlassIcon, href: '/paths' },
   { name: 'Saved', icon: FolderIcon, href: '/saved' },
-  { name: 'Mentors', icon: UsersIcon, href: '/mentors' },
   { name: 'Insights', icon: BoltIcon, href: '/insights' },
+  { name: 'Mentors', icon: UsersIcon, href: '/mentors' },
 ]
 
 function classNames(...classes) {

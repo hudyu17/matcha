@@ -11,22 +11,12 @@ export default function Example() {
     const [currPath, setCurrPath] = currPathContext;
     setCurrPath('Insights')
 
-    // const { data: session } = useSession()
 
-    // const handleInterest = async () => {
-    //     const userId = session.user.email;
-
-    //   await axios.post("/api/saveInterest", {
-    //     userId
-    //   }).catch(error => {
-    //     console.log(error.response.data)
-    //   })
-    // }
 
   return (
     <div className="h-screen">
     <Head>
-        <title>CareerMatcha+</title>
+        <title>Insights | CareerMatcha</title>
         <meta name="description" content="CareerMatcha+" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -34,7 +24,7 @@ export default function Example() {
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
         <link rel="manifest" href="/site.webmanifest"/>
-        <meta property="og:title" content="Coming Soon | CareerMatcha+"/>
+        <meta property="og:title" content="Insights | CareerMatcha"/>
         <meta property="og:description" content="Career inspiration, curated for you."/>
         <meta property="og:image" content="/preview.png" />
       </Head>
@@ -67,23 +57,20 @@ export default function Example() {
         <rect width="100%" height="100%" strokeWidth={0} fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)" />
       </svg>
   
-      <div className="mx-auto max-w-7xl px-6  lg:flex lg:items-center lg:gap-x-10 lg:px-8">
+      <div className="mx-auto max-w-7xl px-2  lg:flex lg:items-center lg:gap-x-10 lg:px-4">
         <div className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
           
           <h1 className="max-w-lg text-4xl font-bold tracking-tight text-green-700 sm:text-6xl font-plus-jakarta-sans">
-            CareerMatcha
-            <span className="text-5xl sm:text-7xl font-medium text-green-600">+</span>
+            Under construction...
+            
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600 lg:pr-12">
-            Additional analysis, custom career path generators, and more powerful tools to save and share your career research. 
+            Additional analysis, custom career path generators, and more powerful tools to share your career research. 
           </p>
           <p className="mt-6 text-sm leading-6 text-gray-500 lg:pr-12">
-          I&apos;m doubling down on what would be most helpful with {' '}
-          <span href="/careermatchaplus" className="text-green-700 font-plus-jakarta-sans font-bold">CareerMatcha<span className="text-base font-medium text-green-600">+</span></span>
-          , a suite of advanced tools beyond the current database. Let me know if you&apos;re interested. 
+            I&apos;m doubling down on a suite of advanced tools beyond the current database. Check this space for updates!
           </p>
-          <div className="mt-6 flex items-center gap-x-6">
-            {/* <div className="rounded-md bg-green-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 cursor-pointer"> */}
+          {/* <div className="mt-6 flex items-center gap-x-6">
             <a
               href="https://tally.so/r/mOaGdg"
               target='_blank'
@@ -92,9 +79,8 @@ export default function Example() {
             >
 
               I&apos;m interested
-            {/* </div> */}
             </a>
-          </div>
+          </div> */}
         </div>
         <div className="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
           <svg viewBox="0 0 366 729" role="img" className="mx-auto w-[22.875rem] max-w-full drop-shadow-xl">
