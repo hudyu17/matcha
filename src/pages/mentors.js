@@ -4,7 +4,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
-import axios from 'axios'
 import { UserIcon, TrashIcon, BriefcaseIcon } from '@heroicons/react/24/outline'
 import { useState } from "react";
 import MentorSwitch from "@/components/MentorSwitch";
@@ -272,7 +271,7 @@ export async function getServerSideProps(context) {
       select: {
         cmplus: true,
       },
-    }).catch(error => console.log(error))
+    }).catch(error => console.log(error.code, error.message))
 
     console.log('original saved: ', saved)
     
