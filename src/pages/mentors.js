@@ -282,7 +282,7 @@ export async function getServerSideProps(context) {
 
     return {
         props: {
-          initialEnabled: saved.cmplus
+          initialEnabled: JSON.parse(JSON.stringify(saved.cmplus))
         }
     }
 }
