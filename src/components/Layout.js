@@ -24,7 +24,7 @@ export default function Layout({ heading, main }) {
             <main 
                 className='bg-green-50 w-full mx-auto py-8 sm:pt-12 px-4 sm:px-6 lg:px-8 flex flex-col gap-6'
             >
-                <heading className='text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight'>
+                <heading className='text-2xl font-bold leading-7 text-green-900 sm:truncate sm:text-3xl sm:tracking-tight'>
                     {heading}
                 </heading>
                 {main}

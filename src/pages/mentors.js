@@ -9,6 +9,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { InboxIcon, TrashIcon, UsersIcon } from '@heroicons/react/24/outline'
 import { useState } from "react";
 import MentorSwitch from "@/components/MentorSwitch";
+import { prisma } from "@/prisma";
 
 const features = [
   {
@@ -35,10 +36,13 @@ const features = [
 ]
 
 
-export default function Mentor() {
+export default function Mentor({ initialEnabled }) {
     const { currPathContext } = useCurrPathContext();
     const [currPath, setCurrPath] = currPathContext;
     setCurrPath('Mentors')
+
+    const [enabled, setEnabled] = useState(initialEnabled)
+
 
   return (
     <div className="h-screen">
@@ -107,7 +111,7 @@ export default function Mentor() {
         </svg>
       </div>
       <div className="overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 pb-24 pt-28 lg:px-8">
+        <div className="mx-auto  px-6 pb-24 pt-28 lg:px-8">
           <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
             <div className="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
             <h1 className="max-w-lg text-4xl font-medium tracking-tight text-green-700 sm:text-5xl font-plus-jakarta-sans">
@@ -126,7 +130,7 @@ export default function Mentor() {
                 </a>
               </div> */}
               <div className="mt-10">
-                <MentorSwitch/>
+                <MentorSwitch enabled={enabled} setEnabled={setEnabled}/>
               </div>
             </div>
             <div className="mt-14 flex justify-end gap-8 sm:-mt-32 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
@@ -180,9 +184,9 @@ export default function Mentor() {
           </div>
         </div>
       </div>
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto  px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900">
+          <h2 className="text-3xl font-medium tracking-tight text-green-900">
             Grow with specific, personalised guidance
           </h2>
           <p className="mt-6 text-lg leading-8 text-gray-600">
@@ -232,7 +236,19 @@ export async function getServerSideProps(context) {
       }
     }
 
+    const userId = session.user.email
+
+    // get current save status from db
+    const saved = await prisma.userSaved.findUnique({
+      where: { userId: userId },
+      select: {
+        cmplus: true,
+      },
+    }).catch(error => console.log(error))
+
     return {
-        props: {}
+        props: {
+          initialEnabled: saved.cmplus
+        }
     }
 }

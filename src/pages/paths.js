@@ -167,9 +167,9 @@ export default function Paths({ careers, saved }) {
 export async function getServerSideProps(context) {
   
     const careers = await prisma.career.findMany();
-    // console.log(careers)
+    const reversed = careers.reverse();
 
-    // oFFLINE DEV
+  // oFFLINE DEV
   //   const careers = [
   //   {
   //     id: 1,
@@ -222,34 +222,8 @@ export async function getServerSideProps(context) {
         }
       }
     }
-    
-    // let savedCareers;
 
     const userId = session.user.email
-
-    // const user = await prisma.userSaved.upsert({
-    //   where: { userId: userId },
-    //   update: {},
-    //   create: { 
-    //     userId: userId,
-    //     accessed: true
-    //   },
-    // })
-
-    // const user = await prisma.userSaved.findUnique({
-    //   where: {
-    //     userId: userId
-    //   },
-    // }).catch(error => console.log('find user error: ', error))
-
-    // if (user === null) {
-    //   await prisma.userSaved.create({
-    //     data: {
-    //       userId: userId,
-    //       accessed: true
-    //     },
-    //   }).catch(error => console.log('create user error: ', error))
-    // }
 
     let savedCareers;
 
@@ -266,7 +240,7 @@ export async function getServerSideProps(context) {
     
     return {
       props: {
-        careers: JSON.parse(JSON.stringify(careers)),
+        careers: JSON.parse(JSON.stringify(reversed)),
         saved: JSON.parse(JSON.stringify(savedCareers)),
         // locArray: JSON.parse(JSON.stringify(locArray)),
       },
