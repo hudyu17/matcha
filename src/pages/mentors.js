@@ -40,7 +40,7 @@ export default function Mentor({ initialEnabled }) {
     const [currPath, setCurrPath] = currPathContext;
     setCurrPath('Mentors')
 
-    const [enabled, setEnabled] = useState(initialEnabled)
+    const [enabled, setEnabled] = useState(initialEnabled.cmplus)
 
 
   return (
@@ -282,7 +282,7 @@ export async function getServerSideProps(context) {
 
     return {
         props: {
-          initialEnabled: JSON.parse(JSON.stringify(saved.cmplus))
+          initialEnabled: JSON.parse(JSON.stringify(saved))
         }
     }
 }
