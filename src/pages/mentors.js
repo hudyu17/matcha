@@ -186,7 +186,7 @@ export default function Mentor({ initialEnabled }) {
       <div className="mx-auto px-2 lg:px-4">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-3xl font-medium tracking-tight text-green-900">
-            Grow with specific, personalised guidance
+            Grow with specific, personal guidance
           </h2>
           <p className="mt-6 text-lg leading-8 text-gray-600">
             Find a dedicated career coach that can help you achieve your specific goals.
@@ -221,7 +221,7 @@ export default function Mentor({ initialEnabled }) {
             Help us help you.
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-200">
-            We need your input to build out this mentorship service. Let us know if you're interested and want to be contacted.
+            We need your input to build <span className="font-medium">CareerMatcha</span> <span className="font-bold text-white">Mentors</span>. Let us know if you're interested and want to be contacted.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <MentorSwitch enabled={enabled} setEnabled={setEnabled} dark={true}/>

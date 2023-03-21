@@ -9,7 +9,7 @@ import axios from 'axios'
 export default function Example() {
     const { currPathContext } = useCurrPathContext();
     const [currPath, setCurrPath] = currPathContext;
-    setCurrPath('CareerMatcha+')
+    setCurrPath('Insights')
 
     // const { data: session } = useSession()
 
