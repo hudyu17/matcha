@@ -266,24 +266,23 @@ export async function getServerSideProps(context) {
     const userId = session.user.email
 
     // get current save status from db
-    const saved = await prisma.userSaved.findUnique({
+    let saved;
+
+    saved = await prisma.userSaved.findUnique({
       where: { userId: userId },
       select: {
         cmplus: true,
       },
     }).catch(error => console.log(error))
 
-    let enabled;
-// it's throwing true for some reason on live version
+    
     if (saved === null) {
-      enabled = false;
-    } else {
-      enabled = saved.cmplus
-    }
+      saved = {cmplus: false};
+    } 
 
     return {
         props: {
-          initialEnabled: enabled
+          initialEnabled: saved.cmplus
         }
     }
 }
