@@ -266,19 +266,21 @@ export async function getServerSideProps(context) {
     const userId = session.user.email
 
     // get current save status from db
-    let saved;
+    // let saved;
 
-    saved = await prisma.userSaved.findUnique({
-      where: { userId: userId },
-      select: {
-        cmplus: true,
-      },
-    }).catch(error => console.log(error))
+    // saved = await prisma.userSaved.findUnique({
+    //   where: { userId: userId },
+    //   select: {
+    //     cmplus: true,
+    //   },
+    // }).catch(error => console.log(error))
 
     
-    if (saved === null) {
-      saved = {cmplus: false};
-    } 
+    // if (saved === null) {
+    //   saved = {cmplus: false};
+    // } 
+
+    const saved = {cmplus: false}
 
     return {
         props: {
