@@ -7,12 +7,14 @@ import { useSession } from "next-auth/react";
 import axios from 'axios'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { InboxIcon, TrashIcon, UsersIcon } from '@heroicons/react/24/outline'
+import { useState } from "react";
+import MentorSwitch from "@/components/MentorSwitch";
 
 const features = [
   {
-    name: 'Unlimited inboxes',
+    name: '1:1 focus',
     description:
-      'Non quo aperiam repellendus quas est est. Eos aut dolore aut ut sit nesciunt. Ex tempora quia. Sit nobis consequatur dolores incidunt.',
+      'Get undivided attention and specific advice that suits your situation.',
     href: '#',
     icon: InboxIcon,
   },
@@ -37,7 +39,6 @@ export default function Mentor() {
     const { currPathContext } = useCurrPathContext();
     const [currPath, setCurrPath] = currPathContext;
     setCurrPath('Mentors')
-
 
   return (
     <div className="h-screen">
@@ -109,20 +110,23 @@ export default function Mentor() {
         <div className="mx-auto max-w-7xl px-6 pb-24 pt-28 lg:px-8">
           <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
             <div className="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
-            <h1 className="max-w-lg text-4xl font-bold tracking-tight text-green-700 sm:text-5xl font-plus-jakarta-sans">
+            <h1 className="max-w-lg text-4xl font-medium tracking-tight text-green-700 sm:text-5xl font-plus-jakarta-sans">
                 CareerMatcha
-                <span className="font-medium text-green-600">{' '}Mentors</span>
+                <span className="font-bold text-green-600">{' '}Mentors</span>
               </h1>
               <p className="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-xl">
-                Go beyond inspiration. Find a dedicated career coach to help achieve your goals.
+                We&apos;re working on a mentorship service to connect you with the same professionals that inspire you.
               </p>
-              <div className="mt-10 flex items-center gap-x-6">
+              {/* <div className="mt-10 flex items-center gap-x-6">
                 <a
                   href="#"
                   className="rounded-md bg-green-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
                   >
                   I&apos;m interested
                 </a>
+              </div> */}
+              <div className="mt-10">
+                <MentorSwitch/>
               </div>
             </div>
             <div className="mt-14 flex justify-end gap-8 sm:-mt-32 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
@@ -182,10 +186,10 @@ export default function Mentor() {
             Grow with specific, personalised guidance
           </h2>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Receive 1:1 mentorship from the very professionals that inspire you.
+            Find a dedicated career coach that can help you achieve your specific goals.
           </p>
         </div>
-        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+        <div className="mx-auto my-16 max-w-2xl lg:max-w-none">
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
             {features.map((feature) => (
               <div key={feature.name} className="flex flex-col">
