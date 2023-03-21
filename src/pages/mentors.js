@@ -273,23 +273,17 @@ export async function getServerSideProps(context) {
       },
     }).catch(error => console.log(error))
 
-    // let enabled;
+    let enabled;
 // it's throwing true for some reason on live version
     if (saved === null) {
-      // enabled = false;
-      return {
-        props: {
-          initialEnabled: false
-        }
-      }
-    } 
-    // else {
-    //   enabled = true
-    // }
+      enabled = false;
+    } else {
+      enabled = saved.cmplus
+    }
 
     return {
         props: {
-          initialEnabled: saved.cmplus
+          initialEnabled: enabled
         }
     }
 }
