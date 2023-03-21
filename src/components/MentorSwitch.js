@@ -7,7 +7,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function MentorSwitch({ enabled, setEnabled }) {
+export default function MentorSwitch({ enabled, setEnabled, dark }) {
   const { data: session } = useSession()
 
   const handleChange = async () => {
@@ -47,13 +47,21 @@ export default function MentorSwitch({ enabled, setEnabled }) {
           aria-hidden="true"
           className={classNames(
             enabled ? 'translate-x-5' : 'translate-x-0',
-            'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
+            'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white border-2 border-green-600 shadow ring-0 transition duration-200 ease-in-out'
           )}
         />
       </Switch>
       <Switch.Label as="span" className="ml-3 text-sm">
-        <span className="font-medium text-gray-900">Notify me.</span>{' '}
-        <span className="text-gray-500">We&apos;ll reach out to get your input.</span>
+        <span className={classNames(
+            dark ? ' text-gray-200' : ' text-gray-900',
+            'font-medium'
+          )}
+        >Notify me.</span>{' '}
+        <span className={classNames(
+            dark ? ' text-gray-400' : ' text-gray-500',
+            'font-medium'
+          )}
+        >We&apos;ll reach out to get your input.</span>
       </Switch.Label>
     </Switch.Group>
   )

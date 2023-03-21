@@ -5,31 +5,30 @@ import { authOptions } from "./api/auth/[...nextauth]";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
 import axios from 'axios'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { InboxIcon, TrashIcon, UsersIcon } from '@heroicons/react/24/outline'
+import { UserIcon, TrashIcon, BriefcaseIcon } from '@heroicons/react/24/outline'
 import { useState } from "react";
 import MentorSwitch from "@/components/MentorSwitch";
 import { prisma } from "@/prisma";
 
 const features = [
   {
-    name: '1:1 focus',
+    name: 'Get 1:1 answers to your most burning questions',
     description:
-      'Get undivided attention and specific advice that suits your situation.',
+      'Receive undivided attention as you figure out your next move, with advice and guidance specific to your situation.',
     href: '#',
-    icon: InboxIcon,
+    icon: UserIcon,
   },
   {
-    name: 'Manage team members',
+    name: 'Leverage industry knowledge to chart your unique path',
     description:
-      'Vero eum voluptatem aliquid nostrum voluptatem. Vitae esse natus. Earum nihil deserunt eos quasi cupiditate. A inventore et molestiae natus.',
+      "There's no substitute for experience. Learn from someone who's been in your shoes and understands the space you're in.",
     href: '#',
-    icon: UsersIcon,
+    icon: BriefcaseIcon,
   },
   {
-    name: 'Spam report',
+    name: 'Build an unbeatable network to land your next job, or the one after that',
     description:
-      'Et quod quaerat dolorem quaerat architecto aliquam accusantium. Ex adipisci et doloremque autem quia quam. Quis eos molestiae at iure impedit.',
+      'Your mentors can turbocharge the size and depth of your network, bringing you knowledge and meaningful introductions.',
     href: '#',
     icon: TrashIcon,
   },
@@ -63,7 +62,7 @@ export default function Mentor({ initialEnabled }) {
     // heading={'Mentors (coming soon)'}
 
     main={
-      <div className="relative isolate -mt-24 -mx-4 sm:-mr-6 lg:-mr-8">
+      <div className="relative isolate -mt-24">
       <svg
         className="absolute inset-x-0 top-0 -z-10 h-full w-full stroke-gray-200 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)]"
         aria-hidden="true"
@@ -110,9 +109,9 @@ export default function Mentor({ initialEnabled }) {
           </defs>
         </svg>
       </div>
-      <div className="overflow-hidden">
-        <div className="mx-auto  px-6 pb-24 pt-28 lg:px-8">
-          <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
+      <div className="">
+        <div className="mx-auto  px-2 pb-24 pt-28 lg:px-4 ">
+          <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:items-center">
             <div className="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
             <h1 className="max-w-lg text-4xl font-medium tracking-tight text-green-700 sm:text-5xl font-plus-jakarta-sans">
                 CareerMatcha
@@ -130,10 +129,10 @@ export default function Mentor({ initialEnabled }) {
                 </a>
               </div> */}
               <div className="mt-10">
-                <MentorSwitch enabled={enabled} setEnabled={setEnabled}/>
+                <MentorSwitch enabled={enabled} setEnabled={setEnabled} dark={false}/>
               </div>
             </div>
-            <div className="mt-14 flex justify-end gap-8 sm:-mt-32 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
+            <div className="mt-14 flex justify-end gap-8 sm:-mt-32 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0 -mx-4 sm:-mr-6 lg:-mr-8">
               <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
                 <div className="relative">
                   <img
@@ -184,7 +183,7 @@ export default function Mentor({ initialEnabled }) {
           </div>
         </div>
       </div>
-      <div className="mx-auto  px-6 lg:px-8">
+      <div className="mx-auto px-2 lg:px-4">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-3xl font-medium tracking-tight text-green-900">
             Grow with specific, personalised guidance
@@ -193,8 +192,8 @@ export default function Mentor({ initialEnabled }) {
             Find a dedicated career coach that can help you achieve your specific goals.
           </p>
         </div>
-        <div className="mx-auto my-16 max-w-2xl lg:max-w-none">
-          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+        <div className=" my-16 max-w-2xl lg:max-w-7xl ">
+          <dl className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-3">
             {features.map((feature) => (
               <div key={feature.name} className="flex flex-col">
                 <dt className="text-base font-semibold leading-7 text-gray-900">
@@ -216,7 +215,35 @@ export default function Mentor({ initialEnabled }) {
           </dl>
         </div>
       </div>
+      <div className="mx-auto max-w-7xl py-20 -mx-4 sm:mx-0">
+        <div className="relative isolate overflow-hidden bg-gray-900 px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16">
+          <h2 className="mx-auto max-w-2xl text-3xl font-medium tracking-tight text-white sm:text-4xl">
+            Help us help you.
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-200">
+            We need your input to build out this mentorship service. Let us know if you're interested and want to be contacted.
+          </p>
+          <div className="mt-10 flex items-center justify-center gap-x-6">
+            <MentorSwitch enabled={enabled} setEnabled={setEnabled} dark={true}/>
+          </div>
+          <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1024 1024"
+          className="absolute top-1/2 left-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]"
+          aria-hidden="true"
+        >
+          <circle cx={512} cy={512} r={512} fill="url(#8d958450-c69f-4251-94bc-4e091a323369)" fillOpacity="0.7" />
+          <defs>
+            <radialGradient id="8d958450-c69f-4251-94bc-4e091a323369">
+              <stop stopColor="#69bf64" />
+              <stop offset={1} stopColor="#2f632c" />
+            </radialGradient>
+          </defs>
+        </svg>
+        </div>
+      </div>
     </div>
+    
     }
     />
     </div>
