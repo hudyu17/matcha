@@ -175,7 +175,7 @@ export async function getServerSideProps(context) {
         }
       }
     }
-    
+
     const careers = await prisma.career.findMany();
     const reversed = careers.reverse();
 
@@ -221,8 +221,6 @@ export async function getServerSideProps(context) {
   //     tags: [ 'Consulting', 'Startups' ]
   //   }
   // ] 
-
-    
 
     const userId = session.user.email
 

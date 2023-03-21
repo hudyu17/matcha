@@ -264,9 +264,9 @@ export async function getServerSideProps(context) {
     const userId = session.user.email
 
     // get current save status from db
-    let saved;
+    // let saved;
 
-    saved = await prisma.userSaved.findUnique({
+    var saved = await prisma.userSaved.findUnique({
       where: { userId: userId },
       select: {
         cmplus: true,
@@ -274,10 +274,11 @@ export async function getServerSideProps(context) {
     }).catch(error => console.log(error.code, error.message))
 
     console.log('original saved: ', saved)
-    
+    // let enabled;
+
     if (saved === null) {
       saved = {cmplus: false};
-      console.log('saved changed to: ', saved)
+      console.log('saved changed to: ', enabled)
     } 
 
     // const saved = {cmplus: false}
