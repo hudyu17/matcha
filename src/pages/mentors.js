@@ -251,7 +251,6 @@ export default function Mentor({ initialEnabled }) {
 }
 
 export async function getServerSideProps(context) {
-  
     const session = await getServerSession(context.req, context.res, authOptions)
 
     if (!session) {
@@ -266,21 +265,23 @@ export async function getServerSideProps(context) {
     const userId = session.user.email
 
     // get current save status from db
-    // let saved;
+    let saved;
 
-    // saved = await prisma.userSaved.findUnique({
-    //   where: { userId: userId },
-    //   select: {
-    //     cmplus: true,
-    //   },
-    // }).catch(error => console.log(error))
+    saved = await prisma.userSaved.findUnique({
+      where: { userId: userId },
+      select: {
+        cmplus: true,
+      },
+    }).catch(error => console.log(error))
 
+    console.log('original saved: ', saved)
     
-    // if (saved === null) {
-    //   saved = {cmplus: false};
-    // } 
+    if (saved === null) {
+      saved = {cmplus: false};
+      console.log('saved changed to: ', saved)
+    } 
 
-    const saved = {cmplus: false}
+    // const saved = {cmplus: false}
 
     return {
         props: {

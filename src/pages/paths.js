@@ -165,7 +165,17 @@ export default function Paths({ careers, saved }) {
 }
 
 export async function getServerSideProps(context) {
-  
+    const session = await getServerSession(context.req, context.res, authOptions)
+
+    if (!session) {
+      return {
+        redirect: {
+          destination: '/signin',
+          permanent: false
+        }
+      }
+    }
+    
     const careers = await prisma.career.findMany();
     const reversed = careers.reverse();
 
@@ -212,16 +222,7 @@ export async function getServerSideProps(context) {
   //   }
   // ] 
 
-    const session = await getServerSession(context.req, context.res, authOptions)
-
-    if (!session) {
-      return {
-        redirect: {
-          destination: '/signin',
-          permanent: false
-        }
-      }
-    }
+    
 
     const userId = session.user.email
 
