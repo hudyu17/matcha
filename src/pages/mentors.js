@@ -42,10 +42,10 @@ export default function Mentor({ initialEnabled }) {
     // const [enabled, setEnabled] = useState((initialEnabled) => initialEnabled === null ? false : initialEnabled.cmplus)
     // const [enabled, setEnabled] = useState(initialEnabled.cmplus)
     
-    // const [enabled, setEnabled] = useState(initialEnabled.cmplus)
-    const [enabled, setEnabled] = useState(false)
+    const [enabled, setEnabled] = useState(initialEnabled.cmplus)
+    // const [enabled, setEnabled] = useState(false)
 
-    console.log(initialEnabled)
+    // console.log(initialEnabled)
 
   return (
     <div className="h-screen">
@@ -272,23 +272,23 @@ export async function getServerSideProps(context) {
 
     const saved = await prisma.userSaved.findUnique({
       where: { userId: userId },
-      // select: {
-      //   cmplus: true,
-      // },
+      select: {
+        cmplus: true,
+      },
     }).catch(error => console.log(error))
 
     let enabled;
 
-    // if (saved === null) {
-    //   enabled = {cmplus: false};
-    // } else {
-    //   enabled = saved
-    // }
+    if (saved === null) {
+      enabled = {cmplus: false};
+    } else {
+      enabled = saved
+    }
 
     return {
         props: {
-          // initialEnabled: JSON.parse(JSON.stringify(enabled))
-          initialEnabled: saved
+          initialEnabled: JSON.parse(JSON.stringify(enabled))
+          // initialEnabled: saved
         }
     }
 }
