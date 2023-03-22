@@ -34,7 +34,7 @@ const features = [
 ]
 
 
-export default function Mentor({ careers, saved }) {
+export default function Mentor({ initialEnabled }) {
     const { currPathContext } = useCurrPathContext();
     const [currPath, setCurrPath] = currPathContext;
     setCurrPath('Mentors')
@@ -42,10 +42,9 @@ export default function Mentor({ careers, saved }) {
     // const [enabled, setEnabled] = useState((initialEnabled) => initialEnabled === null ? false : initialEnabled.cmplus)
     // const [enabled, setEnabled] = useState(initialEnabled.cmplus)
     
-    const [enabled, setEnabled] = useState(false)
+    const [enabled, setEnabled] = useState(initialEnabled)
 
-    console.log(careers)
-    console.log(saved)
+    
 
   return (
     <div className="h-screen">
@@ -294,85 +293,37 @@ export default function Mentor({ careers, saved }) {
 //         }
 //     }
 // }
-
 export async function getServerSideProps(context) {
   const session = await getServerSession(context.req, context.res, authOptions)
-
+  
   if (!session) {
     return {
       redirect: {
         destination: '/signin',
-        permanent: false
-      }
+        permanent: false,
+      },
     }
   }
-
-  const careers = await prisma.career.findMany();
-  const reversed = careers.reverse();
-
-// oFFLINE DEV
-//   const careers = [
-//   {
-//     id: 1,
-//     title: 'Consultant to Test',
-//     path: [
-//       '{"id": "1", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}'
-//     ],
-//     updatedAt: '2023-02-20T02:57:53.550Z',
-//     tags: [ 'Consulting', 'Management Consulting' ]
-//   },
-//   {
-//     id: 2,
-//     title: 'Consultant to Founder',
-//     path: [
-//       '{"id": "1", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}',
-//       '{"id": "2", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}'
-//     ],
-//     updatedAt: '2023-02-20T03:04:27.111Z',
-//     tags: [ 'Consulting', 'Startups' ]
-//   },
-//   {
-//     id: 3,
-//     title: 'Consultant to Founder',
-//     path: [
-//       '{"id": "1", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}',
-//       '{"id": "2", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}'
-//     ],
-//     updatedAt: '2023-02-21T19:46:55.183Z',
-//     tags: [ 'Consulting', 'Startups' ]
-//   },
-//   {
-//     id: 4,
-//     title: 'Consultant to Founder',
-//     path: [
-//       '{"id": "1", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}',
-//       '{"id": "2", "content": "Final Step", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "PresentationChartLineIcon", "iconBackground": "bg-yellow-400"}'
-//     ],
-//     updatedAt: '2023-02-21T19:46:55.183Z',
-//     tags: [ 'Consulting', 'Startups' ]
-//   }
-// ] 
-
+  
   const userId = session.user.email
-
-  let savedCareers;
-
-  savedCareers = await prisma.userSaved.findUnique({
+  const cmplus = await prisma.userSaved.findUnique({
     where: { userId: userId },
     select: {
-      saved: true,
+      cmplus: true,
     },
-  }).catch(error => console.log('select save error: ', error))
-  
-  if (savedCareers === null) {
-    savedCareers = {saved: []}
+  })
+
+  let saved;
+
+  if (cmplus === null) {
+    saved = false
+  } else {
+    saved = cmplus.cmplus
   }
-  
+
   return {
     props: {
-      careers: JSON.parse(JSON.stringify(reversed)),
-      saved: JSON.parse(JSON.stringify(savedCareers)),
-      // locArray: JSON.parse(JSON.stringify(locArray)),
+      initialEnabled: JSON.parse(JSON.stringify(saved)),
     },
   }
 }
