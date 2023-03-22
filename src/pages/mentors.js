@@ -34,7 +34,7 @@ const features = [
 ]
 
 
-export default function Mentor({ initialEnabled }) {
+export default function Mentor({ careers, saved }) {
     const { currPathContext } = useCurrPathContext();
     const [currPath, setCurrPath] = currPathContext;
     setCurrPath('Mentors')
@@ -42,7 +42,10 @@ export default function Mentor({ initialEnabled }) {
     // const [enabled, setEnabled] = useState((initialEnabled) => initialEnabled === null ? false : initialEnabled.cmplus)
     // const [enabled, setEnabled] = useState(initialEnabled.cmplus)
     
-    const [enabled, setEnabled] = useState(initialEnabled)
+    const [enabled, setEnabled] = useState(false)
+
+    console.log(careers)
+    console.log(saved)
 
   return (
     <div className="h-screen">
@@ -251,44 +254,125 @@ export default function Mentor({ initialEnabled }) {
   )
 }
 
-export async function getServerSideProps(context) {
-    const session = await getServerSession(context.req, context.res, authOptions)
+// export async function getServerSideProps(context) {
+//     const session = await getServerSession(context.req, context.res, authOptions)
 
-    if (!session) {
-      return {
-        redirect: {
-          destination: '/signin',
-          permanent: false
-        }
+//     if (!session) {
+//       return {
+//         redirect: {
+//           destination: '/signin',
+//           permanent: false
+//         }
+//       }
+//     }
+
+//     const userId = session.user.email
+
+//     // get current save status from db
+
+//     const saved = await prisma.userSaved.findUnique({
+//       where: { userId: userId },
+//       select: {
+//         cmplus: true,
+//       },
+//     }).catch(error => console.log(error))
+
+//     console.log('original saved: ', saved.cmplus)
+//     // let enabled;
+//     const initialEnabled = saved.cmplus
+
+//     // if (saved === null) {
+//     //   saved = {cmplus: false};
+//     //   console.log('saved changed to: ', enabled)
+//     // } 
+
+//     // const saved = {cmplus: false}
+
+//     return {
+//         props: {
+//           initialEnabled: JSON.parse(JSON.stringify(initialEnabled))
+//         }
+//     }
+// }
+
+export async function getServerSideProps(context) {
+  const session = await getServerSession(context.req, context.res, authOptions)
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/signin',
+        permanent: false
       }
     }
+  }
 
-    const userId = session.user.email
+  const careers = await prisma.career.findMany();
+  const reversed = careers.reverse();
 
-    // get current save status from db
-    // let saved;
+// oFFLINE DEV
+//   const careers = [
+//   {
+//     id: 1,
+//     title: 'Consultant to Test',
+//     path: [
+//       '{"id": "1", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}'
+//     ],
+//     updatedAt: '2023-02-20T02:57:53.550Z',
+//     tags: [ 'Consulting', 'Management Consulting' ]
+//   },
+//   {
+//     id: 2,
+//     title: 'Consultant to Founder',
+//     path: [
+//       '{"id": "1", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}',
+//       '{"id": "2", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}'
+//     ],
+//     updatedAt: '2023-02-20T03:04:27.111Z',
+//     tags: [ 'Consulting', 'Startups' ]
+//   },
+//   {
+//     id: 3,
+//     title: 'Consultant to Founder',
+//     path: [
+//       '{"id": "1", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}',
+//       '{"id": "2", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}'
+//     ],
+//     updatedAt: '2023-02-21T19:46:55.183Z',
+//     tags: [ 'Consulting', 'Startups' ]
+//   },
+//   {
+//     id: 4,
+//     title: 'Consultant to Founder',
+//     path: [
+//       '{"id": "1", "content": "Chief Product Officer", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "RocketLaunchIcon", "iconBackground": "bg-green-600"}',
+//       '{"id": "2", "content": "Final Step", "target": "at Marketplace ($11b mkt cap)", "date": "21-now", "icon": "PresentationChartLineIcon", "iconBackground": "bg-yellow-400"}'
+//     ],
+//     updatedAt: '2023-02-21T19:46:55.183Z',
+//     tags: [ 'Consulting', 'Startups' ]
+//   }
+// ] 
 
-    const saved = await prisma.userSaved.findUnique({
-      where: { userId: userId },
-      select: {
-        cmplus: true,
-      },
-    }).catch(error => console.log(error.code, error.message))
+  const userId = session.user.email
 
-    console.log('original saved: ', saved.cmplus)
-    // let enabled;
-    const initialEnabled = saved.cmplus
+  let savedCareers;
 
-    // if (saved === null) {
-    //   saved = {cmplus: false};
-    //   console.log('saved changed to: ', enabled)
-    // } 
-
-    // const saved = {cmplus: false}
-
-    return {
-        props: {
-          initialEnabled: JSON.parse(JSON.stringify(initialEnabled))
-        }
-    }
+  savedCareers = await prisma.userSaved.findUnique({
+    where: { userId: userId },
+    select: {
+      saved: true,
+    },
+  }).catch(error => console.log('select save error: ', error))
+  
+  if (savedCareers === null) {
+    savedCareers = {saved: []}
+  }
+  
+  return {
+    props: {
+      careers: JSON.parse(JSON.stringify(reversed)),
+      saved: JSON.parse(JSON.stringify(savedCareers)),
+      // locArray: JSON.parse(JSON.stringify(locArray)),
+    },
+  }
 }
