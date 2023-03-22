@@ -2,8 +2,6 @@ import { BookmarkIcon } from "@heroicons/react/24/outline"
 import DynamicIcon from "./DynamicIcon"
 import axios from 'axios'
 import { useSession } from "next-auth/react"
-import { authOptions } from "@/pages/api/auth/[...nextauth]"
-import { prisma } from "@/prisma"
 import { useState } from "react"
 
 function classNames(...classes) {

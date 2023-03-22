@@ -34,7 +34,7 @@ export default function Example() {
     <Layout
     
     main={
-        <div className="relative isolate overflow-hidden px-6 py-4 lg:overflow-visible lg:px-0 mb-12">
+        <div className="relative isolate py-4  h-screen">
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <svg
             className="absolute top-0 left-[max(50%,25rem)] h-[64rem] w-[128rem] -translate-x-1/2 stroke-gray-200 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]"
@@ -61,35 +61,25 @@ export default function Example() {
             <rect width="100%" height="100%" strokeWidth={0} fill="url(#e813992c-7d03-4cc4-a2bd-151760b470a0)" />
           </svg>
         </div>
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-8">
-          <div className="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+        <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-6 gap-x-8 lg:mx-0 lg:max-w-none">
             <div className="lg:pr-4">
-              <div className="lg:max-w-lg">
+              <div className="lg:max-w-none">
                 <p className="text-base font-semibold leading-7 text-green-700">README</p>
                 <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Thanks for stopping by!</h1>
                 <p className="mt-6 text-xl leading-8 text-gray-700">
-                    Your beta testing is critical to making 
+                    Your beta testing is critical to improving 
                         <span className="font-bold text-green-700 font-plus-jakarta-sans"> 
-                        {' '}CareerMatcha{' '}
+                        {' '}CareerMatcha.{' '}
                         </span>
-                    better for everyone. 
-
                 </p>
               </div>
-            </div>
           </div>
-          <div className="lg:sticky lg:w-5/6 lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
-            <img
-              className="w-full rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10"
-              src="https://images.unsplash.com/photo-1510347630658-50da9aac096e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=990&q=80"
-              alt=""
-            />
-          </div>
-          <div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+          
+          
             <div className="lg:pr-4">
-              <div className="max-w-xl text-base leading-7 text-gray-700 lg:max-w-lg">
+              <div className="max-w-xl text-base leading-7 text-gray-700 lg:max-w-xl">
                 <p>
-                There are a <span className="italic">lot</span> of careers out there and an infinite number of ways to slice it. This version is one such way, but it&apos;s just the start. 
+                There are a <span className="italic">lot</span> of careers out there and an infinite number of ways to slice it.
                 The beta will run until the end of March 2023 (ish) - here&apos;s the plan: 
 
                 </p>
@@ -97,32 +87,32 @@ export default function Example() {
                   <li className="flex gap-x-3">
                     <QueueListIcon className="mt-1 h-5 w-5 flex-none text-green-700" aria-hidden="true" />
                     <span>
-                      <strong className="font-semibold text-gray-900">Waitlist gains access in batches.</strong> Spreading out access over time will allow for quicker feedback loops, create a better experience, and avoid major issues.
+                      <strong className="font-semibold text-gray-900">Waitlist gains access in batches.</strong> Spreading out access allows for quicker feedback loops, creates a better experience, and avoids major issues.
                     </span>
                   </li>
                   <li className="flex gap-x-3">
                     <CircleStackIcon className="mt-1 h-5 w-5 flex-none text-green-700" aria-hidden="true" />
                     <span>
-                      <strong className="font-semibold text-gray-900">More career data will be added.</strong> Relevant career paths are continually being added; batched access will help focus the content that appears on the platform.
+                      <strong className="font-semibold text-gray-900">More career data will be added.</strong> Relevant paths are continually being added; batched access will focus the content that appears on the platform.
                     </span>
                   </li>
                   <li className="flex gap-x-3">
                     <ChatBubbleBottomCenterIcon className="mt-1 h-5 w-5 flex-none text-green-700" aria-hidden="true" />
                     <span>
-                      <strong className="font-semibold text-gray-900">I&apos;ll ask for feedback.</strong> At the end of each week, I&apos;ll send each batch a survey, reach out directly with questions, or schedule calls with those that are interested.
+                      <strong className="font-semibold text-gray-900">I&apos;ll ask for feedback.</strong> I&apos;ll reach out directly with questions and schedule calls to learn more.
                     </span>
                   </li>
                 </ul>
-                <p className="mt-6">
+                {/* <p className="mt-6">
                     Thank you for your help and patience - I want to make 
                     <span className="font-bold text-green-700 font-plus-jakarta-sans"> 
                         {' '}CareerMatcha{' '}
                     </span> 
-                    the best it can be for everyone, and that starts here. 
-                </p>
+                    the best it can be, and that starts here. 
+                </p> */}
 
                 <p className="my-6">
-                    In the meantime, please reach out with any thoughts, comments, feedback, concerns, if you want to hang out 🤡 - <span className="text-green-700 font-medium">hudson(@)careermatcha(dot)com</span>
+                    In the meantime, please reach out with any thoughts, feedback, if you want to hang out: <span className="text-green-700 font-medium">hudson(@)careermatcha(dot)com</span>
                 </p>
 
                 {!authenticated && 
@@ -139,7 +129,6 @@ export default function Example() {
               
             </div>
             
-          </div>
         </div>
       </div>}
     />

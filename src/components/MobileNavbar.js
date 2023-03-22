@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { CalendarIcon, XMarkIcon, Bars3Icon, BellIcon, MagnifyingGlassIcon, FolderIcon, ArrowRightOnRectangleIcon, BookOpenIcon } from '@heroicons/react/24/outline'
+import { BoltIcon, XMarkIcon, Bars3Icon, UsersIcon, MagnifyingGlassIcon, FolderIcon, ArrowRightOnRectangleIcon, BookOpenIcon } from '@heroicons/react/24/outline'
 import { useCurrPathContext } from 'context/currPathProvider'
 import Link from 'next/link'
 import { useSession, signOut, signIn } from 'next-auth/react';
@@ -8,7 +8,8 @@ import { useSession, signOut, signIn } from 'next-auth/react';
 const navigation = [
     { name: 'Browse', icon: MagnifyingGlassIcon, href: '/paths', current: true },
     { name: 'Saved', icon: FolderIcon, href: '/saved', current: false },
-    { name: 'CareerMatcha+', href: '/careermatchaplus', current: false },
+    { name: 'Insights', icon: BoltIcon, href: '/insights' },
+    { name: 'Mentors', icon: UsersIcon, href: '/mentors' },
   ]
 
 function classNames(...classes) {

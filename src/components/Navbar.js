@@ -1,4 +1,4 @@
-import { CalendarIcon, MagnifyingGlassIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon, ArrowRightOnRectangleIcon, BookOpenIcon } from '@heroicons/react/24/outline'
+import { BoltIcon, UsersIcon, MagnifyingGlassIcon, FolderIcon, ArrowRightOnRectangleIcon, BookOpenIcon } from '@heroicons/react/24/outline'
 import { useSession, signOut, signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useCurrPathContext } from 'context/currPathProvider'
@@ -8,7 +8,8 @@ import { LockClosedIcon } from '@heroicons/react/20/solid';
 const navigation = [
   { name: 'Browse', icon: MagnifyingGlassIcon, href: '/paths' },
   { name: 'Saved', icon: FolderIcon, href: '/saved' },
-  { name: 'CareerMatcha+', href: '/careermatchaplus' },
+  { name: 'Insights', icon: BoltIcon, href: '/insights' },
+  { name: 'Mentors', icon: UsersIcon, href: '/mentors' },
 ]
 
 function classNames(...classes) {
