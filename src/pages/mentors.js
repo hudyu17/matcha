@@ -313,7 +313,9 @@ export async function getServerSideProps(context) {
   //   },
   // })
 
-  const cmplus = await prisma.userSaved.findMany()
+  const cmplus = await prisma.userSaved.findUnique({
+    where: {userId: userId}
+  })
 
   // let saved;
 
