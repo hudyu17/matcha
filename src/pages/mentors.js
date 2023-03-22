@@ -34,7 +34,7 @@ const features = [
 ]
 
 
-export default function Mentor({ initialEnabled }) {
+export default function Mentor({ cmplus }) {
     const { currPathContext } = useCurrPathContext();
     const [currPath, setCurrPath] = currPathContext;
     setCurrPath('Mentors')
@@ -42,9 +42,9 @@ export default function Mentor({ initialEnabled }) {
     // const [enabled, setEnabled] = useState((initialEnabled) => initialEnabled === null ? false : initialEnabled.cmplus)
     // const [enabled, setEnabled] = useState(initialEnabled.cmplus)
     
-    const [enabled, setEnabled] = useState(initialEnabled)
+    const [enabled, setEnabled] = useState(false)
 
-    
+    console.log(cmplus)
 
   return (
     <div className="h-screen">
@@ -306,24 +306,27 @@ export async function getServerSideProps(context) {
   }
   
   const userId = session.user.email
-  const cmplus = await prisma.userSaved.findUnique({
-    where: { userId: userId },
-    select: {
-      cmplus: true,
-    },
-  })
+  // const cmplus = await prisma.userSaved.findUnique({
+  //   where: { userId: userId },
+  //   select: {
+  //     cmplus: true,
+  //   },
+  // })
 
-  let saved;
+  const cmplus = await prisma.userSaved.findMany()
 
-  if (cmplus === null) {
-    saved = false
-  } else {
-    saved = cmplus.cmplus
-  }
+  // let saved;
+
+  // if (cmplus === null) {
+  //   saved = false
+  // } else {
+  //   saved = cmplus.cmplus
+  // }
 
   return {
     props: {
-      initialEnabled: JSON.parse(JSON.stringify(saved)),
+      // initialEnabled: JSON.parse(JSON.stringify(saved)),
+      cmplus: cmplus
     },
   }
 }
