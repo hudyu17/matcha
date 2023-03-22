@@ -270,13 +270,14 @@ export async function getServerSideProps(context) {
 
     const saved = await prisma.userSaved.findUnique({
       where: { userId: userId },
-      // select: {
-      //   cmplus: true,
-      // },
+      select: {
+        cmplus: true,
+      },
     }).catch(error => console.log(error.code, error.message))
 
-    // console.log('original saved: ', saved)
+    console.log('original saved: ', saved.cmplus)
     // let enabled;
+    const initialEnabled = saved.cmplus
 
     // if (saved === null) {
     //   saved = {cmplus: false};
@@ -287,7 +288,7 @@ export async function getServerSideProps(context) {
 
     return {
         props: {
-          initialEnabled: JSON.parse(JSON.stringify(saved.cmplus))
+          initialEnabled: JSON.parse(JSON.stringify(initialEnabled))
         }
     }
 }
