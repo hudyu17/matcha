@@ -34,7 +34,7 @@ const features = [
 ]
 
 
-export default function Mentor({ cmplus }) {
+export default function Mentor({ initialEnabled }) {
     const { currPathContext } = useCurrPathContext();
     const [currPath, setCurrPath] = currPathContext;
     setCurrPath('Mentors')
@@ -42,9 +42,7 @@ export default function Mentor({ cmplus }) {
     // const [enabled, setEnabled] = useState((initialEnabled) => initialEnabled === null ? false : initialEnabled.cmplus)
     // const [enabled, setEnabled] = useState(initialEnabled.cmplus)
     
-    const [enabled, setEnabled] = useState(false)
-
-    console.log(cmplus)
+    const [enabled, setEnabled] = useState(initialEnabled.cmplus)
 
   return (
     <div className="h-screen">
@@ -253,82 +251,40 @@ export default function Mentor({ cmplus }) {
   )
 }
 
-// export async function getServerSideProps(context) {
-//     const session = await getServerSession(context.req, context.res, authOptions)
-
-//     if (!session) {
-//       return {
-//         redirect: {
-//           destination: '/signin',
-//           permanent: false
-//         }
-//       }
-//     }
-
-//     const userId = session.user.email
-
-//     // get current save status from db
-
-//     const saved = await prisma.userSaved.findUnique({
-//       where: { userId: userId },
-//       select: {
-//         cmplus: true,
-//       },
-//     }).catch(error => console.log(error))
-
-//     console.log('original saved: ', saved.cmplus)
-//     // let enabled;
-//     const initialEnabled = saved.cmplus
-
-//     // if (saved === null) {
-//     //   saved = {cmplus: false};
-//     //   console.log('saved changed to: ', enabled)
-//     // } 
-
-//     // const saved = {cmplus: false}
-
-//     return {
-//         props: {
-//           initialEnabled: JSON.parse(JSON.stringify(initialEnabled))
-//         }
-//     }
-// }
 export async function getServerSideProps(context) {
-  const session = await getServerSession(context.req, context.res, authOptions)
-  
-  if (!session) {
-    return {
-      redirect: {
-        destination: '/signin',
-        permanent: false,
-      },
+    const session = await getServerSession(context.req, context.res, authOptions)
+
+    if (!session) {
+      return {
+        redirect: {
+          destination: '/signin',
+          permanent: false
+        }
+      }
     }
-  }
-  
-  const userId = session.user.email
-  // const cmplus = await prisma.userSaved.findUnique({
-  //   where: { userId: userId },
-  //   select: {
-  //     cmplus: true,
-  //   },
-  // })
 
-  const cmplus = await prisma.userSaved.findUnique({
-    where: {userId: userId}
-  })
+    const userId = session.user.email
 
-  // let saved;
+    // get current save status from db
 
-  // if (cmplus === null) {
-  //   saved = false
-  // } else {
-  //   saved = cmplus.cmplus
-  // }
+    const saved = await prisma.userSaved.findUnique({
+      where: { userId: userId },
+      select: {
+        cmplus: true,
+      },
+    }).catch(error => console.log(error))
 
-  return {
-    props: {
-      // initialEnabled: JSON.parse(JSON.stringify(saved)),
-      cmplus: cmplus
-    },
-  }
+    let enabled;
+
+    if (saved === null) {
+      enabled = {cmplus: false};
+    } else {
+      enabled = saved
+    }
+
+    return {
+        props: {
+          initialEnabled: JSON.parse(JSON.stringify(enabled))
+        }
+    }
 }
