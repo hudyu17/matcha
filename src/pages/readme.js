@@ -34,7 +34,7 @@ export default function Example() {
     <Layout
     
     main={
-        <div className="relative isolate py-4  h-screen">
+        <div className="relative isolate py-4">
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <svg
             className="absolute top-0 left-[max(50%,25rem)] h-[64rem] w-[128rem] -translate-x-1/2 stroke-gray-200 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]"
