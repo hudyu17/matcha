@@ -61,7 +61,7 @@ export default function Example() {
         <div className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
           
           <h1 className="max-w-lg text-4xl font-bold tracking-tight text-green-700 sm:text-6xl font-plus-jakarta-sans">
-            Under construction...
+            Under construction!
             
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600 lg:pr-12">
