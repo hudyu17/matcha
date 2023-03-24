@@ -20,6 +20,7 @@ import {
 const actions = [
   {
     title: 'What makes a founder?',
+    description: 'There are a million ways to start a company. Data from 48 Canadian founders of Series A+ companies.',
     href: '#',
     icon: ClockIcon,
     iconForeground: 'text-teal-700',
@@ -27,6 +28,7 @@ const actions = [
   },
   {
     title: 'Consulting exits',
+    description: 'Data from 829 MBB + Big 4 consultants in Toronto, Boston, NYC, SF from 2015 onwards.',
     href: '#',
     icon: CheckBadgeIcon,
     iconForeground: 'text-purple-700',
@@ -34,6 +36,7 @@ const actions = [
   },
   {
     title: 'What an MBA can get you',
+    description: 'Data from 6k+ graduates of Rotman, HBS, Sloan, HaaS classes of 2017 onwards.',
     href: '#',
     icon: UsersIcon,
     iconForeground: 'text-sky-700',
@@ -130,29 +133,37 @@ export default function Insights() {
         </svg>
         <rect width="100%" height="100%" strokeWidth={0} fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)" />
       </svg>
-      <div className="space-y-8">
+      <div className="space-y-10">
       {actions.map((action, actionIdx) => (
         <div
           key={action.title}
-          className="overflow-hidden bg-white p-2 shadow sm:rounded-md h-[550px]"
+          
+          className=''
         >
-          <h3 className="p-4 font-medium leading-1 tracking-tight text-green-700">{action.title}</h3>
-            <div className="w-full h-full">
+          <div className="pb-3">
+            <h3 className="text-base font-semibold leading-6 text-gray-900">{action.title}</h3>
+            <p className="mt-2 max-w-4xl text-sm text-gray-500">
+              {action.description}
+            </p>
+          </div>
+          {/* <h3 className="p-4 font-medium leading-1 tracking-tight text-green-700">{action.title}</h3> */}
+          <div className="overflow-hidden h-[440px] bg-white rounded-lg shadow">
+            <div className="w-full h-[460px]">
               <ReactFlow
                 nodes={nodes}
                 edges={edges}
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
                 onConnect={onConnect}
-                panOnDrag={false}
-                zoomOnScroll={false}
+                
+                fitView
                 elevateEdgesOnSelect={true}
                 // nodesDraggable={false}
                 nodeTypes={nodeTypes}
               />
             
           </div>
-          
+          </div>
         </div>
       ))}
     </div>

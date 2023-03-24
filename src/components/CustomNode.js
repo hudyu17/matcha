@@ -9,7 +9,7 @@ function CustomNode({ data }) {
           {data.emoji}
         </div>
         <div className="ml-2 my-auto">
-          <div className="text-gray-500">{data.label}</div>
+          <div className="text-gray-500 text-sm">{data.label}</div>
         </div>
       </div>
 
