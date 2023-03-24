@@ -4,7 +4,9 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]";
 import Head from "next/head";
 import React, { useCallback } from 'react';
-import ReactFlow, { useNodesState, useEdgesState, addEdge } from 'reactflow';
+import ReactFlow, { useNodesState, useEdgesState, addEdge, MarkerType } from 'reactflow';
+
+import CustomNode from "@/components/CustomNode";
 import 'reactflow/dist/style.css';
 import {
   AcademicCapIcon,
@@ -44,12 +46,36 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+const nodeTypes = {
+  custom: CustomNode,
+};
 
 const initialNodes = [
-  { id: '1', position: { x: 50, y: 50 }, data: { label: 'Engineering' } },
-  { id: '2', position: { x: 100, y: 200 }, data: { label: 'Founder' } },
+  { id: '1', type: 'custom', position: { x: 50, y: 300 }, data: { label: 'Engineering', emoji: '🎓' } },
+  { id: '2', type: 'custom', position: { x: 100, y: 50 }, data: { label: 'Founder', emoji: '🚀' } },
+  { id: '3', type: 'custom', position: { x: 240, y: 300 }, data: { label: 'Business', emoji: '🎓' } },
+  { id: '4', type: 'custom', position: { x: 130, y: 180 }, data: { label: 'Consulting', emoji: '📈' }, sourcePosition: 'right' },
 ];
-const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }];
+const initialEdges = [
+  { id: 'e1-2', source: '2', target: '1', label: '50%' },
+  { id: 'e1-4', source: '4', target: '1', label: '50%', markerStart: {
+    type: MarkerType.ArrowClosed,
+    width: 25,
+    height: 25,
+  },  },
+  { id: 'e3-4', source: '4', target: '3', label: '25%' },
+  { 
+    id: 'e3-2', 
+    source: '2', 
+    target: '3', 
+    label: '75%', 
+    markerStart: {
+      type: MarkerType.ArrowClosed,
+      width: 25,
+      height: 25,
+    }, 
+  },
+];
 
 export default function Insights() {
     const { currPathContext } = useCurrPathContext();
@@ -108,7 +134,7 @@ export default function Insights() {
       {actions.map((action, actionIdx) => (
         <div
           key={action.title}
-          className="overflow-hidden bg-white p-2 shadow sm:rounded-md h-96"
+          className="overflow-hidden bg-white p-2 shadow sm:rounded-md h-[550px]"
         >
           <h3 className="p-4 font-medium leading-1 tracking-tight text-green-700">{action.title}</h3>
             <div className="w-full h-full">
@@ -121,7 +147,8 @@ export default function Insights() {
                 panOnDrag={false}
                 zoomOnScroll={false}
                 elevateEdgesOnSelect={true}
-                nodesDraggable={false}
+                // nodesDraggable={false}
+                nodeTypes={nodeTypes}
               />
             
           </div>
