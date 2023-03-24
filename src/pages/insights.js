@@ -6,6 +6,44 @@ import Head from "next/head";
 import React, { useCallback } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, addEdge } from 'reactflow';
 import 'reactflow/dist/style.css';
+import {
+  AcademicCapIcon,
+  BanknotesIcon,
+  CheckBadgeIcon,
+  ClockIcon,
+  ReceiptRefundIcon,
+  UsersIcon,
+} from '@heroicons/react/24/outline'
+
+const actions = [
+  {
+    title: 'What makes a founder?',
+    href: '#',
+    icon: ClockIcon,
+    iconForeground: 'text-teal-700',
+    iconBackground: 'bg-teal-50',
+  },
+  {
+    title: 'Consulting exits',
+    href: '#',
+    icon: CheckBadgeIcon,
+    iconForeground: 'text-purple-700',
+    iconBackground: 'bg-purple-50',
+  },
+  {
+    title: 'What an MBA can get you',
+    href: '#',
+    icon: UsersIcon,
+    iconForeground: 'text-sky-700',
+    iconBackground: 'bg-sky-50',
+  },
+  
+]
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+
 
 const initialNodes = [
   { id: '1', position: { x: 50, y: 50 }, data: { label: 'Engineering' } },
@@ -66,8 +104,33 @@ export default function Insights() {
         </svg>
         <rect width="100%" height="100%" strokeWidth={0} fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)" />
       </svg>
-  
-      <div className="border-2 rounded-xl border-gray-500" style={{ width: 'full', height: '60vh' }}>
+      <div className="space-y-8">
+      {actions.map((action, actionIdx) => (
+        <div
+          key={action.title}
+          className="overflow-hidden bg-white p-2 shadow sm:rounded-md h-96"
+        >
+          <h3 className="p-4 font-medium leading-1 tracking-tight text-green-700">{action.title}</h3>
+            <div className="w-full h-full">
+              <ReactFlow
+                nodes={nodes}
+                edges={edges}
+                onNodesChange={onNodesChange}
+                onEdgesChange={onEdgesChange}
+                onConnect={onConnect}
+                panOnDrag={false}
+                zoomOnScroll={false}
+                elevateEdgesOnSelect={true}
+                nodesDraggable={false}
+              />
+            
+          </div>
+          
+        </div>
+      ))}
+    </div>
+  {/* <div className="rounded-lg bg-white shadow lg:h-80 overflow-hidden">
+      <div className="w-full h-96">
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -77,8 +140,10 @@ export default function Insights() {
         panOnDrag={false}
         zoomOnScroll={false}
         elevateEdgesOnSelect={true}
+        nodesDraggable={false}
       />
     </div>
+    </div> */}
     </div>}
     />
     </div>
