@@ -137,7 +137,7 @@ export default function Paths({ careers, saved }) {
               ))}
               </ul>
           </div> */}
-          <p className="text-sm text-gray-400 italic -my-4">Newest first, updated Mar 20</p>
+          <p className="text-sm text-gray-400 italic -my-4">Newest first, updated Mar 25</p>
           
           <PathHeading filters={filters} setFilters={setFilters} activeFilters={activeFilters} setActiveFilters={setActiveFilters} cards={cards} setCards={setCards}/>
 
