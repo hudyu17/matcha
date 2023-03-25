@@ -5,7 +5,8 @@ import { authOptions } from "./api/auth/[...nextauth]";
 import Head from "next/head";
 import React, { useCallback } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, addEdge, MarkerType } from 'reactflow';
-
+import { nodes as founderNodes, edges as founderEdges } from '../data/founderNodes';
+import { nodes as consultingNodes, edges as consultingEdges } from '../data/consultingNodes';
 import CustomNode from "@/components/CustomNode";
 import 'reactflow/dist/style.css';
 import {
@@ -25,6 +26,8 @@ const actions = [
     icon: ClockIcon,
     iconForeground: 'text-teal-700',
     iconBackground: 'bg-teal-50',
+    nodes: founderNodes,
+    edges: founderEdges,
   },
   {
     title: 'Consulting exits',
@@ -33,6 +36,8 @@ const actions = [
     icon: CheckBadgeIcon,
     iconForeground: 'text-purple-700',
     iconBackground: 'bg-purple-50',
+    nodes: consultingNodes,
+    edges: consultingEdges,
   },
   {
     title: 'What an MBA can get you',
@@ -53,42 +58,15 @@ const nodeTypes = {
   custom: CustomNode,
 };
 
-const initialNodes = [
-  { id: '1', type: 'custom', position: { x: 50, y: 300 }, data: { label: 'Engineering', emoji: '🎓' } },
-  { id: '2', type: 'custom', position: { x: 100, y: 50 }, data: { label: 'Founder', emoji: '🚀' } },
-  { id: '3', type: 'custom', position: { x: 240, y: 300 }, data: { label: 'Business', emoji: '🎓' } },
-  { id: '4', type: 'custom', position: { x: 130, y: 180 }, data: { label: 'Consulting', emoji: '📈' }, sourcePosition: 'right' },
-];
-const initialEdges = [
-  { id: 'e1-2', source: '2', target: '1', label: '50%' },
-  { id: 'e1-4', source: '4', target: '1', label: '50%', markerStart: {
-    type: MarkerType.ArrowClosed,
-    width: 25,
-    height: 25,
-  },  },
-  { id: 'e3-4', source: '4', target: '3', label: '25%' },
-  { 
-    id: 'e3-2', 
-    source: '2', 
-    target: '3', 
-    label: '75%', 
-    markerStart: {
-      type: MarkerType.ArrowClosed,
-      width: 25,
-      height: 25,
-    }, 
-  },
-];
-
 export default function Insights() {
     const { currPathContext } = useCurrPathContext();
     const [currPath, setCurrPath] = currPathContext;
     setCurrPath('Insights')
 
-    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+    // const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+    // const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   
-    const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
+    // const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
 
   return (
     <div className="h-screen">
@@ -150,11 +128,11 @@ export default function Insights() {
           <div className="overflow-hidden h-[440px] bg-white rounded-lg shadow">
             <div className="w-full h-[460px]">
               <ReactFlow
-                nodes={nodes}
-                edges={edges}
-                onNodesChange={onNodesChange}
-                onEdgesChange={onEdgesChange}
-                onConnect={onConnect}
+                nodes={action.nodes}
+                edges={action.edges}
+                // onNodesChange={onNodesChange}
+                // onEdgesChange={onEdgesChange}
+                // onConnect={onConnect}
                 
                 fitView
                 elevateEdgesOnSelect={true}
