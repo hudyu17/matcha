@@ -60,7 +60,7 @@ export default function PathCard({ careerId, title, number, tags, path, saved, s
                     : 'pb-0',
                     "pb-7 font-medium leading-1 tracking-tight text-green-700"
                 )}>
-                    Example #{number}: {title}
+                    {title}
                 </h2>
                 {savedCareers?.includes(careerId) ? 
                   <BookmarkIcon 
