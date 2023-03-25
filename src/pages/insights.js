@@ -133,7 +133,7 @@ export default function Insights() {
         </svg>
         <rect width="100%" height="100%" strokeWidth={0} fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)" />
       </svg>
-      <div className="space-y-10">
+      <div className="grid md:grid-cols-2 gap-10">
       {actions.map((action, actionIdx) => (
         <div
           key={action.title}
