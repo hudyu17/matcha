@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Switch } from '@headlessui/react'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
@@ -15,14 +14,14 @@ export default function MentorSwitch({ enabled, setEnabled, dark }) {
     setEnabled(!enabled)
 
     if (enabled) {
-        // remove from db
+        // Remove from db
         await axios.post("/api/unsaveInterest", {
             userId
           }).catch(error => {
             console.log(error.response.data)
           })
     } else {
-        // add to db
+        // Add to db
         await axios.post("/api/saveInterest", {
             userId
           }).catch(error => {

@@ -1,6 +1,4 @@
 import Navbar from './Navbar'
-import { useState } from 'react'
-import SavedAlert from './alerts/SavedAlert'
 import MobileNavbar from './MobileNavbar'
 import { useSession } from 'next-auth/react'
 

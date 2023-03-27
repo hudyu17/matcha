@@ -12,14 +12,14 @@ export default async function unsaveInterest(req, res) {
         return
     }
     
-    // check if user in table, should be there anyway
+    // Check if user in table, should be there anyway
     const user = await prisma.userSaved.findUnique({
         where: {
           userId: userId
         }
     })
 
-    // user already in table
+    // User already in table
     if (user) {
         const update = await prisma.userSaved.update({
             where: {

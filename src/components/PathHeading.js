@@ -1,28 +1,8 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 import { Fragment, useState } from 'react'
-import { Dialog, Disclosure, Menu, Popover, Transition } from '@headlessui/react'
+import { Dialog, Popover, Transition } from '@headlessui/react'
 import { XMarkIcon, Squares2X2Icon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { useCurrPathContext } from 'context/currPathProvider'
-
-const sortOptions = [
-  { name: 'Most Popular', href: '#', current: true },
-  { name: 'Best Rating', href: '#', current: false },
-  { name: 'Newest', href: '#', current: false },
-]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -36,13 +16,17 @@ export default function PathHeading({ cards, setCards }) {
   const [filters, setFilters] = filtersContext;
 
   const handleFilterChange = (section, option) => {
-
+    // Get index of current filter (e.g. "category", "education")
     var indexFilter = filters.findIndex(x => x.id === section.id);
+
+    // Get index of current option within filter (e.g. "consulting" within "category")
     var indexOption = filters[indexFilter]['options'].findIndex(x => x.value === option.value);
 
+    // Create new array based on filter change by using indices above
     const currOption = filters[indexFilter]['options'][indexOption]
     const newOption = {...currOption, checked: !currOption.checked}
 
+    // Replace existing filter array in context with updated array
     const options = filters[indexFilter]['options']
     options[indexOption] = newOption
 
@@ -56,7 +40,7 @@ export default function PathHeading({ cards, setCards }) {
     
     setFilters(newFilters)
     
-    // update active filters
+    // Update the active filters context
     if (newOption.checked) {
         setActiveFilters([...activeFilters, {value: currOption.value, label: currOption.label, checked: true, section: section}])
     } else {
@@ -66,7 +50,7 @@ export default function PathHeading({ cards, setCards }) {
                 indexActive = i
             }}
         
-        // splice modifies array in place
+        // Note: splice modifies the array in place
         const newActive = activeFilters.slice(0, indexActive).concat(
           activeFilters.slice(indexActive + 1)
         )
@@ -76,7 +60,6 @@ export default function PathHeading({ cards, setCards }) {
   }
 
   const removeActiveFilter = (filter) => {
-
     const tempSection = filter.section
     const tempOption = {
       value: filter.value,
@@ -85,28 +68,6 @@ export default function PathHeading({ cards, setCards }) {
     }
 
     handleFilterChange(tempSection, tempOption)
-    
-    // let indexActive;
-    // for (var i = 0; i < activeFilters.length; i++) {
-    //     if (activeFilters[i].value === filter.value) {
-    //         indexActive = i
-    //     }}
-    
-    // // splice modifies array in place
-    // const newActive = activeFilters.slice(0, indexActive).concat(
-    //   activeFilters.slice(indexActive + 1)
-    // )
-
-    // setActiveFilters(newActive)
-
-    // // remove checked in filters
-    // console.log(filter.section)
-    // var indexOption = filter.section.options.findIndex(x => x.value === filter.value);
-    // const currOption = filter.section.options[indexOption]
-
-    // const newOption = {...currOption, checked: !currOption.checked}
-    // console.log(newOption)
-    
   }
 
   return (
@@ -304,12 +265,6 @@ export default function PathHeading({ cards, setCards }) {
             
             <div className="">
               <div className="-my-1 -mx-3 flex flex-wrap items-center">
-                {/* {activeFilters.length > 0 ? 
-                    <p className='text-gray-400 text-sm font-medium pr-1'>Active filters:</p>
-                    :
-                    // <p className='text-gray-400 text-sm font-medium py-2 pr-2'>No active filters</p>
-                    null
-                } */}
                 
                 {activeFilters.map((activeFilter) => (
                   <span

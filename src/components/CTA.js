@@ -1,9 +1,6 @@
-import { QueueListIcon } from "@heroicons/react/24/outline"
 import Footer from "./Footer"
 import SignupForm from "./SignupForm"
-import { useState } from "react"
 
-/* This example requires Tailwind CSS v3.0+ */
 export default function CTA({ setShowSuccess, setShowExists, setShowError }) {
     
     return (
@@ -19,24 +16,6 @@ export default function CTA({ setShowSuccess, setShowExists, setShowError }) {
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
             <SignupForm setShowSuccess={setShowSuccess} setShowExists={setShowExists} setShowError={setShowError}/>
-            {/* <div className="mx-auto flex rounded-md shadow-sm">
-                    <div className="text-black flex focus-within:z-10 w-min">
-                        <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            className="rounded-none rounded-l-md border-green-800 focus:border-indigo-500 focus:ring-indigo-500 text-sm w-min"
-                            placeholder="my@email.com"
-                        />
-                    </div>
-                    <button
-                        type="button"
-                        className="relative -ml-px inline-flex items-center space-x-2 rounded-r-md border border-green-800 bg-green-100 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-green-600 hover:text-white focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                    >
-                        <QueueListIcon className="h-5 w-5" aria-hidden="true" />
-                        <span>Join waitlist</span>
-                    </button>
-                </div> */}
             </div>
           </div>
         </div>

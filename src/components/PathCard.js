@@ -8,7 +8,6 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
   
-
 export default function PathCard({ careerId, title, number, tags, path, saved, setShowSaved, cards }) {
     const { data: session } = useSession()
     const [savedCareers, setSavedCareers] = useState(saved.saved)
@@ -19,7 +18,7 @@ export default function PathCard({ careerId, title, number, tags, path, saved, s
     }
 
     const saveCareer = async (careerId) => {
-      // tracking modified save locally before changes are made in db
+      // Modify saved behaviour locally before writing to db for better UX responsiveness
       if (!session) {
         alert('sign in!')
         return
@@ -92,7 +91,6 @@ export default function PathCard({ careerId, title, number, tags, path, saved, s
                         'h-8 w-8 rounded-full flex items-center justify-center ring-2 ring-white'
                       )}
                     >
-                      {/* <event.icon className="h-5 w-5 text-white" aria-hidden="true" /> */}
                       <DynamicIcon style='h-5 w-5 text-white' icon={event.icon}/>
                     </span>
                   </div>
@@ -123,12 +121,7 @@ export default function PathCard({ careerId, title, number, tags, path, saved, s
                 {tag}
               </div>
             ))}
-        
         </div>
       </div>
   )
-}
-
-export async function getServerSideProps(context) {
-  
 }

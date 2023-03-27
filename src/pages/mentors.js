@@ -38,14 +38,8 @@ export default function Mentor({ initialEnabled }) {
     const { currPathContext } = useCurrPathContext();
     const [currPath, setCurrPath] = currPathContext;
     setCurrPath('Mentors')
-
-    // const [enabled, setEnabled] = useState((initialEnabled) => initialEnabled === null ? false : initialEnabled.cmplus)
-    // const [enabled, setEnabled] = useState(initialEnabled.cmplus)
     
     const [enabled, setEnabled] = useState(initialEnabled.cmplus)
-    // const [enabled, setEnabled] = useState(false)
-
-    // console.log(initialEnabled)
 
   return (
     <div className="h-screen">
@@ -268,8 +262,7 @@ export async function getServerSideProps(context) {
 
     const userId = session.user.email
 
-    // get current save status from db
-
+    // Get current save status from db
     const saved = await prisma.userSaved.findUnique({
       where: { userId: userId },
       select: {
@@ -288,7 +281,6 @@ export async function getServerSideProps(context) {
     return {
         props: {
           initialEnabled: JSON.parse(JSON.stringify(enabled))
-          // initialEnabled: saved
         }
     }
 }
