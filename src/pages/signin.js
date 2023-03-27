@@ -17,10 +17,6 @@ export default function Signin() {
                     <h1 className='my-auto text-xl font-bold text-green-700 font-plus-jakarta-sans'>CareerMatcha <span className='text-xs font-light'>beta</span></h1>
                 </div>
             </div>
-            {/* <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-              Sign in to your account
-            </h2> */}
-            
           </div>
           
             <div>

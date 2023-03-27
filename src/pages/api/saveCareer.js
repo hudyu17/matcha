@@ -12,16 +12,15 @@ export default async function saveCareer(req, res) {
         return
     }
     
-    // if save 
-    // check if user in table
+    // Grab user info
     const user = await prisma.userSaved.findUnique({
         where: {
           userId: userId
         }
     })
 
-    // user already in table
     if (user) {
+        // User already in table i.e. has saved something previously
         const update = await prisma.userSaved.update({
             where: {
             userId: userId
@@ -33,8 +32,8 @@ export default async function saveCareer(req, res) {
             }
         })
     res.json(update)
-
     } else {
+        // User has not previously saved anything, need to create row
         const create = await prisma.userSaved.create({
             data: {
             userId: userId,

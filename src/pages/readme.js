@@ -1,14 +1,11 @@
 import Layout from "@/components/Layout"
 import { useCurrPathContext } from "context/currPathProvider";
-import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]";
 import Head from "next/head";
 import { ChatBubbleBottomCenterIcon, CircleStackIcon, CloudArrowUpIcon, LockClosedIcon, QueueListIcon, ServerIcon } from '@heroicons/react/20/solid'
 import { useSession } from "next-auth/react";
-import SignupForm from "@/components/SignupForm";
 import Link from "next/link";
 
-export default function Example() {
+export default function ReadMe() {
     const {data: session} = useSession()
     const authenticated = !! session;
 
@@ -103,13 +100,6 @@ export default function Example() {
                     </span>
                   </li>
                 </ul>
-                {/* <p className="mt-6">
-                    Thank you for your help and patience - I want to make 
-                    <span className="font-bold text-green-700 font-plus-jakarta-sans"> 
-                        {' '}CareerMatcha{' '}
-                    </span> 
-                    the best it can be, and that starts here. 
-                </p> */}
 
                 <p className="my-6">
                     In the meantime, please reach out with any thoughts, feedback, if you want to hang out: <span className="text-green-700 font-medium">hudson(@)careermatcha(dot)com</span>
@@ -134,22 +124,4 @@ export default function Example() {
     />
     </div>
   )
-}
-
-export async function getServerSideProps(context) {
-  
-    // const session = await getServerSession(context.req, context.res, authOptions)
-
-    // if (!session) {
-    //   return {
-    //     redirect: {
-    //       destination: '/signin',
-    //       permanent: false
-    //     }
-    //   }
-    // }
-
-    return {
-        props: {}
-    }
 }

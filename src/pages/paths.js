@@ -1,6 +1,5 @@
 import PathCard from "@/components/PathCard"
 import PathHeading from "@/components/PathHeading"
-import Link from "next/link"
 import { FaceFrownIcon } from "@heroicons/react/24/outline"
 import { useState } from "react"
 import { prisma } from "@/prisma"
@@ -11,19 +10,6 @@ import { useCurrPathContext } from "context/currPathProvider"
 import SavedAlert from "@/components/alerts/SavedAlert"
 import Head from "next/head"
 
-const sections = [
-  {
-      id: 1,
-      name: 'Consulting',
-      href: 'paths/consulting',
-      categories: [
-          { name: 'Partner', initials: '👔', href: '/paths/consulting/management', members: 16 },
-          { name: 'MBA', initials: '💻', href: '/paths/consulting/tech', members: 17 },
-          { name: 'Early Exit', initials: '🎨', href: '/paths/consulting/design', members: 10 },
-          { name: 'Tech Pivot', initials: '💻', href: '/paths/consulting/design', members: 10 },
-        ]
-  }
-]
 
 export default function Paths({ careers, saved }) {
     const [showSaved, setShowSaved] = useState(false)
@@ -35,54 +21,26 @@ export default function Paths({ careers, saved }) {
     const [activeFilters, setActiveFilters] = activeFiltersContext;
     const [filters, setFilters] = filtersContext;
 
-    // const [currPath, setCurrPath] = useCurrPathContext();
     setCurrPath('Browse')
 
-    // const [filters, setFilters] = useState([
-    //   {
-    //     id: 'category',
-    //     name: 'Category',
-    //     options: [
-    //       { value: 'consulting', label: 'Consulting', checked: false },
-    //       { value: 'swe', label: 'Software Engineering', checked: false },
-    //       { value: 'aiml', label: 'AI/ML', checked: false },
-    //       { value: 'product', label: 'Product', checked: false },
-    //       { value: 'startups', label: 'Startups', checked: false },
-    //     ],
-    //   },
-    //   {
-    //     id: 'education',
-    //     name: 'Education',
-    //     options: [
-    //       { value: 'eng', label: 'Engineering', checked: false },
-    //       { value: 'biz', label: 'Business', checked: false },
-    //       { value: 'cs', label: 'Comp. Sci', checked: false },
-    //       { value: 'mba', label: 'MBA', checked: false },
-    //       { value: 'masters', label: 'Grad School', checked: false },
-    //     ],
-    //   },
-    // ])
-
-    // const [activeFilters, setActiveFilters] = useState([])
-
     const searchFilter = (careers) => {
+      // If no filters are applied, then show all results
       if (activeFilters.length === 0) {
-        // if no filters are applied, then show all results
         return careers
       }
 
+      // Grab active filters from context
       const activeLabels = [];
       for (var i = 0; i < activeFilters.length; i++) {
         activeLabels.push(activeFilters[i].label)
       }
 
+      // Create array of careers with tags that are included in active filters
       const filtered = careers.filter(career => {
-        // need to return careers with tags that are included in active filter labels
-        // return career.tags.some(tag => activeLabels.includes(tag))
         return activeLabels.every(label => career.tags.includes(label))
       })
 
-      // return new array
+      // Return the new array of careers
       return filtered
     }
 
@@ -108,35 +66,6 @@ export default function Paths({ careers, saved }) {
       main={
       <div className='flex flex-col gap-6 lg:gap-8'>
           
-          {/* <div className="relative w-full -mb-4">
-              <div className="z-10 m-auto">
-              <h2 className="text-sm text-gray-900">Curated Paths
-              <span className="text-gray-700">
-                  {' '} - coming soon on <Link href="/careermatchaplus" className="text-green-700 font-plus-jakarta-sans font-bold">CareerMatcha<span className="text-base font-medium text-green-600">+</span></Link>
-              </span>
-              </h2>
-              </div>
-              <ul role="list" className="mt-2 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
-              {sections[0]['categories'].map((category) => (
-                  <div key={category.name} className="col-span-1 flex rounded-md shadow-sm opacity-50 hover:shadow-lg ease-in-out duration-300">
-                  <div
-                      className='hidden md:flex bg-slate-200 flex-shrink-0 flex items-center justify-center w-16 text-white text-2xl font-medium rounded-l-md border-t border-l border-b border-gray-200'
-                  >
-                      {category.initials}
-                  </div>
-                  <div className="flex flex-1 items-center justify-between truncate rounded-r-md border-t border-r border-b border-gray-200 bg-white">
-                      <div className="flex-1 truncate px-4 py-2 text-sm">
-                      <div className="font-medium text-gray-900">
-                          {category.name}
-                      </div>
-                      <p className="text-gray-500">{category.members} Paths</p>
-                      </div>
-                      
-                  </div>
-                  </div>
-              ))}
-              </ul>
-          </div> */}
           <p className="text-sm text-gray-400 italic -my-4">Newest first, updated Mar 25</p>
           
           <PathHeading filters={filters} setFilters={setFilters} activeFilters={activeFilters} setActiveFilters={setActiveFilters} cards={cards} setCards={setCards}/>
@@ -179,7 +108,7 @@ export async function getServerSideProps(context) {
     const careers = await prisma.career.findMany();
     const reversed = careers.reverse();
 
-  // oFFLINE DEV
+  //   // TEST ARRAY BELOW
   //   const careers = [
   //   {
   //     id: 1,
@@ -241,7 +170,6 @@ export async function getServerSideProps(context) {
       props: {
         careers: JSON.parse(JSON.stringify(reversed)),
         saved: JSON.parse(JSON.stringify(savedCareers)),
-        // locArray: JSON.parse(JSON.stringify(locArray)),
       },
     }
   }

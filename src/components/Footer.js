@@ -1,6 +1,4 @@
-const navigation = [
-    
-    
+const navigation = [ 
     {
       name: 'Twitter',
       href: 'https://twitter.com/hudsonyuen',
