@@ -1,4 +1,4 @@
-import PathCard from "@/components/PathCard"
+import PathCard from "@/components/cards/PathCard"
 import PathHeading from "@/components/PathHeading"
 import { FaceFrownIcon } from "@heroicons/react/24/outline"
 import { useState } from "react"

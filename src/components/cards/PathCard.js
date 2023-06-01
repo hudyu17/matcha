@@ -1,5 +1,5 @@
 import { BookmarkIcon } from "@heroicons/react/24/outline"
-import DynamicIcon from "./DynamicIcon"
+import DynamicIcon from "../DynamicIcon"
 import axios from 'axios'
 import { useSession } from "next-auth/react"
 import { useState } from "react"

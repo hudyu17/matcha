@@ -31,7 +31,7 @@ export default function ReadMe() {
     <Layout
     
     main={
-        <div className="relative isolate py-4  h-screen">
+        <div className="relative isolate py-4  h-full">
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <svg
             className="absolute top-0 left-[max(50%,25rem)] h-[64rem] w-[128rem] -translate-x-1/2 stroke-gray-200 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]"
@@ -58,29 +58,35 @@ export default function ReadMe() {
             <rect width="100%" height="100%" strokeWidth={0} fill="url(#e813992c-7d03-4cc4-a2bd-151760b470a0)" />
           </svg>
         </div>
-        <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-6 gap-x-8 lg:mx-0 lg:max-w-none">
+        <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-6 gap-x-8 ">
             <div className="lg:pr-4">
               <div className="lg:max-w-none">
                 <p className="text-base font-semibold leading-7 text-green-700">README</p>
                 <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Thanks for stopping by!</h1>
-                <p className="mt-6 text-xl leading-8 text-gray-700">
-                    Your beta testing is critical to improving 
-                        <span className="font-bold text-green-700 font-plus-jakarta-sans"> 
-                        {' '}CareerMatcha.{' '}
-                        </span>
-                </p>
+                
               </div>
           </div>
           
           
             <div className="lg:pr-4">
-              <div className="max-w-xl text-base leading-7 text-gray-700 lg:max-w-xl">
+              <div className="max-w-xl text-base leading-7 text-gray-700 lg:max-w-xl gap-6 flex flex-col">
                 <p>
-                There are a <span className="italic">lot</span> of careers out there and an infinite number of ways to slice it.
-                The beta will run until the end of March 2023 (ish) - here&apos;s the plan: 
-
+                  This started out as an experiment for how LinkedIn career data could be better packaged to serve a specific purpose: providing career inspiration and reassurance that you're not on the "wrong" path.
                 </p>
-                <ul role="list" className="mt-6 space-y-8 text-gray-600">
+                <p>
+                  Your reception has been great - over 300 people on the waitlist and plenty of beta testers providing feedback 😌
+                </p>
+                <p>
+                  However, I've decided to stop maintaining the site for now. I quite frankly couldn't figure out how to get the data volume and quality I wanted in order to make the site effective (in my eyes), and I don't have the time currently to launch new initiatives like a mentorship program.
+                </p>
+                <p>
+                  Everything on this site is therefore static. It'll remain live (until I stop paying for the postgres hosting 🤡), but won't be doing much otherwise.
+                </p>
+                <p>Just for fun, here's my original plan below 😎</p>
+                <p className="italic">
+                  The beta will run until the end of March 2023 (ish) - here&apos;s the plan: 
+                </p>
+                <ul role="list" className="space-y-6 text-gray-600">
                   <li className="flex gap-x-3">
                     <QueueListIcon className="mt-1 h-5 w-5 flex-none text-green-700" aria-hidden="true" />
                     <span>
@@ -101,13 +107,10 @@ export default function ReadMe() {
                   </li>
                 </ul>
 
-                <p className="my-6">
-                    In the meantime, please reach out with any thoughts, feedback, if you want to hang out: <span className="text-green-700 font-medium">hudson(@)careermatcha(dot)com</span>
-                </p>
-
+                
                 {!authenticated && 
                 <div>
-                    <p className="my-6">Head back <Link href="/" className="font-bold text-green-700 ">home</Link> and join the waitlist if you haven&apos;t already!</p>
+                    <p className="my-6">Head back home <Link href="/" className="font-bold text-green-700 ">here!</Link></p>
                     
                 </div>
                 }

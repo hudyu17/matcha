@@ -2,7 +2,7 @@ import { BoltIcon, UsersIcon, MagnifyingGlassIcon, FolderIcon, ArrowRightOnRecta
 import { useSession, signOut, signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useCurrPathContext } from 'context/currPathProvider'
-import { getServerSideProps } from './PathCard';
+import { getServerSideProps } from './cards/PathCard';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
 
 const navigation = [

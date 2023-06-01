@@ -183,7 +183,7 @@ export default function PathHeading({ cards, setCards }) {
                 }
                   {/* Toggle Cards */}
                   <Squares2X2Icon
-                    className='-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-100 group-hover:text-white group-hover:fill-white'
+                    className='-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-100 group-hover:text-white'
                     aria-hidden="true"
                   />
               </div>
