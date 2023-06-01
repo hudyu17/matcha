@@ -71,18 +71,18 @@ export default function ReadMe() {
             <div className="lg:pr-4">
               <div className="max-w-xl text-base leading-7 text-gray-700 lg:max-w-xl gap-6 flex flex-col">
                 <p>
-                  This started out as an experiment for how LinkedIn career data could be better packaged to serve a specific purpose: providing career inspiration and reassurance that you're not on the "wrong" path.
+                  This started out as an experiment for how LinkedIn career data could be better packaged to serve a specific purpose: providing career inspiration and reassurance that you&apos;re not on the &quot;wrong&quot; path.
                 </p>
                 <p>
                   Your reception has been great - over 300 people on the waitlist and plenty of beta testers providing feedback 😌
                 </p>
                 <p>
-                  However, I've decided to stop maintaining the site for now. I quite frankly couldn't figure out how to get the data volume and quality I wanted in order to make the site effective (in my eyes), and I don't have the time currently to launch new initiatives like a mentorship program.
+                  However, I&apos;ve decided to stop maintaining the site for now. I quite frankly couldn&apos;t figure out how to get the data volume and quality I wanted in order to make the site effective (in my eyes), and I don&apos;t have the time currently to launch new initiatives like a mentorship program.
                 </p>
                 <p>
-                  Everything on this site is therefore static. It'll remain live (until I stop paying for the postgres hosting 🤡), but won't be doing much otherwise.
+                  Everything on this site is therefore static. It&apos;ll remain live (until I stop paying for the postgres hosting 🤡), but won&apos;t be doing much otherwise.
                 </p>
-                <p>Just for fun, here's my original plan below 😎</p>
+                <p>Just for fun, here&apos;s my original plan below 😎</p>
                 <p className="italic">
                   The beta will run until the end of March 2023 (ish) - here&apos;s the plan: 
                 </p>

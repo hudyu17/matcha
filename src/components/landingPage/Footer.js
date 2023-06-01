@@ -8,8 +8,6 @@ const navigation = [
         </svg>
       ),
     },
-    
-    
   ]
   
   export default function Footer() {
