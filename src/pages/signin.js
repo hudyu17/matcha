@@ -21,7 +21,7 @@ export default function Signin() {
           
             <div>
               <button
-                className="group relative flex w-full justify-center rounded-md border border-2 border-gray-300 hover:border-transparent text-gray-900 hover:text-white py-2 px-4 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                className="group relative flex w-full justify-center rounded-md border border-2 border-gray-300 hover:border-transparent text-gray-800 hover:text-white py-2 px-4 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                 onClick={() => signIn("google", {callbackUrl: '/paths'})}
               >
                 Sign in with Google
