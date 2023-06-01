@@ -63,12 +63,13 @@ export default function Hero({ setShowSuccess, setShowExists, setShowError }) {
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 <Link
+                  title="cta-one"
                   href="/paths"
                   className="rounded-md bg-green-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-700"
                 >
                   Get started
                 </Link>
-                <Link href="/readme" className="text-sm font-semibold leading-6 text-gray-900">
+                <Link title="readme-one" href="/readme" className="text-sm font-semibold leading-6 text-gray-900">
                   Learn more <span aria-hidden="true">→</span>
                 </Link>
               </div>
