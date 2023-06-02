@@ -1,6 +1,8 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
 
+// Note that we are already authenticated
+
 test('has title', async ({ page }) => {
   await page.goto('/');
 
@@ -8,27 +10,27 @@ test('has title', async ({ page }) => {
   await expect(page).toHaveTitle('CareerMatcha');
 });
 
-test('get started link - first', async ({ page }) => {
+test('get started link (first) redirects to paths', async ({ page }) => {
   await page.goto('/');
 
   // Click the get started link.
   await page.getByTitle('cta-one').click();
 
-  // Expects the URL to contain intro.
-  await expect(page).toHaveURL(/signin/);
+  // Expects the URL to contain paths
+  await expect(page).toHaveURL(/paths/);
 });
 
-test('get started link - second', async ({ page }) => {
+test('get started link (second) redirects to paths', async ({ page }) => {
   await page.goto('/');
 
   // Click the get started link.
   await page.getByTitle('cta-two').click();
 
   // Expects the URL to contain intro.
-  await expect(page).toHaveURL(/signin/);
+  await expect(page).toHaveURL(/paths/);
 });
 
-test('readme link - first', async ({ page }) => {
+test('readme link (first) redirects to readme', async ({ page }) => {
   await page.goto('/');
 
   // Click the get started link.
@@ -38,7 +40,7 @@ test('readme link - first', async ({ page }) => {
   await expect(page).toHaveURL(/readme/);
 });
 
-test('readme link - second', async ({ page }) => {
+test('readme link (second) redirects to readme', async ({ page }) => {
   await page.goto('/');
 
   // Click the get started link.

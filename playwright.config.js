@@ -19,24 +19,45 @@ export default defineConfig({
   // Reporter to use
   reporter: 'html',
 
+  expect: {
+    timeout: 10 * 1000,
+  },
+
   use: {
     // Base URL to use in actions like `await page.goto('/')`.
-    baseURL: 'http://127.0.0.1:3002',
+    baseURL: 'http://localhost:3002/',
 
     // Collect trace when retrying the failed test.
     trace: 'on-first-retry',
+
+    storageState: 'auth.local.json',
   },
   // Configure projects for major browsers.
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { 
+        ...devices['Desktop Chrome'],
+      },
     },
+    /* Test against mobile viewports. */
+    {
+      name: 'Mobile Chrome',
+      use: {
+        ...devices['iPhone 13'],
+      },
+    },
+    {
+      name: 'Mobile Safari',
+      use: {
+        ...devices['iPhone 13'],
+      },
+    }
   ],
   // Run your local dev server before starting the tests.
   webServer: {
     command: 'npm run dev',
-    url: 'http://127.0.0.1:3002',
+    url: 'http://localhost:3002/',
     reuseExistingServer: !process.env.CI,
   },
 });

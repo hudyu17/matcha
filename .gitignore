@@ -36,4 +36,4 @@ yarn-error.log*
 /playwright/.cache/
 
 playwright/.auth
-auth.json
+auth*

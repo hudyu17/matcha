@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-test('test', async ({ page }) => {
+test('check is authenticated', async ({ page }) => {
   // ideally have this be authenticated
   await page.goto('/paths')
-  await expect(page).toHaveURL(/readme/);
+  await expect(page).toHaveURL(/paths/);
 });
