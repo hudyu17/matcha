@@ -1,4 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export default defineConfig({
   // Look for test files in the "tests" directory, relative to this configuration file.
@@ -11,7 +14,7 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
 
   // Retry on CI only.
-  retries: process.env.CI ? 2 : 0,
+  // retries: process.env.CI ? 2 : 0,
 
   workers: 4,
   retries: 5,
@@ -25,6 +28,8 @@ export default defineConfig({
   expect: {
     timeout: 10 * 1000,
   },
+  
+  // globalSetup: process.env.SKIP_AUTH ? '' : 'global-setup.ts',
 
   use: {
     // Base URL to use in actions like `await page.goto('/')`.
@@ -33,10 +38,13 @@ export default defineConfig({
     // Collect trace when retrying the failed test.
     trace: 'on-first-retry',
 
-    storageState: 'auth.local.json',
+    // storageState: 'auth.local.json',
+    storageState: process.env.AUTH === '1' ? {} : 'auth.local.json'
   },
   // Configure projects for major browsers.
   projects: [
+    // { name: 'setup', testMatch: /.*\.setup\.ts/ },
+
     {
       name: 'chromium',
       use: { 

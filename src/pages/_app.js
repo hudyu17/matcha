@@ -6,7 +6,7 @@ import { usePageLoading } from 'usePageLoading'
 
 export default function App({ Component, pageProps: { session, ...pageProps }}) {
   const { isPageLoading } = usePageLoading();
-
+  
   return (
     <PlausibleProvider domain="careermatcha.com">
       <SessionProvider session={session}>

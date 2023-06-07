@@ -1,10 +1,13 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, browserContext } from '@playwright/test';
+import dotenv from 'dotenv';
 
-// for specific testing
-// test.skip();
+dotenv.config();
+
+test.skip(process.env.AUTH === '1')
 
 // skip if mobile
 test.skip(({ isMobile }) => isMobile);
+
 
 // Test navbar on every page
 test.afterEach(async ({ page }) => {

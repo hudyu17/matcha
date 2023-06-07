@@ -1,4 +1,10 @@
 import { test, expect } from '@playwright/test';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+// skip if not authenticated
+test.skip(process.env.AUTH === '1')
 
 // Navigate to /paths
 test.beforeEach(async ({ page }) => {
