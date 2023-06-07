@@ -7,9 +7,12 @@ import PathCard from "@/components/cards/PathCard"
 import Head from "next/head"
 import { FolderOpenIcon } from "@heroicons/react/24/outline"
 import Link from "next/link"
+import { useState } from "react"
+import SavedAlert from "@/components/alerts/SavedAlert"
 
 export default function Saved({ savedCareers, savedIds }) {
   const { currPathContext } = useCurrPathContext();
+  const [showSaved, setShowSaved] = useState(false)
   const [currPath, setCurrPath] = currPathContext;
   setCurrPath('Saved')
 
@@ -35,7 +38,7 @@ export default function Saved({ savedCareers, savedIds }) {
           <dl className="w-full gap-6 lg:gap-10 md:columns-2 xl:columns-3 2xl:columns-4">
               {savedCareers.map((career) => (
               <div key={career.id} className='break-inside-avoid-column pb-10'>
-                  <PathCard careerId={career.id} title={career.title} number={career.id} tags={career.tags} path={career.path} saved={savedIds} cards={true}/>
+                  <PathCard careerId={career.id} title={career.title} number={career.id} tags={career.tags} path={career.path} saved={savedIds} setShowSaved={setShowSaved} cards={true}/>
               </div>
               ))}
               
@@ -49,7 +52,7 @@ export default function Saved({ savedCareers, savedIds }) {
           }
           </div>
       }/>
-      
+      <SavedAlert showSaved={showSaved} setShowSaved={setShowSaved}/>
     </div>
   )
 }

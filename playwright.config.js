@@ -13,8 +13,11 @@ export default defineConfig({
   // Retry on CI only.
   retries: process.env.CI ? 2 : 0,
 
+  workers: 4,
+  retries: 5,
+
   // Opt out of parallel tests on CI.
-  workers: process.env.CI ? 1 : undefined,
+  // workers: process.env.CI ? 1 : undefined,
 
   // Reporter to use
   reporter: 'html',
@@ -47,12 +50,12 @@ export default defineConfig({
         ...devices['iPhone 13'],
       },
     },
-    {
-      name: 'Mobile Safari',
-      use: {
-        ...devices['iPhone 13'],
-      },
-    }
+    // {
+    //   name: 'Mobile Safari',
+    //   use: {
+    //     ...devices['iPhone 13'],
+    //   },
+    // }
   ],
   // Run your local dev server before starting the tests.
   webServer: {

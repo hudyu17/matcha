@@ -1,6 +1,9 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
 
+// for specific testing 
+// test.skip();
+
 // Note that we are already authenticated
 
 test('has title', async ({ page }) => {
