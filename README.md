@@ -10,7 +10,7 @@
 ### UI
 
 **Landing page**
-![landing page](https://github.com/hudyu17/matcha/tree/main/public/readme/filter.png)
+![landing page](public/readme/filter.png)
 
 **Platform homepage (browsing and filtering)**
-![platform homepage](https://github.com/hudyu17/matcha/tree/main/public/readme/landingpage.png)
+![platform homepage](public/readme/landingpage.png)
