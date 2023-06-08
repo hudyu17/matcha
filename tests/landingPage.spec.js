@@ -59,4 +59,4 @@ test('readme link (second) redirects to readme', async ({ page }) => {
   await expect(page).toHaveURL(/readme/);
 });
 
-// test comment
+// enable auto merge
