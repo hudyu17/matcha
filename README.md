@@ -10,7 +10,7 @@
 ### UI
 
 **Landing page**
-![landing page](public/readme/filter.png)
+![landing page](public/readme/landingpage.png)
 
 **Platform homepage (browsing and filtering)**
-![platform homepage](public/readme/landingpage.png)
+![platform homepage](public/readme/filter.png)
