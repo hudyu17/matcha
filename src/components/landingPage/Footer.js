@@ -8,8 +8,6 @@ const navigation = [
         </svg>
       ),
     },
-    
-    
   ]
   
   export default function Footer() {
@@ -24,7 +22,7 @@ const navigation = [
               </a>
             ))}
           </div>
-          <div className="mt-8 md:order-1 md:mt-0">
+          <div className="mt-6 md:order-1 md:mt-0">
             <p className="text-center leading-5 text-gray-400">
               Made by <a className="text-gray-300 hover:text-green-100" href="https://hudsonyuen.com" target="_blank" rel="noreferrer">Hudson</a>
             </p>

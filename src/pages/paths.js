@@ -1,4 +1,4 @@
-import PathCard from "@/components/PathCard"
+import PathCard from "@/components/cards/PathCard"
 import PathHeading from "@/components/PathHeading"
 import { FaceFrownIcon } from "@heroicons/react/24/outline"
 import { useState } from "react"
@@ -50,7 +50,7 @@ export default function Paths({ careers, saved }) {
       <div className="h-screen">
       <Head>
         <title>Browse | CareerMatcha</title>
-        <meta name="description" content="Browse all Career Paths" />
+        <meta name="description" content="Get career inspiration - browse less common paths across tech, consulting, and startups."/>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
@@ -58,7 +58,7 @@ export default function Paths({ careers, saved }) {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
         <link rel="manifest" href="/site.webmanifest"/>
         <meta property="og:title" content="Browse all Career Paths | CareerMatcha"/>
-        <meta property="og:description" content="Career inspiration, curated for you."/>
+        <meta property="og:description" content="Get career inspiration, curated for you."/>
         <meta property="og:image" content="/preview.png" />
       </Head>
       <Layout className=''

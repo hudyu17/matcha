@@ -54,28 +54,24 @@ export default function Hero({ setShowSuccess, setShowExists, setShowError }) {
       <main>
         <div className="relative px-6 lg:px-8">
           <div className="mx-auto max-w-2xl py-32">
-          <div className="mb-8 flex justify-center">
-              <div className="text-center relative rounded-lg sm:rounded-full py-1 px-3 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                The beta is now live! Join the waitlist for early access.{' '}
-                <Link href="/readme" className="font-semibold text-green-700">
-                  <span className="absolute inset-0" aria-hidden="true" />
-                  Read more <span aria-hidden="true">&rarr;</span>
-                </Link>
-              </div>
-            </div>
             <div className="text-center flex flex-col">
-            
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
                 Career inspiration, curated for you 🍵
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-600">
                 The first database for career paths. 
               </p>
-              <p className="mt-1 text-sm leading-8 text-gray-500">
-                Waitlist: 228 (Updated Mar 20)
-              </p>
-              <div className='mt-8 mx-auto'>
-                <SignupForm setShowSuccess={setShowSuccess} setShowExists={setShowExists} setShowError={setShowError}/>
+              <div className="mt-10 flex items-center justify-center gap-x-6">
+                <Link
+                  title="cta-one"
+                  href="/paths"
+                  className="rounded-md bg-green-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-700"
+                >
+                  Get started
+                </Link>
+                <Link title="readme-one" href="/readme" className="text-sm font-semibold leading-6 text-gray-900">
+                  Learn more <span aria-hidden="true">→</span>
+                </Link>
               </div>
             </div>
           </div>

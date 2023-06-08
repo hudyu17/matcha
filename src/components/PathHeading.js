@@ -117,15 +117,7 @@ export default function PathHeading({ cards, setCards }) {
                     <div key={section.name} className="border-t border-gray-200 px-4 py-6">
                       
                           <h3 className="-my-2 flow-root">
-                            {/* <Disclosure.Button className="flex w-full items-center justify-between bg-white px-2 py-3 text-sm text-gray-400"> */}
                               <span className="font-sm text-gray-900">{section.name}</span>
-                              <span className="ml-6 flex items-center">
-                                {/* <ChevronDownIcon
-                                  className={classNames(open ? '-rotate-180' : 'rotate-0', 'h-5 w-5 transform')}
-                                  aria-hidden="true"
-                                /> */}
-                              </span>
-                            {/* </Disclosure.Button> */}
                           </h3>
                           <div className="pt-6">
                             <div className="space-y-4">
@@ -183,7 +175,7 @@ export default function PathHeading({ cards, setCards }) {
                 }
                   {/* Toggle Cards */}
                   <Squares2X2Icon
-                    className='-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-100 group-hover:text-white group-hover:fill-white'
+                    className='-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-100 group-hover:text-white'
                     aria-hidden="true"
                   />
               </div>
