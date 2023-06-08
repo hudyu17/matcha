@@ -5,7 +5,7 @@
 - Next.js
 - PostgreSQL + Prisma ORM
 - A whole lotta tailwind
-
+- Testing with Playwright
 
 ### UI
 
